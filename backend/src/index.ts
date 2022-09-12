@@ -1,8 +1,8 @@
 import express from 'express';
+
 const app = express();
 
 app.use(express.json()); //middleware que trasforma la req.body a un jason
-
 
 const PORT = 3001;
 
