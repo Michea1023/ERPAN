@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import logo from './static/images/logo.svg';
 import './static/css/App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Register from "./pages/Register";
+import Login from './pages/Login';
 import {Business_Response} from "./types/response_types";
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
                 }
                 <Routes>
                     <Route path={'/register'} element={<Register />}/>
+                    <Route path={'/login'} element={<Login />}/>
                 </Routes>
                 {
                     //Footer
