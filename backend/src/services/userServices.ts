@@ -1,4 +1,5 @@
 import {client} from '../dataBase';
+import { User } from '../types/user_types';
 
 /**
  * 
@@ -7,7 +8,7 @@ import {client} from '../dataBase';
  * @returns user or undefined
  * @description retorna los datos del usuario solicitado
  */
-export const getUser = async (email:string ,password: string) => {
+export const getUser = async (email:string ,password: string):Promise<User | undefined> => {
     const query = `SELECT * FROM business WHERE email = '${email}' AND passw = '${password}'`;
     const result = await client.query(query)
     if(result.rowCount > 0) {
