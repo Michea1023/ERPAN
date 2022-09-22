@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Business} from "../../types/request_types";
+import {Business_Register} from "../../types/request_types";
 import register_request from "../../services/auth/register_request";
 import {useNavigate} from "react-router-dom"
 
@@ -13,7 +13,7 @@ const INITIAL_VALUE = {
 
 
 const useRegister = () => {
-    const [business, setBusiness] = useState<Business>(INITIAL_VALUE)
+    const [business, setBusiness] = useState<Business_Register>(INITIAL_VALUE)
     const navigate = useNavigate()
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {

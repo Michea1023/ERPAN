@@ -11,27 +11,40 @@ export default function Register () {
     const {navigate, handleSubmit, handleChange} = useRegister();
 
     return (<>
-    
-   
-   
     <div className="Auth-form-container">
-      <form className="Auth-form">
+      <form className="Auth-form" onSubmit={handleSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Registrarse</h3>
           <div className="form-group mt-3">
-            <label>Usuario</label>
+            <label>Nombre del Negocio</label>
             <input
               type="text"
               className="form-control mt-1"
-              placeholder="Ingrese usuario"
+              name={"name"}
+              placeholder="Ingrese su nombre*"
+              onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group mt-3">
-            <label>Apodo</label>
+            <label>Email</label>
             <input
               type="text"
               className="form-control mt-1"
-              placeholder="Ingrese Apodo"
+              name={"email"}
+              placeholder="Ingrese su Correo*"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label>Nombre Corto del Negocio</label>
+            <input
+                type="text"
+                className="form-control mt-1"
+                name={"short_name"}
+                placeholder="Ingrese su nombre corto"
+                onChange={handleChange}
             />
           </div>
           <div className="form-group mt-3">
@@ -39,7 +52,10 @@ export default function Register () {
             <input
               type="password"
               className="form-control mt-1"
-              placeholder="Ingrese contraseña"
+              name={"password"}
+              placeholder="Ingrese contraseña*"
+              onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group mt-3">
@@ -47,7 +63,10 @@ export default function Register () {
             <input
               type="password"
               className="form-control mt-1"
-              placeholder="Repetir contraseña"
+              name={"password_confirm"}
+              placeholder="Repetir contraseña*"
+              onChange={handleChange}
+              required
             />
           </div>
           <div className="d-grid gap-2 mt-3">
@@ -56,7 +75,7 @@ export default function Register () {
             </button>
           </div>
           <p className="forgot-password text-right mt-2">
-           Ya tienes una <a href="#">Cuenta?</a>
+           Ya tienes una <a href="#" onClick={() => navigate('/login')}>Cuenta?</a>
           </p>
         </div>
       </form>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useNavigate} from "react-router-dom"
 import login_request from '../../services/auth/login_request';
-import { Business_Login } from '../../types/login_type';
+import {Business_Login} from "../../types/request_types";
 
 const INITIAL_VALUE = {
     email: "",

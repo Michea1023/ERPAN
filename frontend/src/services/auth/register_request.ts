@@ -1,9 +1,9 @@
-import {Business} from "../../types/request_types";
+import {Business_Register} from "../../types/request_types";
 import {Business_Response} from "../../types/response_types";
 
 const HOST = "http://localhost:3001/api/"
 
-const register_request = (business: Business): Promise<Business_Response> => {
+const register_request = (business: Business_Register): Promise<Business_Response> => {
     return fetch(HOST + 'register', {
         method: "POST",
         headers: {
