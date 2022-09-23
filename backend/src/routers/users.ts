@@ -1,27 +1,42 @@
 import express from "express";
-import { getUser } from '../services/userServices';
-import UserResponse from "../types/user_types";
+import { createUser, getUser } from '../services/userServices';
+import { NewUser, UserLogin, UserResponse } from "../types/user_types";
 
 const router = express.Router();
 
+/*
+* @param email | password
+* realiza el login del usuario de manera simple, entregando el nombre
+* y un token express del usuario 
+*/
 router.post("/login", async (req, res) => {
-    const {email, pass} = req.body;
-    const user = await getUser(email,pass);
-    if (user != undefined) {
-        const userToken: UserResponse = {
-            name_business: user?.name_business,
+    const userLogin:UserLogin = req.body;
+    console.log(userLogin);
+    const userData = await getUser(userLogin);
+    if (userData != undefined) {
+        const UserResponse: UserResponse = {
+            name_business: userData?.name_business,
             token:"token_express"
         }
-        res.send(userToken)
+        res.status(200).send(UserResponse)
     }else{
-        res.status(404)
-        res.send(new Error('Invalid'))
+        res.status(404).send(undefined)
     }
     
 });
 
-router.post("/post", (_req, res) => {
-    res.send("usuario cargado")
+/* 
+* @param name_business | email | passw | short_name?
+* realiza el registro de un nuevo business al sistema, retornando boolean de acuerdo si 
+* el usuario fue registro. 
+*/
+router.post("/register", async (req, res) => {
+    const newUser: NewUser = req.body;
+    if(await createUser(newUser)){
+        res.status(200).send(true);
+    }else{
+        res.status(404).send(false);
+    }
 });
 
 
