@@ -4,11 +4,13 @@ import { NewUser, UserLogin, UserResponse } from "../types/user_types";
 
 const router = express.Router();
 
-/*
-* @param email | password
-* realiza el login del usuario de manera simple, entregando el nombre
-* y un token express del usuario 
-*/
+
+/**
+ * @params email | password
+ * realiza el login del usuario de manera simple, entregando el nombre
+ * y un token express del usuario
+ */
+
 router.post("/login", async (req, res) => {
     const userLogin:UserLogin = req.body;
     console.log(userLogin);
@@ -25,8 +27,8 @@ router.post("/login", async (req, res) => {
     
 });
 
-/* 
-* @param name_business | email | passw | short_name?
+/**
+* @params name_business | email | passw | short_name?
 * realiza el registro de un nuevo business al sistema, retornando boolean de acuerdo si 
 * el usuario fue registro. 
 */
