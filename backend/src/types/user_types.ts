@@ -4,14 +4,14 @@ export interface User {
     email: string;
     password: string;
     short_name?: string;
-}
+};
 
 export interface UserWithToken extends User {
     token: string;
-}
+};
 
+export type UserLogin = Omit<User, "id" | "name_business" | "short_name">
 
-type UserResponse = Omit<UserWithToken,"id" | "email" | "password" | "short_name">
+export type UserResponse = Omit<UserWithToken,"id" | "email" | "password" | "short_name">;
 
-
-export default UserResponse;
+export type NewUser = Omit<User, "id">;

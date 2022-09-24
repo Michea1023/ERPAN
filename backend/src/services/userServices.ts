@@ -1,20 +1,35 @@
 import {client} from '../dataBase';
-import { User } from '../types/user_types';
+import { User , NewUser, UserLogin} from '../types/user_types';
 
 /**
- * 
- * @param user 
- * @param password 
- * @returns user or undefined
- * @description retorna los datos del usuario solicitado
+ * @param userLogin usuario que se esta iniciando sesion
+ * @return {userData} datos del usuario
  */
-export const getUser = async (email:string ,password: string):Promise<User | undefined> => {
-    const query = `SELECT * FROM business WHERE email = '${email}' AND passw = '${password}'`;
+export const getUser = async (userLogin: UserLogin):Promise<User | undefined> => {
+    const query = `SELECT * FROM business WHERE email = '${userLogin.email}' AND passw = '${userLogin.password}'`;
     const result = await client.query(query)
+    console.log(result)
     if(result.rowCount > 0) {
-        const user = await result.rows[0];
-        return user;
+        const userData = await result.rows[0];
+        return userData;
     }
     return undefined;
 };
+
+/**
+ * 
+ * @param newUser nuevo usuario que se esta registrando al sistema
+ * @returns boolean
+ */
+export const createUser = async (newUser: NewUser) => {
+    const query = `insert into business(name_business,email,passw,short_name) values('${newUser.name_business}','${newUser.email}','${newUser.password}','${newUser.short_name}');`
+    try {
+        await client.query(query);
+        return true;
+    }catch(err){
+        console.error(err);
+        return false;
+    }
+}
+    
 

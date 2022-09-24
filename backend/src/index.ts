@@ -1,11 +1,14 @@
 import express from 'express';
 
+const cors = require('cors')
+
 import userRouter from "./routers/users"
 
 const app = express();
 
 app.use(express.json()); //middleware que trasforma la req.body a un jason
 app.use(express.urlencoded({ extended:false }));
+app.use(cors())
 
 
 app.get('/ping', (_req, res) => {
