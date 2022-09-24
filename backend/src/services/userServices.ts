@@ -8,7 +8,6 @@ import { User , NewUser, UserLogin} from '../types/user_types';
 export const getUser = async (userLogin: UserLogin):Promise<User | undefined> => {
     const query = `SELECT * FROM business WHERE email = '${userLogin.email}' AND passw = '${userLogin.password}'`;
     const result = await client.query(query)
-    console.log(result)
     if(result.rowCount > 0) {
         const userData = await result.rows[0];
         return userData;
