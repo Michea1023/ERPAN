@@ -13,4 +13,4 @@ const connectionData = {
 
 
 export const client = new Pool  (connectionData);
-
+ 

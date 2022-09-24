@@ -1,12 +1,14 @@
 import express from 'express';
+import routers from "./routers/index";
 
-const cors = require('cors')
 
-import userRouter from "./routers/users"
+const cors = require('cors');
 
 const app = express();
 
-app.use(express.json()); //middleware que trasforma la req.body a un jason
+
+//middlewares
+app.use(express.json()); //middleware que trasforma la req.body a un json
 app.use(express.urlencoded({ extended:false }));
 app.use(cors())
 
@@ -17,11 +19,8 @@ app.get('/ping', (_req, res) => {
 });
 
 
-/* rutas para el modelo usuario  */
-app.use('/api', userRouter);
-
-/* rutas*/
-
+/* rutas */
+app.use('/api', routers);
 
 
 
