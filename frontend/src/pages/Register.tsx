@@ -4,11 +4,11 @@ import "../static/css/style.css";
 
 
 interface Props {
-
+    handleBusiness: (new_business: {name: string, logged: boolean}) => void
 }
 
-export default function Register () {
-    const {navigate, handleSubmit, handleChange} = useRegister();
+export default function Register ({handleBusiness}: Props) {
+    const {navigate, handleSubmit, handleChange} = useRegister({handleBusiness});
 
     return (<>
         <div className="Auth-form-container">

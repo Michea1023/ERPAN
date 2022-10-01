@@ -1,4 +1,4 @@
 export interface Business_Response {
-    name: string,
+    name: string
     token: string
 }

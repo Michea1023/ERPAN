@@ -9,7 +9,12 @@ const register_request = (business: Business_Register): Promise<Business_Respons
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(business)
+        body: JSON.stringify({
+            "name_business": business.name,
+            "email": business.email,
+            "short_name": business.short_name,
+            "password": business.password
+        })
     }).then(response => {
         if (!response.ok) throw new Error("Error")
         return response.json()

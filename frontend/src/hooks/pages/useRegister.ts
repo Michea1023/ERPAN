@@ -11,14 +11,21 @@ const INITIAL_VALUE = {
     password_confirm: ""
 }
 
+interface Props {
+    handleBusiness: (new_business: {name: string, logged: boolean}) => void
+}
 
-const useRegister = () => {
+const useRegister = ({handleBusiness}: Props) => {
     const [business, setBusiness] = useState<Business_Register>(INITIAL_VALUE)
     const navigate = useNavigate()
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
         register_request(business).then((res) => {
+            handleBusiness({
+                name: res.name,
+                logged: true
+            })
             navigate('/')
         })
     }
