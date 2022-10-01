@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
     const userData = await getUser(userLogin);
     if (userData != undefined) {
         const UserResponse: UserResponse = {
-            name_business: userData?.name_business,
+            name_business: userData.name_business,
             token:"token_express"
         }
         res.status(200).send(UserResponse)
@@ -23,7 +23,11 @@ router.post("/login", async (req, res) => {
 router.post("/register", async (req, res) => {
     const newUser: NewUser = req.body;
     if(await createUser(newUser)){
-        res.status(200).send(true);
+        const userResponse: UserResponse = {
+            name_business: newUser.name_business,
+            token: "token_express"
+        };
+        res.status(200).send(userResponse);
     }else{
         res.status(404).send(false);
     }
