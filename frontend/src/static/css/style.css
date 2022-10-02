@@ -7,7 +7,15 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 72vh;
+  }
+
+  .Auth-form-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 90vh;
   }
   
   .Auth-form {

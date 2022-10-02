@@ -11,7 +11,7 @@ export default function Register ({handleBusiness}: Props) {
     const {navigate, handleSubmit, handleChange} = useRegister({handleBusiness});
 
     return (<>
-        <div className="Auth-form-container">
+        <div className="Auth-form-container1">
             <form className="Auth-form" onSubmit={handleSubmit}>
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Registrarse</h3>
