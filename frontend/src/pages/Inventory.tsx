@@ -1,8 +1,24 @@
-import React from 'react';
+import React,{useState} from 'react';
 import "../static/css/style.css";
+import ModalEdit from '../components/ModalEdit';
+import ModalAdd from '../components/ModalAdd';
 
 export default function Inventory () {
-    return <div>
+
+    const [show,setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [showAdd,setShowAdd] = useState(false);
+    const handleCloseAdd = () => setShowAdd(false);
+    const handleShowAdd = () => setShowAdd(true);
+
+    const edit = () =>{
+        return <button type="button" className="btn btn-outline-success" onClick={handleShow} >Editar</button>
+    }
+
+    return <>
+    <div>
         <div className='container mt-2'>
             <div className='container'>
                 <nav className="navbar navbar-light bg-light">
@@ -36,7 +52,7 @@ export default function Inventory () {
                     </div>
                 </div>
 
-                <button type="button" className="btn btn-outline-success item3">Nuevo producto +</button>
+                <button type="button" className="btn btn-outline-success item3"  onClick={handleShowAdd}>Nuevo producto +</button>
             </div>
         </div>        
         <div className='container mt-2'>
@@ -51,6 +67,7 @@ export default function Inventory () {
                         <th>Proveedor</th>
                         <th>Stock</th>
                         <th>Precio</th>
+                        <th>Editar</th>
                     </tr>
                     </thead>
                     <tbody >
@@ -61,6 +78,7 @@ export default function Inventory () {
                         <td>CCU</td>
                         <td>5</td>
                         <td>1000</td>
+                        <td>{edit()}</td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -69,6 +87,7 @@ export default function Inventory () {
                         <td>Coca Cola</td>
                         <td>10</td>
                         <td>1500</td>
+                        <td>{edit()}</td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -77,6 +96,7 @@ export default function Inventory () {
                         <td>Coca Cola</td>
                         <td>10</td>
                         <td>1500</td>
+                        <td>{edit()}</td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -85,6 +105,7 @@ export default function Inventory () {
                         <td>Coca Cola</td>
                         <td>10</td>
                         <td>1500</td>
+                        <td>{edit()}</td>
                     </tr>
                     </tbody>
                     </table>
@@ -92,6 +113,8 @@ export default function Inventory () {
             </div>
         </div>
     </div>
-
+    <ModalEdit show={show} handleClose={handleClose}  />
+    <ModalAdd showAdd={showAdd} handleCloseAdd={handleCloseAdd} />
+    </>
 
 }
