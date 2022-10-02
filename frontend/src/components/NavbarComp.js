@@ -15,7 +15,7 @@ export default class NavbarComp extends Component {
         return (
             <div>
                 <Navbar bg="dark" variant={"dark"} expand="lg">
-                    <Container>
+                    <Container className="w-100 ms-auto">
                         <Navbar.Brand as={Link} to={"/"}>ERPAN</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">

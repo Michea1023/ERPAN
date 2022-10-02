@@ -30,32 +30,55 @@ export default function Inventory () {
             </div>
         
 
-            <div className='gridButton'>
-                <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle item1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a className="dropdown-item" href="#">Action</a>
-                        <a className="dropdown-item" href="#">Another action</a>
-                        <a className="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-                <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle item2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#">Action</a>
-                    <a className="dropdown-item" href="#">Another action</a>
-                    <a className="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
+            
 
-                <button type="button" className="btn btn-outline-success item3"  onClick={handleShowAdd}>Nuevo producto +</button>
+                
+            
+        </div>  
+
+        <div className='container mt-3'>
+            <div className="d-flex flex-row-reverse justify-content-center align-items-center">
+
+
+                            <button type="button" className="align-self-center ms-auto btn btn-outline-success item3" onClick={handleShowAdd}>Nuevo producto +</button>
+
+                            <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categoria
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button className="dropdown-item" type="button">Bebida</button>
+                                <button className="dropdown-item" type="button">Galletas</button>
+                                <button className="dropdown-item" type="button">Salsas</button>
+                            </div>
+                            </div>
+
+                            <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categoria
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button className="dropdown-item" type="button">Bebida</button>
+                                <button className="dropdown-item" type="button">Galletas</button>
+                                <button className="dropdown-item" type="button">Salsas</button>
+                            </div>
+                            </div>
+
+                            
+
+
+
+
+
+
+
+
+
             </div>
-        </div>        
-        <div className='container mt-2'>
+        </div>
+        
+
+        <div className='container mt-3'>
             <div className='row'>
                 <div className='col'>
                     <table className='table table-striped table-hover table-bordered'>
