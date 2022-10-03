@@ -14,14 +14,14 @@ export default class NavbarComp extends Component {
     render(){
         return (
             <div>
-                <Navbar bg="dark" variant={"dark"} expand="lg">
+                <Navbar bg="dark" variant={"dark"} expand="xl">
                     <Container className="w-100 ms-auto">
                         <Navbar.Brand as={Link} to={"/"}>ERPAN</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link as={Link} to={"/login"}>Ventas</Nav.Link>
-                                <Nav.Link as={Link} to={"/register"}>Inventario</Nav.Link>
+                                <Nav.Link as={Link} to={"/inventory"}>Inventario</Nav.Link>
                                 
                             </Nav>
                         </Navbar.Collapse>

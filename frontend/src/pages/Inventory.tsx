@@ -78,7 +78,7 @@ export default function Inventory () {
         </div>
         
 
-        <div className='container mt-3'>
+        <div className='container mt-3 table-responsive'>
             <div className='row'>
                 <div className='col'>
                     <table className='table table-striped table-hover table-bordered'>
