@@ -10,6 +10,7 @@ export default function ModalAdd ({showAdd,handleCloseAdd}) {
             <Modal.Title>Agregar producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <div className="d-flex justify-content-center align-items-center">
         <form className="Auth-form" >
         <div className="Auth-form-content">
           <div className="form-group mt-3">
@@ -54,7 +55,8 @@ export default function ModalAdd ({showAdd,handleCloseAdd}) {
           </div>          
 
         </div>
-      </form>            
+      </form>   
+      </div>         
         </Modal.Body>
         <ModalFooter>
             <Button variant="secondary" onClick={handleCloseAdd}>
