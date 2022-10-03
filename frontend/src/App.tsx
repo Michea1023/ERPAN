@@ -27,7 +27,6 @@ function App() {
                     <Route path={'/login'} element={
                         !business.logged ? <Login handleBusiness={handleBusiness}/> : <Navigate to={"/"}/>
                     }/>
-                    <Route path={'/inventory'} element={<Inventory />}/>
                 </Routes>
                 {
                     //Footer
