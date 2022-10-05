@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import NavbarComp from './components/NavbarComp';
 import useBusiness from "./hooks/useBusiness";
 import Inventory from "./pages/Inventory";
+import NotFound from "./pages/NotFound";
 
 function App() {
     const {business, handleBusiness} = useBusiness()
@@ -14,9 +15,7 @@ function App() {
     return (
         <div className="App">
             <Router>
-                {
-                    <NavbarComp/>
-                }
+                <NavbarComp business={business}/>
                 <Routes>
                     <Route path={"/"} element={
                         business.logged ? <Inventory/>: <Navigate to={"/login"}/>
@@ -27,6 +26,7 @@ function App() {
                     <Route path={'/login'} element={
                         !business.logged ? <Login handleBusiness={handleBusiness}/> : <Navigate to={"/"}/>
                     }/>
+                    <Route path={'/*'} element={<NotFound/>}/>
                 </Routes>
                 {
                     //Footer

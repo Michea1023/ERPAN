@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 router.post("/login", async (req, res) => {
-    const userLogin:UserLogin = req.body;
+    const userLogin: UserLogin = req.body;
     const userData = await getUser(userLogin);
     if (userData != undefined) {
         const UserResponse: UserResponse = {
