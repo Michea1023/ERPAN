@@ -31,12 +31,13 @@
     "last_opened_file_path": "D:/.datos/ERPAN",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.JavaScript Additions",
-    "ts.external.directory.path": "D:\\.datos\\ERPAN\\frontend\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "D:\\.datos\\ERPAN\\backend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\.datos\ERPAN\frontend\src\components\inventory" />
       <recent name="D:\.datos\ERPAN\frontend\src\services\auth" />
       <recent name="D:\.datos\ERPAN\frontend\src\static\images" />
       <recent name="D:\.datos\ERPAN\frontend\src\static\css" />
@@ -62,6 +63,7 @@
       <workItem from="1663877769776" duration="88000" />
       <workItem from="1664655613736" duration="4117000" />
       <workItem from="1664928673515" duration="7305000" />
+      <workItem from="1665004301698" duration="3119000" />
     </task>
     <servers />
   </component>

@@ -21,19 +21,20 @@ const useRegister = ({handleBusiness}: Props) => {
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
-        register_request(business).then((res) => {
-            handleBusiness({
-                name: res.name,
-                logged: true
+        if (business.password === business.password_confirm)
+            register_request(business).then((res) => {
+                handleBusiness({
+                    name: res.name,
+                    logged: true
+                })
+                navigate('/')
             })
-            navigate('/')
-        })
     }
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setBusiness({
             ... business,
-            [evt.currentTarget.name]: evt.currentTarget.value //nombre: valor xd
+            [evt.currentTarget.name]: evt.currentTarget.value
         })
     }
 

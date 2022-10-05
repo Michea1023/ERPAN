@@ -12,3 +12,11 @@ export interface Business_Register extends Business {
 export interface Business_Login extends Business {
 
 }
+
+export interface Product {
+    name: string
+    supplier: string
+    category?: number
+    stock: number
+    price: number
+}

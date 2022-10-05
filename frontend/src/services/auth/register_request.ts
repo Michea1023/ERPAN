@@ -1,7 +1,6 @@
 import {Business_Register} from "../../types/request_types";
 import {Business_Response} from "../../types/response_types";
-
-const HOST = "http://localhost:3001/api/"
+import {HOST} from "../../settings";
 
 const register_request = (business: Business_Register): Promise<Business_Response> => {
     return fetch(HOST + 'register', {

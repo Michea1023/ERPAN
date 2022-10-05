@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import "../static/css/style.css";
-import ModalEdit from '../components/ModalEdit';
-import ModalAdd from '../components/ModalAdd';
+import ModalEdit from '../components/inventory/ModalEdit';
+import ModalAdd from '../components/inventory/ModalAdd';
 import useModal from "../hooks/pages/useModal";
 
 export default function Inventory () {
