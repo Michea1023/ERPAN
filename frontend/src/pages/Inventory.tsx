@@ -30,7 +30,7 @@ export default function Inventory () {
                     <button type="button" className="align-self-center ms-auto btn btn-outline-success item3"
                             onClick={() => handleAdd(true)}>Nuevo producto +</button>
                     <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button className="m-3 btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Categoria
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -41,7 +41,7 @@ export default function Inventory () {
                     </div>
 
                     <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Proveedor
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
