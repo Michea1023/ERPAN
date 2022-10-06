@@ -21,6 +21,22 @@ export const getUser = async (userLogin: UserLogin):Promise<User | undefined> =>
 };
 
 /**
+ * It takes a userLogin object, queries the database for the id of the user, and returns the id if it
+ * exists
+ * @param {UserLogin} userLogin - UserLogin
+ * @returns The id of the user.
+ */
+export const getIdUser = async (userLogin: UserLogin)=>{
+    const query = `SELECT id FROM business WHERE email = '${userLogin.email}'`
+    const result = await client.query(query);
+    if(result.rowCount > 0) {
+        const {id} = result.rows[0];
+        return id;
+    }
+    return undefined;
+};
+
+/**
  * 
  * @param newUser nuevo usuario que se esta registrando al sistema
  * @returns boolean

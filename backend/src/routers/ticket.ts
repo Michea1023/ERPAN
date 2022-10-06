@@ -5,6 +5,10 @@ import { NewTicket, TicketUpdate } from "../types/ticket_types";
 
 const router = express.Router();
 
+router.use(function(_req, _res, next){
+    next()
+})
+
 
 router.get('/', async (req, res) => {
     const { id_business } = req.body;
