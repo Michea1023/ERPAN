@@ -1,8 +1,22 @@
 import express from "express";
+//import { getAll } from "../services/productServices";
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config({
+    path: './.env'
+});
+
+
+
 
 const router = express.Router();
 
-router.post("/", async (_req, _res) => {
+router.post("/", async (req, _res) => {
+    const token = req.get('Authorization')?.substring(7);
+    let data = jwt.decode(token,process.env.JWT_PRIVATE_KEY);
+    const {id} = data
+    console.log(id);
     //debe retornar los datos del producto creado
     //debe acceder con token
 })

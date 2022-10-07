@@ -43,15 +43,15 @@ router.post("/register", async (req, res) => {
             email: newUser.email,
             password: newUser.password
         };
-        const idUser = await getIdUser(userLogin);
-        const TOKEN = jwt.sign({idUser},process.env.JWT_PRIVATE_KEY);
+        const id = await getIdUser(userLogin);
+        const TOKEN = jwt.sign({id:id},process.env.JWT_PRIVATE_KEY);
         const userResponse: UserResponse = {
             name_business: newUser.name_business,
             token: TOKEN
         };
 
         const newSession:NewSession = {
-            id_business:idUser,
+            id_business:id,
             token:TOKEN,
             admin:false,
             date_created: new Date().toLocaleDateString('en-GB')
