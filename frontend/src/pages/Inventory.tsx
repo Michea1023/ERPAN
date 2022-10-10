@@ -3,10 +3,12 @@ import "../static/css/style.css";
 import ModalEdit from '../components/inventory/ModalEdit';
 import ModalAdd from '../components/inventory/ModalAdd';
 import useModal from "../hooks/pages/useModal";
+import Products from '../hooks/components/inventory/Products';
+
+
 
 export default function Inventory () {
     const {modal, handleAdd, handleEdit} = useModal()
-
     const edit = () =>{
         return <button type="button" className="btn btn-outline-success"
                        onClick={() => handleEdit(true)}>Editar</button>
@@ -70,42 +72,23 @@ export default function Inventory () {
                         </tr>
                         </thead>
                         <tbody >
-                        <tr>
-                            <td>1</td>
-                            <td>Pepsi 1L</td>
-                            <td>Bebida</td>
-                            <td>CCU</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>{edit()}</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Coca Cola 1L</td>
-                            <td>Bebida</td>
-                            <td>Coca Cola</td>
-                            <td>10</td>
-                            <td>1500</td>
-                            <td>{edit()}</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Coca Cola 1L</td>
-                            <td>Bebida</td>
-                            <td>Coca Cola</td>
-                            <td>10</td>
-                            <td>1500</td>
-                            <td>{edit()}</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Coca Cola 1L</td>
-                            <td>Bebida</td>
-                            <td>Coca Cola</td>
-                            <td>10</td>
-                            <td>1500</td>
-                            <td>{edit()}</td>
-                        </tr>
+                            <>
+                            {
+                                Products().map((product) =>{
+                                    return(
+                                    <tr>
+                                        <td>{product.bar_code}</td>
+                                        <td>{product.name_product}</td>
+                                        <td>{product.id_categories}</td>
+                                        <td>{product.id_providers}</td>
+                                        <td>{product.stock}</td>
+                                        <td>{product.price}</td>
+                                        <td>{edit()}</td>
+                                    </tr>
+                                    )
+                                })
+                            }
+                            </>
                         </tbody>
                         </table>
                     </div>

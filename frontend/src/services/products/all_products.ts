@@ -1,6 +1,7 @@
 import {HOST, TOKEN} from "../../settings";
+import { ProductList } from "../../types/response_types";
 
-const all_products = () => {
+const all_products = ():Promise<ProductList> => {
     return fetch(HOST + 'products', {
         method: "GET",
         headers: {
