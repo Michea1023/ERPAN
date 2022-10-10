@@ -24,7 +24,7 @@ router.use(function (req, res, next) {
         console.error(e);
         return res.status(401).send({ message: "Token invalido" });
     }
-    console.log(token)
+    
     return next();
     
 });

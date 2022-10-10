@@ -54,6 +54,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
+/* This is a route that will be used to get a product by id. */
 router.get("/:id", async (req, res) => {
     //:id debe ser un parametro
     //request vacia
@@ -68,6 +69,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+/* A route that will be used to delete a product by id. */
 router.delete("/:id", async(req, res) => {
     //:id debe ser un parametro
     //debe retornar true si se elimino correctamente
