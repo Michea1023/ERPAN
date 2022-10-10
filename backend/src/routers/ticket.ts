@@ -1,10 +1,10 @@
 import express from "express";
 import { addTicket, deleteTicket, getAll, getTicket, updateTicket } from "../services/ticketServices";
 import { NewTicket, TicketUpdate } from "../types/ticket_types";
-
+import verifyToken from "../middleware/verifyToken";
 
 const router = express.Router();
-
+router.use(verifyToken);
 
 router.get('/', async (req, res) => {
     const { id_business } = req.body;

@@ -8,3 +8,7 @@ export interface Product {
     name_product: String,
     price: Number
 }
+
+export type NewProduct = Omit<Ticket, "id">
+
+export type UpdateProduct = Omit<Ticket, "id" | "id_business" | "id_categories" | "id_providers">

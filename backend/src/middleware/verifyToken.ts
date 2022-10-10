@@ -24,9 +24,8 @@ router.use(function (req, res, next) {
         console.error(e);
         return res.status(401).send({ message: "Token invalido" });
     }
-    
 
-    return next('router');
+    return next();
     
 });
 
