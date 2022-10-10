@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import "../static/css/style.css";
 import ModalEdit from '../components/inventory/ModalEdit';
 import ModalAdd from '../components/inventory/ModalAdd';

@@ -14,9 +14,11 @@ export interface Business_Login extends Business {
 }
 
 export interface Product {
-    name: string
-    supplier: string
-    category?: number
+    name_product: string
+    id_business?: number
+    id_providers: number
+    id_categories: number
+    bar_code?: number
     stock: number
     price: number
 }

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { ModalFooter } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import Select from "react-select";
 import useModalAddForm from "../../hooks/components/inventory/useModalAddForm";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 }
 
 export default function ModalAdd ({value, handleClose}: Props) {
-    const {handleChange, handleSubmit} = useModalAddForm()
+    const {out, handleChange, handleSubmit, handleCategory, handleProvider} = useModalAddForm()
 
     return (
         <Modal show={value} onHide={handleClose}>
@@ -26,29 +27,33 @@ export default function ModalAdd ({value, handleClose}: Props) {
                             <input
                                 type="text"
                                 className="form-control mt-1"
-                                name={"name"}
+                                name={"name_product"}
                                 onChange={handleChange}
                                 required
                             />
                         </div>
-                        {
-                            //editar categoria
-                        }
                         <div className="form-group mt-3">
                             <label>Categoria</label>
-                            <input
-                                type="text"
-                                className="form-control mt-1"
-                                name={"category"}
+                            <Select
+                                name={"id_categories"}
+                                options={out.category.state.options}
+                                inputValue={out.category.state.search}
+                                onChange={handleCategory}
+                                onInputChange={out.category.handleSearch}
+                                onKeyDown={out.category.handleOptions}
+                                isSearchable={true}
                             />
                         </div>
                         <div className="form-group mt-3">
                             <label>Proveedor</label>
-                            <input
-                                type="text"
-                                className="form-control mt-1"
-                                name={"supplier"}
-                                onChange={handleChange}
+                            <Select
+                                name={"id_providers"}
+                                options={out.provider.state.options}
+                                inputValue={out.provider.state.search}
+                                onChange={handleProvider}
+                                onInputChange={out.provider.handleSearch}
+                                onKeyDown={out.provider.handleOptions}
+                                isSearchable={true}
                             />
                         </div>
                         <div className="form-group mt-3">
