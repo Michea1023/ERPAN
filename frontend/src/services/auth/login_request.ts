@@ -16,7 +16,7 @@ const login_request = (business:Business_Login):Promise<Business_Response> => {
         console.log("Incorrect email or password")
     }).then((response:Business_Response) => {
         window.localStorage.setItem("tokenERPAN",response.token)
-        window.localStorage.setItem("nameERPAN",response.name)
+        window.localStorage.setItem("nameERPAN",response.name_business)
         return response
     })
 }

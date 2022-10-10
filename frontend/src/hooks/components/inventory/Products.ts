@@ -1,32 +1,14 @@
 import { useEffect, useState } from "react"
 import all_products from "../../../services/products/all_products"
+import { TOKEN } from "../../../settings"
 import { ProductList } from "../../../types/response_types"
 
 const Products = () =>{
-    const [products,setProducts] = useState<ProductList>([
-        {
-            id: 0,
-            id_categories: 0,
-            id_providers: 0,
-            bar_code: 0,
-            stock: 0,
-            name_product: "Hola",
-            price: 0
-        },
-        {
-            id: 0,
-            id_categories: 0,
-            id_providers: 0,
-            bar_code: 0,
-            stock: 0,
-            name_product: "Chao",
-            price: 0
-        }
-    ])
+    const [products,setProducts] = useState<ProductList>([])
+    console.log(" TOKEN "+String(window.localStorage.getItem("tokenERPAN")))
 
-    /*
+ 
     useEffect (() => {
-        
         all_products().then((res) =>{
             setProducts(res)
         }).catch((err) =>{
@@ -34,8 +16,7 @@ const Products = () =>{
         })
 
     },[])
-*/
-    console.log(products)
+
     return products
 }
 

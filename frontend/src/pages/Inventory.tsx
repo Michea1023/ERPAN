@@ -76,7 +76,7 @@ export default function Inventory () {
                             {
                                 Products().map((product) =>{
                                     return(
-                                    <tr>
+                                    <tr key={product.bar_code}>
                                         <td>{product.bar_code}</td>
                                         <td>{product.name_product}</td>
                                         <td>{product.id_categories}</td>

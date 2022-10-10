@@ -1,5 +1,5 @@
 export interface Business_Response {
-    name: string
+    name_business: string
     token: string
 }
 

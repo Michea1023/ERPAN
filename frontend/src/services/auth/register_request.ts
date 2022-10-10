@@ -21,7 +21,7 @@ const register_request = (business: Business_Register): Promise<Business_Respons
         console.log("HASTA AQUI LLEGASTE")
     }).then((response: Business_Response) => {
         window.localStorage.setItem("tokenERPAN", response.token)
-        window.localStorage.setItem("nameERPAN", response.name)
+        window.localStorage.setItem("nameERPAN", response.name_business)
         return response
     })
 }

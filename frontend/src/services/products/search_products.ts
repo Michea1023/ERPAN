@@ -6,7 +6,7 @@ const search_products = (search: string) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + TOKEN
+            "Authorization": "Bearer " + window.localStorage.getItem("tokenERPAN")
         },
     }).then(response => {
         if (!response.ok) throw new Error("Bad Request")

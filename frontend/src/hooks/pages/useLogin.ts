@@ -20,7 +20,7 @@ const useLogin = ({handleBusiness}: Props) => {
         evt.preventDefault()
         login_request(business).then((res)=>{
             handleBusiness({
-                name: res.name,
+                name: res.name_business,
                 logged: true
             })
             navigate('/')

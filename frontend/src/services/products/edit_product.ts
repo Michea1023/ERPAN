@@ -7,7 +7,7 @@ const edit_product = (id: string, product: Product) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + TOKEN
+            "Authorization": "Bearer " + window.localStorage.getItem("tokenERPAN")
         },
         body: JSON.stringify(product)
     }).then(response => {

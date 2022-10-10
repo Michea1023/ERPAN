@@ -24,7 +24,7 @@ const useRegister = ({handleBusiness}: Props) => {
         if (business.password === business.password_confirm)
             register_request(business).then((res) => {
                 handleBusiness({
-                    name: res.name,
+                    name: res.name_business,
                     logged: true
                 })
                 navigate('/')
