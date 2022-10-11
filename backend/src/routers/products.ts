@@ -1,7 +1,7 @@
 import express from "express";
 import verifyToken from "../middleware/verifyToken";
 import { addProduct, getAll, getProduct, updateProduct, deleteProduct } from "../services/productServices";
-import { decodeToken } from "../middleware/decodeToken";
+import { decodeToken } from "../middleware/token";
 import { NewProduct, UpdateProduct } from "../types/product_types";
 const dotenv = require('dotenv');
 

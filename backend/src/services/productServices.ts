@@ -10,7 +10,7 @@ export const getAll = async (id_business:Number): Promise<Product[]> => {
 };
 
 export const addProduct = async (newProduct: NewProduct) => {
-    const query = `INSERT INTO products (id_business,id_categories,id_providers,bar_code,stock,name_product,price) VALUES(${newProduct.id_business},${newProduct.id_categories},${newProduct.id_providers},${newProduct.bar_code},${newProduct.stock},'${newProduct.name_product}',${newProduct.price});`
+    const query = `INSERT INTO products (id_business,id_categories,id_providers,bar_code,stock,name_product,price) VALUES(${newProduct.id_business},'${newProduct.id_categories}','${newProduct.id_providers}',${newProduct.bar_code},${newProduct.stock},'${newProduct.name_product}',${newProduct.price});`
     try {
         await client.query(query);
         return true;
