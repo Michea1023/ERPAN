@@ -1,6 +1,6 @@
 import express from "express";
 import verifyToken from "../middleware/verifyToken";
-import { addProduct, getAll, getProduct, updateProduct, deleteProduct } from "../services/productServices";
+import { addProduct, getAll, getProduct, updateProduct, deleteProduct, searchProduct } from "../services/productServices";
 import { decodeToken } from "../middleware/token";
 import { NewProduct, UpdateProduct } from "../types/product_types";
 const dotenv = require('dotenv');
@@ -12,6 +12,14 @@ dotenv.config({
 
 const router = express.Router();
 router.use(verifyToken);
+
+
+/* This is a route that will be used to get all the products. */
+router.get("/", async (req, res) => {
+    const dataToken = decodeToken(req.get("Authorization")?.substring(7));
+    const products = await getAll(dataToken.id);
+    res.status(200).send(products);
+});
 
 /* A route that will be used to add a new product. */
 router.post("/", async (req, res) => {
@@ -32,13 +40,6 @@ router.post("/", async (req, res) => {
         res.status(404).send("Error al agregar producto");
     }
 
-});
-
-/* This is a route that will be used to get all the products. */
-router.get("/", async (req, res) => {
-    const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const products = await getAll(dataToken.id);
-    res.status(200).send(products);
 });
 
 router.put("/:id", async (req, res) => {
@@ -82,10 +83,14 @@ router.delete("/:id", async(req, res) => {
     }
 });
 
-router.get("/search/:search", async (_req, _res) => {
+router.get("/search/:search", async (req, res) => {
     //:search debe ser un parametro
     //debe retornar todos los productos que tengan la subcadena :search,
     //    ya sea en el nombre, categoria, o proveedor
+    const palabra = req.params.search;
+    const dataToken = decodeToken(req.get("Authorization")?.substring(7));
+    const products = await searchProduct(palabra.toLowerCase(),dataToken.id);
+    res.status(200).send(products);
 });
 
 export default router
