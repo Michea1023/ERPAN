@@ -53,7 +53,7 @@ export const addTicket = async (newTicket: NewTicket) => {
  * @param {TicketUpdate} ticketUpdate
  * @returns A boolean value.
  */
-export const updateTicket = async (id: number, ticketUpdate: TicketUpdate) =>{
+export const updateTicket = async (id: number, ticketUpdate: TicketUpdate) => {
     const query = `update tickets set general_price = ${ticketUpdate.general_price}, selled_date = '${ticketUpdate.selled_date}' where id = ${id};`;
     try {
         await client.query(query);

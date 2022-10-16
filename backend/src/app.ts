@@ -1,5 +1,8 @@
 import express from 'express';
 import routers from "./routers/index";
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 
 const cors = require('cors');
@@ -24,7 +27,7 @@ app.use('/api', routers);
 
 
 
-const PORT = 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Express server listening on port ${PORT}`);
 });

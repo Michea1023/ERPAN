@@ -3,9 +3,12 @@ import useLogin from '../hooks/pages/useLogin';
 import {Form,Button,Col,Container,Row} from "react-bootstrap"
 import "../static/css/style.css";
 
+interface Props {
+    handleBusiness: (new_business: {name: string, logged: boolean}) => void
+}
 
-export default function Login(){
-    const {navigate,handleSubmit,handleChange} = useLogin();
+export default function Login({handleBusiness}: Props){
+    const {navigate,handleSubmit,handleChange} = useLogin({handleBusiness});
 
     return (
     <>

@@ -15,12 +15,6 @@
       </list>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/frontend/src/App.tsx" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/frontend/src/hooks/pages/useRegister.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/frontend/src/pages/Login.tsx" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/frontend/src/pages/Register.tsx" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -43,6 +37,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\.datos\ERPAN\backend" />
+      <recent name="D:\.datos\ERPAN\frontend\src\components\inventory" />
       <recent name="D:\.datos\ERPAN\frontend\src\services\auth" />
       <recent name="D:\.datos\ERPAN\frontend\src\static\images" />
       <recent name="D:\.datos\ERPAN\frontend\src\static\css" />
@@ -65,8 +61,13 @@
       <workItem from="1663206690688" duration="5921000" />
       <workItem from="1663874942633" duration="2552000" />
       <workItem from="1663877624983" duration="23000" />
-      <workItem from="1663877769776" duration="186000" />
-      <workItem from="1663977842812" duration="303000" />
+      <workItem from="1663877769776" duration="88000" />
+      <workItem from="1664655613736" duration="4117000" />
+      <workItem from="1664928673515" duration="7305000" />
+      <workItem from="1665004301698" duration="3119000" />
+      <workItem from="1665356250388" duration="6397000" />
+      <workItem from="1665545628983" duration="1536000" />
+      <workItem from="1665547193752" duration="1356000" />
     </task>
     <servers />
   </component>

@@ -1,27 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './static/css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Navigate, Route} from 'react-router-dom'
 import Register from "./pages/Register";
 import Login from './pages/Login';
-import {Business_Response} from "./types/response_types";
 import NavbarComp from './components/NavbarComp';
+import useBusiness from "./hooks/useBusiness";
+import Inventory from "./pages/Inventory";
+import NotFound from "./pages/NotFound";
 
 function App() {
-    const [business, setBusiness] = useState<Business_Response>({
-        name: "",
-        token: ""
-    })
+    const {business, handleBusiness} = useBusiness()
 
     return (
         <div className="App">
             <Router>
-                {
-                    <NavbarComp/>
-                }
+                <NavbarComp business={business}/>
                 <Routes>
-                    <Route path={'/register'} element={<Register />}/>
-                    <Route path={'/login'} element={<Login />}/>
+                    <Route path={"/"} element={
+                        business.logged ? <Inventory/>: <Navigate to={"/login"}/>
+                    }/>
+                    <Route path={'/register'} element={
+                        !business.logged ? <Register handleBusiness={handleBusiness}/>: <Navigate to={"/"}/>
+                    }/>
+                    <Route path={'/login'} element={
+                        !business.logged ? <Login handleBusiness={handleBusiness}/> : <Navigate to={"/"}/>
+                    }/>
+                    <Route path={'/*'} element={<NotFound/>}/>
                 </Routes>
                 {
                     //Footer
