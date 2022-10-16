@@ -9,6 +9,6 @@ export interface Product {
     price: Number
 }
 
-export type NewProduct = Omit<Ticket, "id">
+export type NewProduct = Omit<Product, "id">
 
-export type UpdateProduct = Omit<Ticket, "id" | "id_business" | "id_categories" | "id_providers">
+export type UpdateProduct = Omit<Product, "id" | "id_business" | "id_categories" | "id_providers">

@@ -1,9 +1,9 @@
 import express from "express";
 import { createToken, createTokenStatic } from "../middleware/token";
 import { addBlackList, createSession, getSession } from "../services/tokenServices";
-import { createUser, getUser } from '../services/userServices';
+import { createUser, deleteUser, getUser } from '../services/userServices';
 import { NewSession } from "../types/session_types";
-import { NewUser, UserLogin, UserResponse } from "../types/user_types";
+import { NewUser, User, UserLogin, UserResponse } from "../types/user_types";
 const dotenv = require('dotenv');
 
 dotenv.config({
@@ -36,37 +36,43 @@ router.post("/login", async (req, res) => {
 
 router.post("/register", async (req, res) => {
     const newUser: NewUser = req.body;
-    if(await createUser(newUser)){
-        const userLogin: UserLogin = {
-            email: newUser.email,
-            password: newUser.password
-        };
-        const user = await getUser(userLogin);
-        const TOKEN = createTokenStatic(user);
-        const TOKEN_TEMPORALS = createToken(user);
-        const userResponse: UserResponse = {
-            name_business: newUser.name_business,
-            token: TOKEN_TEMPORALS
-        };
-
-        const newSession:NewSession = {
-            id_business:user?.id,
-            token:TOKEN,
-            admin:false,
-            date_created: new Date().toLocaleDateString('en-GB')
-        };
-        if(await createSession(newSession)){
-            res.status(200).send(userResponse);
+    var user: User | undefined;
+    if(newUser.password === newUser.password_confirm){
+        if(await createUser(newUser)){
+            const userLogin: UserLogin = {
+                email: newUser.email,
+                password: newUser.password
+            };
+            user = await getUser(userLogin);
+            const TOKEN = createTokenStatic(user);
+            const TOKEN_TEMPORALS = createToken(user);
+            const userResponse: UserResponse = {
+                name_business: newUser.name_business,
+                token: TOKEN_TEMPORALS
+            };
+    
+            const newSession:NewSession = {
+                id_business:user?.id,
+                token:TOKEN,
+                admin:false,
+                date_created: new Date().toLocaleDateString('en-US')
+            };
+            if(await createSession(newSession)){
+                res.status(200).send(userResponse);
+            }
+        }else{
+            await deleteUser(user?.id)
+            res.status(404).send("Error al registrar el nuevo usuario");
         }
     }else{
-        res.status(404);
+        res.status(404).send("Contraseñas no coinciden")
     }
+    
+    
 });
-
 
 router.delete("/logout",async (req,res) => {
     const token = req.get('Authorization')?.substring(7);
-    console.log(token);
     if(await addBlackList(token)){
         res.status(200).send("Session ha expirado");
     } else {

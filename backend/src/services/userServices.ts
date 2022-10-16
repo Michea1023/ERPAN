@@ -52,5 +52,14 @@ export const createUser = async (newUser: NewUser) => {
         return false;
     }
 }
+
+export const deleteUser = async (id:Number | undefined) => {
+    const query = `DELETE FROM business WHERE id=${id}`;
+    const result = await client.query(query);
+    if(result.rowCount > 0){
+        return true;
+    }
+    return false;
+}
     
 

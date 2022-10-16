@@ -23,7 +23,6 @@ export const addProduct = async (newProduct: NewProduct) => {
 export const getProduct = async (id: Number, id_business: Number): Promise<Product | undefined> =>{
     const query = `select * from products pr where id = ${id} and id_business = ${id_business}`
     const result = await client.query(query);
-    console.log(result.rowCount);
     if(result.rowCount >= 1){
         const product: Product = result.rows[0];
         return product;
@@ -48,4 +47,12 @@ export const deleteProduct = async (id:Number, id_business:Number) => {
         return true;
     }
     return false;
+}
+
+
+export const searchProduct = async (palabra:String, id_business:Number): Promise<Product[]> => {
+    const query = `select * from products pr where pr.id_business = ${id_business} and lower(pr.id_categories) like '%${palabra}%' or lower(pr.id_providers) like '%${palabra}%' or lower(pr.name_product) like '%${palabra}%';`
+    const result = await client.query(query);
+    const products = result.rows;
+    return products;
 }
