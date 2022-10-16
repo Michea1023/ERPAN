@@ -41,7 +41,7 @@ router.put("/:id",async (req,res) => {
     if (await updateProvider(req.params.id.toLowerCase(), providerUpdate, dataToken.id)) {
         res.status(200).send(providerUpdate)
     }else{
-        res.status(404).send("Producto no actualizado");
+        res.status(404).send("Proveedor no actualizado");
     }
 });
 
@@ -51,7 +51,7 @@ router.get("/:id",async (req,res) => {
     if (provider != undefined) {
         res.status(200).send(provider);
     }else{
-        res.status(404).send("proveedor no encontrado");
+        res.status(404).send("Proveedor no encontrado");
     }
 });
 

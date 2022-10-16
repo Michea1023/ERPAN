@@ -62,7 +62,7 @@ router.post("/register", async (req, res) => {
             }
         }else{
             await deleteUser(user?.id)
-            res.status(404);
+            res.status(404).send("Error al registrar el nuevo usuario");
         }
     }else{
         res.status(404).send("Contraseñas no coinciden")

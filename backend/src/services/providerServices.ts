@@ -9,7 +9,7 @@ export const getAll = async (id_business:Number): Promise<Provider[]> => {
 };
 
 export const addProvider = async (newProvider: Provider) => {
-    const query = `insert into providers(name_providers,id_business) values('${newProvider.name_providers}',${newProvider.id_business})`;
+    const query = `insert into providers(name_providers,id_business) values(initcap('${newProvider.name_providers}'),${newProvider.id_business})`;
     try {
         await client.query(query);
         return true;
@@ -17,6 +17,15 @@ export const addProvider = async (newProvider: Provider) => {
         console.error(err);
         return false;
     }
+};
+
+export const updateProvider = async (id: String, updateProvider:NewProvider, id_business:Number) => {
+    const query = `update providers set name_providers = initcap('${updateProvider.name_providers}') where lower(name_providers) = '${id}' and id_business = ${id_business}`;
+    const result = await client.query(query);
+    if(result.rowCount > 0){
+        return true;
+    }
+    return false;
 };
 
 export const getProvider = async (id: String, id_business: Number): Promise<Provider | undefined> => {
@@ -27,15 +36,6 @@ export const getProvider = async (id: String, id_business: Number): Promise<Prov
         return provider;
     }
     return undefined;
-};
-
-export const updateProvider = async (id: String, updateProvider:NewProvider, id_business:Number) => {
-    const query = `update providers set name_providers = '${updateProvider.name_providers}' where lower(name_providers) = '${id}' and id_business = ${id_business}`;
-    const result = await client.query(query);
-    if(result.rowCount > 0){
-        return true;
-    }
-    return false;
 };
 
 export const deleteProvider = async (id: String, id_business: Number) => {
