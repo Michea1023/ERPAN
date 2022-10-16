@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ModalAdd ({value, handleClose}: Props) {
-    const {out, handleChange, handleSubmit, handleCategory, handleProvider} = useModalAddForm()
+    const {categories, providers, handleChange, handleSubmit, handleCategory, handleProvider} = useModalAddForm()
 
     return (
         <Modal show={value} onHide={handleClose}>
@@ -36,11 +36,11 @@ export default function ModalAdd ({value, handleClose}: Props) {
                             <label>Categoria</label>
                             <Select
                                 name={"id_categories"}
-                                options={out.category.state.options}
-                                inputValue={out.category.state.search}
+                                options={categories.state.options}
+                                inputValue={categories.state.search}
                                 onChange={handleCategory}
-                                onInputChange={out.category.handleSearch}
-                                onKeyDown={out.category.handleOptions}
+                                onInputChange={categories.handleSearch}
+                                onKeyDown={categories.handleOptions}
                                 isSearchable={true}
                             />
                         </div>
@@ -48,11 +48,11 @@ export default function ModalAdd ({value, handleClose}: Props) {
                             <label>Proveedor</label>
                             <Select
                                 name={"id_providers"}
-                                options={out.provider.state.options}
-                                inputValue={out.provider.state.search}
+                                options={providers.state.options}
+                                inputValue={providers.state.search}
                                 onChange={handleProvider}
-                                onInputChange={out.provider.handleSearch}
-                                onKeyDown={out.provider.handleOptions}
+                                onInputChange={providers.handleSearch}
+                                onKeyDown={providers.handleOptions}
                                 isSearchable={true}
                             />
                         </div>

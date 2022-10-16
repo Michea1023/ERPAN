@@ -19,11 +19,6 @@ interface SelectOption {
     handleSearch: (newValue: string) => void
 }
 
-interface OutSelect {
-    category: SelectOption
-    provider: SelectOption
-}
-
 const INITIAL_VALUE = {
     name_product: "",
     id_providers: 0,
@@ -39,16 +34,16 @@ const useModalAddForm = () => {
         useCategorySelect()
     const {provider, handleOptions: providerOptions, handleSearch: providerSearch} = useProviderSelect()
 
-    const [out, setOut] = useState<OutSelect>({
-        category: {
-            state: category,
-            handleOptions: categoryOptions,
-            handleSearch: categorySearch
-        }, provider: {
+    const [categories, setCategories] = useState<SelectOption>({
+        state: category,
+        handleOptions: categoryOptions,
+        handleSearch: categorySearch
+    })
+
+    const [providers, setProviders] = useState<SelectOption>({
             state: provider,
             handleOptions: providerOptions,
             handleSearch: providerSearch
-        }
     })
 
     const handleSubmit = () => {
@@ -80,7 +75,7 @@ const useModalAddForm = () => {
         })
     }
 
-    return {out, handleChange, handleSubmit, handleCategory, handleProvider}
+    return {categories, providers, handleChange, handleSubmit, handleCategory, handleProvider}
 }
 
 export default useModalAddForm
