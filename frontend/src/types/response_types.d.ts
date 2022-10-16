@@ -3,12 +3,14 @@ export interface Business_Response {
     token: string
 }
 
-export type ProductList = Array<{
+export type ProductList = Array<ProductResponse>
+
+export interface ProductResponse {
     id: number
-    id_categories: number
-    id_providers: number
+    id_categories: string
+    id_providers: string
     bar_code: number
     stock: number
     name_product: string
     price: number
-}>
+}

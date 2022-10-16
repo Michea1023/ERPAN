@@ -1,18 +1,8 @@
 import React, {useState} from "react";
 import {Product} from "../../../types/request_types";
 
-const INITIAL_VALUE = {
-    name_product: "",
-    id_providers: "",
-    id_categories: "",
-    bar_code: 0,
-    stock: 0,
-    price: 0
-}
-
-
-const useModalAddForm = () => {
-    const [product, setProduct] = useState<Product>(INITIAL_VALUE)
+const useModalEditForm = (defaultValue: Product) => {
+    const [product, setProduct] = useState<Product>(defaultValue)
 
     const handleSubmit = () => {
         //request
@@ -21,6 +11,7 @@ const useModalAddForm = () => {
     const handleProduct = (newValue: Product) => {
         setProduct(newValue)
     }
+
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setProduct({
             ... product,
@@ -31,4 +22,4 @@ const useModalAddForm = () => {
     return {product, handleProduct, handleChange, handleSubmit}
 }
 
-export default useModalAddForm
+export default useModalEditForm

@@ -4,6 +4,8 @@ import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import Select from "react-select";
 import useModalAddForm from "../../hooks/components/inventory/useModalAddForm";
+import useCategorySelect from "../../hooks/utils/useCategorySelect";
+import useProviderSelect from "../../hooks/utils/useProviderSelect";
 
 interface Props {
     value: boolean
@@ -11,7 +13,12 @@ interface Props {
 }
 
 export default function ModalAdd ({value, handleClose}: Props) {
-    const {categories, providers, handleChange, handleSubmit, handleCategory, handleProvider} = useModalAddForm()
+    const {product, handleProduct, handleChange, handleSubmit} = useModalAddForm()
+    const {category, categoryOptions, categorySearch, handleCategory} =
+        useCategorySelect({product, handleProduct})
+    const {provider, providerOptions, providerSearch, handleProvider} =
+        useProviderSelect({product, handleProduct})
+
 
     return (
         <Modal show={value} onHide={handleClose}>
@@ -33,14 +40,24 @@ export default function ModalAdd ({value, handleClose}: Props) {
                             />
                         </div>
                         <div className="form-group mt-3">
+                            <label>Codigo de Barras</label>
+                            <input
+                                type="number"
+                                className="form-control mt-1"
+                                name={"bar_code"}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group mt-3">
                             <label>Categoria</label>
                             <Select
                                 name={"id_categories"}
-                                options={categories.state.options}
-                                inputValue={categories.state.search}
+                                options={category.options}
+                                inputValue={category.search}
                                 onChange={handleCategory}
-                                onInputChange={categories.handleSearch}
-                                onKeyDown={categories.handleOptions}
+                                onInputChange={categorySearch}
+                                onKeyDown={categoryOptions}
                                 isSearchable={true}
                             />
                         </div>
@@ -48,11 +65,11 @@ export default function ModalAdd ({value, handleClose}: Props) {
                             <label>Proveedor</label>
                             <Select
                                 name={"id_providers"}
-                                options={providers.state.options}
-                                inputValue={providers.state.search}
+                                options={provider.options}
+                                inputValue={provider.search}
                                 onChange={handleProvider}
-                                onInputChange={providers.handleSearch}
-                                onKeyDown={providers.handleOptions}
+                                onInputChange={providerSearch}
+                                onKeyDown={providerOptions}
                                 isSearchable={true}
                             />
                         </div>

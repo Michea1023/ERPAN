@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import search_providers from "../../services/providers/search_providers";
+import {SingleValue} from "react-select"
+import {Product} from "../../types/request_types";
 
 const INITIAL_VALUE = {
     search: "",
@@ -10,7 +12,19 @@ const INITIAL_VALUE = {
     }]
 }
 
-const useProviderSelect = () => {
+interface Options {
+    id: number
+    value: string
+    label: string
+}
+
+interface Props {
+    product: Product
+    handleProduct: (newProduct: Product) => void
+}
+
+
+const useProviderSelect = ({product, handleProduct}: Props) => {
     const [state, setState] = useState(INITIAL_VALUE)
 
     const handleOptions = (evt: React.KeyboardEvent<HTMLDivElement>) => {
@@ -28,7 +42,21 @@ const useProviderSelect = () => {
         })
     }
 
-    return {provider: state, handleOptions, handleSearch}
+    const handleProvider = (evt: SingleValue<Options>) => {
+        if (evt === null) return
+
+        handleProduct({
+            ...product,
+            ["id_providers"]: evt?.value
+        })
+    }
+
+    return {
+        provider: state,
+        providerOptions: handleOptions,
+        handleProvider,
+        providerSearch: handleSearch
+    }
 }
 
 export default useProviderSelect
