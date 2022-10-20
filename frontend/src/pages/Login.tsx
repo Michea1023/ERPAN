@@ -43,9 +43,18 @@ export default function Login({handleBusiness}: Props){
               Iniciar
             </button>
           </div>
-          <p className="forgot-password text-right mt-2">
-             <a href="#" onClick={() => navigate("/register")}>Registrarse?</a>
-          </p>
+          <div className="row mt-3">
+             <p className="col forgot-password text-right mt-2">
+             <a href="#" onClick={() => navigate("/register")}>¿Olvidaste tu contraseña?</a>
+             </p>           
+             <div className='d-grid gap-2 '>
+              <button type="submit" className="btn btn-success ">
+              <a href="#" className= "badge" onClick={() => navigate("/register")}>Registrarse</a>
+              </button>
+             </div>
+            
+          </div>
+         
         </div>
       </form>
     </div>

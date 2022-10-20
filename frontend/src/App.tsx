@@ -8,6 +8,7 @@ import NavbarComp from './components/NavbarComp';
 import useBusiness from "./hooks/useBusiness";
 import Inventory from "./pages/Inventory";
 import NotFound from "./pages/NotFound";
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
     const {business, handleBusiness} = useBusiness()
@@ -25,6 +26,9 @@ function App() {
                     }/>
                     <Route path={'/login'} element={
                         !business.logged ? <Login handleBusiness={handleBusiness}/> : <Navigate to={"/"}/>
+                    }/>
+                    <Route path={'/forgotPassword'} element={
+                        !business.logged ? <ForgotPassword handleBusiness={handleBusiness}/> : <Navigate to={"/"}/>
                     }/>
                     <Route path={'/*'} element={<NotFound/>}/>
                 </Routes>
