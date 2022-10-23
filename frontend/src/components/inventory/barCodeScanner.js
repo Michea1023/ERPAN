@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
-import Scanner from '../../components/inventory/Scanner'
-import Result from '../../components/inventory/Result'
+import Scanner from '../../utils/Scanner'
+import Result from '../../utils/Result'
 const Xd = () => {
   const [scanning, setScanning] = useState(false)
   const [results, setResults] = useState([])
