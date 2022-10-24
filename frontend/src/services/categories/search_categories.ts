@@ -1,7 +1,8 @@
 import {HOST, TOKEN} from "../../settings";
+import {CategoryResponse} from "../../types/response_types";
 
 const search_categories = (search: string) => {
-    return fetch(HOST + 'categories/' + search.replaceAll(" ", "+"), {
+    return fetch(HOST + 'categories/search/' + search.replaceAll(" ", "+"), {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -11,9 +12,7 @@ const search_categories = (search: string) => {
     }).then(response => {
         if (!response.ok) throw new Error("Bad Request")
         return response.json()
-    }).catch((err) => {
-        console.log(err)
-    }).then((response) => {
+    }).then((response: Array<CategoryResponse>) => {
         return response
     })
 }

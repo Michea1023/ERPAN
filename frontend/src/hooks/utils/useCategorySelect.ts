@@ -2,19 +2,13 @@ import React, {useState} from "react";
 import search_categories from "../../services/categories/search_categories";
 import {SingleValue} from "react-select"
 import {Product} from "../../types/request_types";
-import {ProductResponse} from "../../types/response_types";
 
 const INITIAL_VALUE = {
     search: "",
-    options: [{
-        id: 0,
-        value: "",
-        label: ""
-    }]
+    options: Array<Options>()
 }
 
 interface Options {
-    id: number
     value: string
     label: string
 }
@@ -38,9 +32,19 @@ const useCategorySelect = ({product, handleProduct}: Props) => {
 
     const handleOptions = (evt: React.KeyboardEvent<HTMLDivElement>) => {
         if (evt.key === " ") {
-            // search_categories(state.search).then((response) => {
-            //     // set options
-            // })
+            search_categories(state.search).then((response) => {
+                const options = response.map((item) => {
+                    return {
+                        value: item.name_categories,
+                        label: item.name_categories
+                    }
+                })
+
+                setState({
+                    ...state,
+                    options: options
+                })
+            })
         }
     }
 

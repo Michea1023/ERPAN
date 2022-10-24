@@ -5,15 +5,13 @@ import {Product} from "../../types/request_types";
 
 const INITIAL_VALUE = {
     search: "",
-    options: [{
-        id: 0,
-        value: "",
-        label: ""
-    }]
+    options: Array<{
+        value: string,
+        label: string
+    }>()
 }
 
 interface Options {
-    id: number
     value: string
     label: string
 }
@@ -30,7 +28,17 @@ const useProviderSelect = ({product, handleProduct}: Props) => {
     const handleOptions = (evt: React.KeyboardEvent<HTMLDivElement>) => {
         if (evt.key == " ") {
             search_providers(state.search).then((response) => {
+                const options = response.map((item) => {
+                    return {
+                        value: item.name_providers,
+                        label: item.name_providers
+                    }
+                })
 
+                setState({
+                    ...state,
+                    options: options
+                })
             })
         }
     }

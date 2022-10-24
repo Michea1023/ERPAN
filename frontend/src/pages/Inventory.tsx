@@ -1,9 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import '../static/css/style.css'
-import ModalEdit from '../components/inventory/ModalEdit'
 import ModalAdd from '../components/inventory/ModalAdd'
 import useModal from '../hooks/pages/useModal'
-import useProducts from '../hooks/components/inventory/useProducts'
 import InventoryTable from '../components/inventory/InventoryTable'
 export default function Inventory() {
   const { modal, handleAdd, handleEdit } = useModal()

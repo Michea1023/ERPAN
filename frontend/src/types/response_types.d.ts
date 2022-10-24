@@ -14,3 +14,12 @@ export interface ProductResponse {
     name_product: string
     price: number
 }
+
+export interface ProviderResponse {
+    name_providers: string
+    id_business: number
+}
+
+export interface CategoryResponse {
+    name_categories: string
+}

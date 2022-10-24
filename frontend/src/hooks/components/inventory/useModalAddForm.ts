@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Product} from "../../../types/request_types";
+import create_product from "../../../services/products/create_product";
 
 const INITIAL_VALUE = {
     name_product: "",
@@ -15,12 +16,13 @@ const useModalAddForm = () => {
     const [product, setProduct] = useState<Product>(INITIAL_VALUE)
 
     const handleSubmit = () => {
-        //request
+        create_product(product).then()
     }
 
     const handleProduct = (newValue: Product) => {
         setProduct(newValue)
     }
+
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setProduct({
             ... product,

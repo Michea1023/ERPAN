@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import { ModalFooter } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
@@ -36,6 +36,7 @@ export default function ModalEdit ({product: item, value, handleClose}: Props) {
                                 className="form-control mt-1"
                                 name={"name_product"}
                                 onChange={handleChange}
+                                defaultValue={item.name_product}
                                 required
                             />
                         </div>
@@ -46,6 +47,7 @@ export default function ModalEdit ({product: item, value, handleClose}: Props) {
                                 className="form-control mt-1"
                                 name={"bar_code"}
                                 onChange={handleChange}
+                                defaultValue={item.bar_code}
                                 required
                             />
                         </div>
@@ -79,7 +81,7 @@ export default function ModalEdit ({product: item, value, handleClose}: Props) {
                                 type="number"
                                 className="form-control mt-1"
                                 name={"stock"}
-                                defaultValue={0}
+                                defaultValue={item.stock}
                                 onChange={handleChange}
                                 required
                             />
@@ -90,7 +92,7 @@ export default function ModalEdit ({product: item, value, handleClose}: Props) {
                                 type="number"
                                 className="form-control mt-1"
                                 name={"price"}
-                                defaultValue={0}
+                                defaultValue={item.price}
                                 onChange={handleChange}
                                 required
                             />

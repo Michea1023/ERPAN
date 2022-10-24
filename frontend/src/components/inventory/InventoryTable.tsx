@@ -1,14 +1,27 @@
 import useProducts from "../../hooks/components/inventory/useProducts";
 import ModalEdit from "./ModalEdit";
 
+
+/*
+properties of the inventory table
+ */
 interface Props {
     edit: boolean
     handleEdit: (edit: boolean) => void
 }
 
+/*
+renders the inventory table
+@param {Props} edit, handleEdit - params coming from above
+@returns {JSX.Element}
+*/
 export default function InventoryTable ({edit, handleEdit}: Props) {
     const products = useProducts()
 
+    /*
+    return the render from a button
+    @return: JSX.Element
+     */
     const editButton = () =>{
         return <button type="button" className="btn btn-outline-success"
                        onClick={() => handleEdit(true)}>Editar</button>

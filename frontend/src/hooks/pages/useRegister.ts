@@ -21,14 +21,17 @@ const useRegister = ({handleBusiness}: Props) => {
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
-        if (business.password === business.password_confirm)
-            register_request(business).then((res) => {
-                handleBusiness({
-                    name: res.name_business,
-                    logged: true
-                })
-                navigate('/')
+        if (business.password !== business.password_confirm) {
+            alert("La contraseñas ingresadas no coinciden")
+            return
+        }
+        register_request(business).then((res) => {
+            handleBusiness({
+                name: res.name_business,
+                logged: true
             })
+            navigate('/')
+        })
     }
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
