@@ -42,10 +42,8 @@ router.post("/", async (req, res) => {
 
 });
 
+/* This is a route that will be used to update a product by id. */
 router.put("/:id", async (req, res) => {
-    //:id debe ser un parametro
-    //debe retornar los datos del producto actualizado con id==":id"
-    //debe acceder con token
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const productUpdate: UpdateProduct = req.body;
     if (await updateProduct(parseInt(req.params.id), productUpdate, dataToken.id)) {
@@ -57,10 +55,6 @@ router.put("/:id", async (req, res) => {
 
 /* This is a route that will be used to get a product by id. */
 router.get("/:id", async (req, res) => {
-    //:id debe ser un parametro
-    //request vacia
-    //debe retornar los datos del producto con id==":id"
-    //debe acceder con token
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const product = await getProduct(parseInt(req.params.id),dataToken.id);
     if (product != undefined) {
@@ -72,9 +66,6 @@ router.get("/:id", async (req, res) => {
 
 /* A route that will be used to delete a product by id. */
 router.delete("/:id", async(req, res) => {
-    //:id debe ser un parametro
-    //debe retornar true si se elimino correctamente
-    //debe acceder con token
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     if (await deleteProduct(parseInt(req.params.id),dataToken.id)){
         res.status(200).send(true);
@@ -83,13 +74,12 @@ router.delete("/:id", async(req, res) => {
     }
 });
 
+/* This is a route that will be used to search a product by name. */
 router.get("/search/:search", async (req, res) => {
-    //:search debe ser un parametro
-    //debe retornar todos los productos que tengan la subcadena :search,
-    //    ya sea en el nombre, categoria, o proveedor
-    const palabra = req.params.search;
+    const palabra = req.params.search.replace("+"," ");
+    console.log(palabra)
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const products = await searchProduct(palabra.toLowerCase(),dataToken.id);
+    const products = await searchProduct(palabra,dataToken.id);
     res.status(200).send(products);
 });
 

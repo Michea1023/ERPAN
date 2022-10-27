@@ -38,7 +38,7 @@ router.post("/",async (req,res) => {
 router.put("/:id",async (req,res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const providerUpdate:NewProvider = req.body;
-    if (await updateProvider(req.params.id.toLowerCase(), providerUpdate, dataToken.id)) {
+    if (await updateProvider(req.params.id, providerUpdate, dataToken.id)) {
         res.status(200).send(providerUpdate)
     }else{
         res.status(404).send("Proveedor no actualizado");
@@ -47,7 +47,7 @@ router.put("/:id",async (req,res) => {
 
 router.get("/:id",async (req,res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const provider = await getProvider(req.params.id.toLowerCase(),dataToken.id);
+    const provider = await getProvider(req.params.id,dataToken.id);
     if (provider != undefined) {
         res.status(200).send(provider);
     }else{
@@ -57,7 +57,7 @@ router.get("/:id",async (req,res) => {
 
 router.delete("/:id",async (req,res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    if (await deleteProvider(req.params.id.toLowerCase(),dataToken.id)){
+    if (await deleteProvider(req.params.id,dataToken.id)){
         res.status(200).send(true);
     }else{
         res.status(404).send(false);
@@ -67,7 +67,7 @@ router.delete("/:id",async (req,res) => {
 router.get("/search/:search",async (req,res) => {
     const palabra = req.params.search;
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const providers = await searchProvider(palabra.toLowerCase(),dataToken.id);
+    const providers = await searchProvider(palabra,dataToken.id);
     res.status(200).send(providers);
 });
 

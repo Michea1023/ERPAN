@@ -1,8 +1,8 @@
 export interface Product {
     id: Number,
     id_business: Number,
-    id_categories: Number,
-    id_providers: Number,
+    id_categories: String,
+    id_providers: String,
     bar_code: Number,
     stock: Number,
     name_product: String,
