@@ -15,7 +15,6 @@ const verifyProvier = async (product: NewProduct | Product) => {
             id_business: product.id_business,
             name_providers: product.id_providers
         };
-        console.log(newProvider)
         await addProvider(newProvider);
     }
 }
@@ -47,8 +46,7 @@ export const addProduct = async (newProduct: NewProduct) => {
     await verifyCategories(newProduct);
     await verifyProvier(newProduct);
     
-    const query = `INSERT INTO products (id_business,id_categories,id_providers,bar_code,stock,name_product,price) VALUES(${newProduct.id_business},'${newProduct.id_categories.toUpperCase()}','${newProduct.id_providers.toUpperCase()}',${newProduct.bar_code},${newProduct.stock},'${newProduct.name_product.toLowerCase()}',${newProduct.price});`
-    console.log(query)
+    const query = `INSERT INTO products (id_business,id_categories,id_providers,bar_code,stock,name_product,price,cost) VALUES(${newProduct.id_business},'${newProduct.id_categories.toUpperCase()}','${newProduct.id_providers.toUpperCase()}',${newProduct.bar_code},${newProduct.stock},'${newProduct.name_product.toLowerCase()}',${newProduct.price},${newProduct.cost});`
     try {
         await client.query(query);
         return true;
@@ -69,7 +67,7 @@ export const getProduct = async (id: Number, id_business: Number): Promise<Produ
 };
 
 export const updateProduct = async (id:Number, updateProduct:UpdateProduct, id_business:Number) => {
-    const query = `UPDATE public.products SET name_product='${updateProduct.name_product.toLowerCase()}',bar_code=${updateProduct.bar_code},price=${updateProduct.price},stock=${updateProduct.stock} WHERE id=${id} and id_business=${id_business};`
+    const query = `UPDATE public.products SET name_product='${updateProduct.name_product.toLowerCase()}',id_categories = upper('${updateProduct.id_categories}'),id_providers = upper('${updateProduct.id_providers}'),bar_code=${updateProduct.bar_code},price=${updateProduct.price},stock=${updateProduct.stock} WHERE id=${id} and id_business=${id_business};`
     const result = await client.query(query);
     if(result.rowCount > 0){
         return true;

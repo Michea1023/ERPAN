@@ -1,8 +1,10 @@
 import express from "express";
 import { createToken } from "../middleware/token";
 import { addBlackList } from "../services/tokenServices";
-import { createUser, deleteUser, getUser } from '../services/userServices';
+import { createUser, deleteUser, existUser, getUser, updateUser } from '../services/userServices';
 import { NewUser, User, UserLogin, UserResponse } from "../types/user_types";
+import { transporter } from "../config/mailer";
+import { randomCaracter } from "../config/passwordRandom";
 const dotenv = require('dotenv');
 
 dotenv.config({
@@ -11,6 +13,7 @@ dotenv.config({
 
 
 const router = express.Router();
+
 
 
 router.post("/login", async (req, res) => {
@@ -25,8 +28,56 @@ router.post("/login", async (req, res) => {
         res.status(200).send(UserResponse)
         
     }else{
-        res.status(404)
+        res.status(404).send({"mensaje":"Error al iniciar sesion"})
     }
+    
+});
+
+router.put("/forgot-password",async (req,res) => {
+
+    const {email} = req.body;
+
+    if(await existUser(email)){
+        const password = randomCaracter(8);
+        if(await updateUser(email,password)){
+            const userLogin: UserLogin = {
+                email:email,
+                password:password
+            };
+            const user: User|undefined = await getUser(userLogin);
+            if(user != undefined){
+                try{
+                    await transporter.sendMail({
+                        from: '"Soporte" <soporte.erpan@gmail.com>', // sender address
+                        to: email, // list of receivers
+                        subject: "Recuperacion de contraseña", // Subject line
+                        text: "Hello world?", // plain text body
+                        html:`
+                        <h1>Restablecer contraseña</h1>
+                        <div>
+                            <h3>Hola ${user.name_business}</h3>
+                            <p>Tu contraseña provisoria es:</p>
+                        </div>
+                        <h3>${password}</h3>
+                        <div>
+                            <p>Luego de ingresar, realiza el cambio de tu contraseña</p>
+                        <div>
+                        <div>
+                            <h4>¿Tienes preguntas?</h4>
+                            <p>Contactarse a soporte.erpan@gmail.com</p>
+                        <div>
+                        `,
+                    });
+                }catch(err){
+                    res.status(404).send({"mensaje":"Error al solicitar una clave provisoria"})
+                }
+                res.send({"mensaje":"Su clave provisoria fue enviada a su correo"})
+            }
+        }
+    }else{
+        res.status(404).send({"mensaje":"Este correo no existe"})
+    }
+
     
 });
 

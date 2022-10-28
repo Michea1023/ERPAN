@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 /* A route that will be used to add a new product. */
 router.post("/", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const {id_categoria,id_providers,bar_code,stock,name_product,price} = req.body;
+    const {id_categoria,id_providers,bar_code,stock,name_product,price,cost} = req.body;
     const newProduct: NewProduct = {
         id_business: dataToken.id,
         id_categories: id_categoria,
@@ -32,7 +32,8 @@ router.post("/", async (req, res) => {
         bar_code: bar_code,
         stock: stock,
         name_product: name_product,
-        price: price
+        price: price,
+        cost: cost
     };
     if(await addProduct(newProduct)){
         res.status(200).send(newProduct);
@@ -77,7 +78,6 @@ router.delete("/:id", async(req, res) => {
 /* This is a route that will be used to search a product by name. */
 router.get("/search/:search", async (req, res) => {
     const palabra = req.params.search.replace("+"," ");
-    console.log(palabra)
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const products = await searchProduct(palabra,dataToken.id);
     res.status(200).send(products);

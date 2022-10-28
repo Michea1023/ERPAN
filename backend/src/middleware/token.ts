@@ -31,7 +31,7 @@ export const createTokenStatic = (user: User | undefined) => {
  */
 export const createToken = (user: User | undefined) => {
     if(user != undefined) {
-        const token = jwt.sign({id:user.id},process.env.JWT_PRIVATE_KEY,{expiresIn:'24h'});
+        const token = jwt.sign({id:user.id,email:user.email},process.env.JWT_PRIVATE_KEY,{expiresIn:'24h'});
         return token
     }
     return undefined
