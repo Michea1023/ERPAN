@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
  * @return {userData} datos del usuario
  */
 export const getUser = async (userLogin: UserLogin):Promise<User | undefined> => {
-    const query = `SELECT * FROM business WHERE email = '${userLogin.email}'`;
+    const query = `SELECT * FROM business WHERE email = lower('${userLogin.email}')`;
     const result = await client.query(query)
     if(result.rowCount > 0) {
         const userData = await result.rows[0];
@@ -21,19 +21,50 @@ export const getUser = async (userLogin: UserLogin):Promise<User | undefined> =>
 };
 
 /**
- * It takes a userLogin object, queries the database for the id of the user, and returns the id if it
- * exists
- * @param {UserLogin} userLogin - UserLogin
- * @returns The id of the user.
+ * It takes an email and password, queries the database for the email, and if the email exists, it
+ * compares the password to the hashed password in the database.
+ * @param {Number} email - Number,
+ * @param {String} password - the password that the user entered
+ * @returns A boolean value.
  */
-export const getIdUser = async (userLogin: UserLogin)=>{
-    const query = `SELECT id FROM business WHERE email = '${userLogin.email}'`
-    const result = await client.query(query);
+export const verifyPasword = async (email: Number,password:String) => {
+    const query = `select * from business where email = lower('${email}');`;
+    const result = await client.query(query)
     if(result.rowCount > 0) {
-        const {id} = result.rows[0];
-        return id;
+        const userData = await result.rows[0];
+        const validPassword = await bcrypt.compare(password, userData.passw);
+        if(validPassword){
+            return true;
+        }
     }
-    return undefined;
+    return false;
+}
+
+export const existUser = async (email:String) => {
+    const query = `SELECT * FROM business WHERE email = lower('${email}')`;
+    const result = await client.query(query)
+    if(result.rowCount > 0) {
+        return true
+    }
+    return false;
+};
+
+
+/**
+ * It takes an email and password, encrypts the password, and updates the database with the new
+ * password
+ * @param {string} email - string
+ * @param {string} password - string
+ * @returns A boolean value.
+ */
+export const updateUser = async (email:string,password:string) => {
+    const passwordEncript = await bcrypt.hash(password,10)
+    const query = `update business set passw = '${passwordEncript}' where email = lower('${email}')`;
+    const result = await client.query(query);
+    if(result.rowCount > 0){
+        return true;
+    }
+    return false;
 };
 
 /**
@@ -43,7 +74,7 @@ export const getIdUser = async (userLogin: UserLogin)=>{
  */
 export const createUser = async (newUser: NewUser) => {
     const passwordEncript = await bcrypt.hash(newUser.password,10)
-    const query = `insert into business(name_business,email,passw,short_name) values('${newUser.name_business}','${newUser.email}','${passwordEncript}','${newUser.short_name}');`
+    const query = `insert into business(name_business,email,passw,short_name) values('${newUser.name_business}',lower('${newUser.email}'),'${passwordEncript}','${newUser.short_name}');`
     try {
         await client.query(query);
         return true;
@@ -53,6 +84,11 @@ export const createUser = async (newUser: NewUser) => {
     }
 }
 
+/**
+ * It deletes a user from the database based on the id passed to it
+ * @param {Number | undefined} id - The id of the user to delete
+ * @returns A boolean value.
+ */
 export const deleteUser = async (id:Number | undefined) => {
     const query = `DELETE FROM business WHERE id=${id}`;
     const result = await client.query(query);

@@ -10,7 +10,7 @@ export const getAll = async (): Promise<Category[]> => {
 };
 
 export const addCategory = async (newCategory : Category) => {
-    const query = `insert into categories(name_categories) values(initcap('${newCategory.name_categories}'))`;
+    const query = `insert into categories(name_categories) values(upper('${newCategory.name_categories}'))`;
     try {
         await client.query(query);
         return true;
@@ -21,7 +21,7 @@ export const addCategory = async (newCategory : Category) => {
 };
 
 export const updateCategory = async (id:String, categoryUpdate: Category) => {
-    const query = `update categories set name_categories = initcap('${categoryUpdate.name_categories}') where lower(name_categories) = '${id}'`;
+    const query = `update categories set name_categories = upper('${categoryUpdate.name_categories}') where name_categories = upper('${id}')`;
     const result = await client.query(query);
     if(result.rowCount > 0){
         return true;
@@ -30,7 +30,7 @@ export const updateCategory = async (id:String, categoryUpdate: Category) => {
 };
 
 export const getCategory = async (id: String): Promise<Category | undefined> => {
-    const query = `select * from categories where lower(name_categories) = '${id}'`;
+    const query = `select * from categories where name_categories = upper('${id}')`;
     const result = await client.query(query);
     if(result.rowCount >= 1){
         const category: Category = result.rows[0];
@@ -40,7 +40,7 @@ export const getCategory = async (id: String): Promise<Category | undefined> => 
 };
 
 export const deleteCategory = async (id: String) => {
-    const query = `delete from categories where lower(name_categories) = '${id}'`;
+    const query = `delete from categories where name_categories = upper('${id}')`;
     const result = await client.query(query);
     if(result.rowCount > 0){
         return true;
@@ -50,7 +50,7 @@ export const deleteCategory = async (id: String) => {
 
 
 export const searchCategory = async (palabra: String): Promise<Category[]> => {
-    const query = `select * from categories WHERE lower(name_categories) like '%${palabra}%'`;
+    const query = `select * from categories WHERE name_categories like upper('%${palabra}%')`;
     const result = await client.query(query);
     const providers = result.rows;
     return providers;

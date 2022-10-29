@@ -45,7 +45,7 @@ router.get("/:id",async (req,res) => {
 });
 
 router.delete("/:id",async (req,res) => {
-    if (await deleteCategory(req.params.id.toLowerCase())){
+    if (await deleteCategory(req.params.id)){
         res.status(200).send(true);
     }else{
         res.status(404).send(false);
@@ -54,7 +54,7 @@ router.delete("/:id",async (req,res) => {
 
 router.get("/search/:search",async (req,res) => {
     const palabra = req.params.search;
-    const categories = await searchCategory(palabra.toLowerCase());
+    const categories = await searchCategory(palabra);
     res.status(200).send(categories);
 });
 

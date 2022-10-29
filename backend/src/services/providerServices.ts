@@ -9,7 +9,7 @@ export const getAll = async (id_business:Number): Promise<Provider[]> => {
 };
 
 export const addProvider = async (newProvider: Provider) => {
-    const query = `insert into providers(name_providers,id_business) values(initcap('${newProvider.name_providers}'),${newProvider.id_business})`;
+    const query = `insert into providers(name_providers,id_business) values(upper('${newProvider.name_providers}'),${newProvider.id_business})`;
     try {
         await client.query(query);
         return true;
@@ -20,7 +20,7 @@ export const addProvider = async (newProvider: Provider) => {
 };
 
 export const updateProvider = async (id: String, updateProvider:NewProvider, id_business:Number) => {
-    const query = `update providers set name_providers = initcap('${updateProvider.name_providers}') where lower(name_providers) = '${id}' and id_business = ${id_business}`;
+    const query = `update providers set name_providers = upper('${updateProvider.name_providers}') where name_providers = upper('${id}') and id_business = ${id_business}`;
     const result = await client.query(query);
     if(result.rowCount > 0){
         return true;
@@ -29,7 +29,7 @@ export const updateProvider = async (id: String, updateProvider:NewProvider, id_
 };
 
 export const getProvider = async (id: String, id_business: Number): Promise<Provider | undefined> => {
-    const query = `select * from providers p where p.id_business = ${id_business} and lower(p.name_providers) = '${id}'`
+    const query = `select * from providers p where p.id_business = ${id_business} and p.name_providers = upper('${id}')`
     const result = await client.query(query);
     if(result.rowCount >= 1){
         const provider: Provider = result.rows[0];
@@ -39,7 +39,7 @@ export const getProvider = async (id: String, id_business: Number): Promise<Prov
 };
 
 export const deleteProvider = async (id: String, id_business: Number) => {
-    const query = `DELETE FROM providers WHERE lower(name_providers)='${id}' and id_business=${id_business}`;
+    const query = `DELETE FROM providers WHERE name_providers = upper('${id}') and id_business=${id_business}`;
     const result = await client.query(query);
     if(result.rowCount > 0){
         return true;
@@ -48,7 +48,7 @@ export const deleteProvider = async (id: String, id_business: Number) => {
 };
 
 export const searchProvider = async (palabra: String, id_business: Number): Promise<Provider[]> => {
-    const query = `select * from providers WHERE lower(name_providers) like '%${palabra}%' and id_business=${id_business}`;
+    const query = `select * from providers WHERE name_providers like upper('%${palabra}%') and id_business=${id_business}`;
     const result = await client.query(query);
     const providers = result.rows;
     return providers;
