@@ -46,8 +46,7 @@ export const addProduct = async (newProduct: NewProduct) => {
     await verifyCategories(newProduct);
     await verifyProvier(newProduct);
     
-    const query = `INSERT INTO products (id_business,id_categories,id_providers,bar_code,stock,name_product,price,cost) 
-                    VALUES(${newProduct.id_business},'${newProduct.id_categories.toUpperCase()}','${newProduct.id_providers.toUpperCase()}',${newProduct.bar_code},${newProduct.stock},'${newProduct.name_product.toLowerCase()}',${newProduct.price},${newProduct.cost});`
+    const query = `INSERT INTO products (id_business,id_categories,id_providers,bar_code,stock,name_product,price,cost) VALUES(${newProduct.id_business},'${newProduct.id_categories.toUpperCase()}','${newProduct.id_providers.toUpperCase()}',${newProduct.bar_code},${newProduct.stock},'${newProduct.name_product.toLowerCase()}',${newProduct.price},${newProduct.cost});`
     try {
         await client.query(query);
         return true;

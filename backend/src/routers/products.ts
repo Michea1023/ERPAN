@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const {id_categories,id_providers,bar_code,stock,name_product,price,cost} = req.body;
-    console.log(req.body)
     const newProduct: NewProduct = {
         id_business: dataToken.id,
         id_categories: id_categories,
@@ -37,7 +36,6 @@ router.post("/", async (req, res) => {
         cost: cost
     };
     if(await addProduct(newProduct)){
-        console.log(newProduct)
         res.status(200).send(newProduct);
     }else{
         res.status(404).send("Error al agregar producto");
