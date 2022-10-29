@@ -3,10 +3,18 @@ import useLogin from '../hooks/pages/useLogin';
 import {Form,Button,Col,Container,Row} from "react-bootstrap"
 import "../static/css/style.css";
 
+/*
+properties of the login page
+ */
 interface Props {
     handleBusiness: (new_business: {name: string, logged: boolean}) => void
 }
 
+/*
+renders the login form
+@param {Props} handleBusiness - params coming from above
+@returns {JSX.Element}
+*/
 export default function Login({handleBusiness}: Props){
     const {navigate,handleSubmit,handleChange} = useLogin({handleBusiness});
 

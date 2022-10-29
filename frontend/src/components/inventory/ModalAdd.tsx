@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { ModalFooter } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
@@ -7,11 +7,20 @@ import useModalAddForm from "../../hooks/components/inventory/useModalAddForm";
 import useCategorySelect from "../../hooks/utils/useCategorySelect";
 import useProviderSelect from "../../hooks/utils/useProviderSelect";
 
+/*
+properties of the add-product form
+ */
 interface Props {
     value: boolean
     handleClose: () => void
 }
 
+/**
+ *
+ * @param {boolean} value -
+ * @param handleClose
+ * @constructor
+ */
 export default function ModalAdd ({value, handleClose}: Props) {
     const {product, handleProduct, handleChange, handleSubmit} = useModalAddForm()
     const {category, categoryOptions, categorySearch, handleCategory} =

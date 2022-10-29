@@ -1,6 +1,16 @@
+
+/*
+properties of the forgot password page
+ */
 interface Props {
     handleBusiness: (new_business: {name: string, logged: boolean}) => void
 }
+
+/*
+renders the forgot password page
+@param {Props} handleBusiness - params coming from above
+@returns {JSX.Element}
+*/
 export default function ForgotPassword({handleBusiness}: Props) {
     return(
         <>

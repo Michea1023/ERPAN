@@ -7,9 +7,6 @@ dotenv.config({
     path: './.env'
 });
 
-
-
-
 /**
  * This function takes a user object and returns a token.
  * @param {User} user - User = {

@@ -1,3 +1,6 @@
+/*
+this file contains the request types
+ */
 export interface Business {
     email: string
     password: string

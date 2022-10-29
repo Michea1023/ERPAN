@@ -3,6 +3,11 @@ import '../static/css/style.css'
 import ModalAdd from '../components/inventory/ModalAdd'
 import useModal from '../hooks/pages/useModal'
 import InventoryTable from '../components/inventory/InventoryTable'
+
+/*
+renders the inventory page
+@returns {JSX.Element}
+*/
 export default function Inventory() {
   const { modal, handleAdd, handleEdit } = useModal()
 

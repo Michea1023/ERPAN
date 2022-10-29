@@ -67,8 +67,6 @@ router.post("/register", async (req, res) => {
     }else{
         res.status(404).send("Contraseñas no coinciden")
     }
-    
-    
 });
 
 router.delete("/logout",async (req,res) => {

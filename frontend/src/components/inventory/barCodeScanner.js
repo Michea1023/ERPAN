@@ -1,6 +1,11 @@
 import React, { useState, useRef } from 'react'
 import Scanner from '../../utils/Scanner'
 import Result from '../../utils/Result'
+
+/*
+renders the bar code scanner
+@returns {JSX.Element}
+ */
 const Xd = () => {
   const [scanning, setScanning] = useState(false)
   const [results, setResults] = useState([])

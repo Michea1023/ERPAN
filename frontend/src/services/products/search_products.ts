@@ -1,5 +1,10 @@
-import {HOST, TOKEN} from "../../settings";
+import {HOST} from "../../settings";
 
+/*
+send a request [GET] to HOST/products/search/:search to get products' search by :search
+@param {string} search -> products search pattern
+@returns {Promise<Array<>>}
+*/
 const search_products = (search: string) => {
     return fetch(HOST + 'products/' + search.replaceAll(" ", "+"), {
         method: "GET",

@@ -1,7 +1,6 @@
 import useProducts from "../../hooks/components/inventory/useProducts";
 import ModalEdit from "./ModalEdit";
 
-
 /*
 properties of the inventory table
  */

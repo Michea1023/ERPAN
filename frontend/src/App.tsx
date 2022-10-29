@@ -14,6 +14,8 @@ import useBusiness from './hooks/useBusiness'
 import Inventory from './pages/Inventory'
 import NotFound from './pages/NotFound'
 import ForgotPassword from './pages/ForgotPassword'
+
+
 function App() {
   const { business, handleBusiness } = useBusiness()
 

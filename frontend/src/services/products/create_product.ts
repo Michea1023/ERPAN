@@ -1,6 +1,11 @@
 import {Product} from "../../types/request_types";
-import {HOST, TOKEN} from "../../settings";
+import {HOST} from "../../settings";
 
+/*
+send a request [POST] to HOST/products to create a product ':product'
+@param {Product} product -> product' data
+@returns {Promise<>}
+*/
 const create_product = (product: Product) => {
     return fetch(HOST + 'products', {
         method: "POST",
@@ -11,10 +16,10 @@ const create_product = (product: Product) => {
         },
         body: JSON.stringify(product)
     }).then(response => {
-        if (!response.ok) throw new Error("Bad Request")
+        if (!response.ok) throw new Error("Bad Response: " + String(response.status))
         return response.json()
     }).catch((err) => {
-        console.log(err)
+        alert(err)
     }).then((response) => {
         return response
     })

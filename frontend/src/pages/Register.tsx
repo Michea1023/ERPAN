@@ -2,11 +2,18 @@ import React from 'react'
 import useRegister from "../hooks/pages/useRegister";
 import "../static/css/style.css";
 
-
+/*
+properties of the register page
+ */
 interface Props {
     handleBusiness: (new_business: {name: string, logged: boolean}) => void
 }
 
+/*
+renders the register form
+@param {Props} handleBusiness - params coming from above
+@returns {JSX.Element}
+*/
 export default function Register ({handleBusiness}: Props) {
     const {navigate, handleSubmit, handleChange} = useRegister({handleBusiness});
 

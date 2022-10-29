@@ -1,3 +1,7 @@
+/*
+this file contains the response types
+ */
+
 export interface Business_Response {
     name_business: string
     token: string

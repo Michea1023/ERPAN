@@ -8,12 +8,20 @@ import useProviderSelect from "../../hooks/utils/useProviderSelect";
 import {ProductResponse} from "../../types/response_types";
 import useModalEditForm from "../../hooks/components/inventory/useModalEditForm";
 
+/*
+properties of the edit-product form
+ */
 interface Props {
     product: ProductResponse
     value: boolean
     handleClose: () => void
 }
 
+/*
+renders the edit-product form
+@param {Props} product, value, handleClose - params coming from above
+@returns {JSX.Element}
+ */
 export default function ModalEdit ({product: item, value, handleClose}: Props) {
     const {product, handleProduct, handleChange, handleSubmit} = useModalEditForm(item)
     const {category, categoryOptions, categorySearch, handleCategory} =
