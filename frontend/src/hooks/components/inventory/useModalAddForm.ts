@@ -11,7 +11,8 @@ const INITIAL_VALUE = {
     id_categories: "",
     bar_code: 0,
     stock: 0,
-    price: 0
+    price: 0,
+    cost: 0
 }
 
 /*

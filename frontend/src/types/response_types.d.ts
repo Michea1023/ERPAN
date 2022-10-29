@@ -17,6 +17,7 @@ export interface ProductResponse {
     stock: number
     name_product: string
     price: number
+    cost: number
 }
 
 export interface ProviderResponse {

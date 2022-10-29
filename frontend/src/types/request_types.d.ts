@@ -24,4 +24,5 @@ export interface Product {
     bar_code: number
     stock: number
     price: number
+    cost: number
 }

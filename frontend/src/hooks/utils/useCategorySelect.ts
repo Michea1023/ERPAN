@@ -48,6 +48,8 @@ const useCategorySelect = ({product, handleProduct}: Props) => {
             ...product,
             ["id_categories"]: evt?.value
         })
+
+        console.log(product)
     }
 
     /*

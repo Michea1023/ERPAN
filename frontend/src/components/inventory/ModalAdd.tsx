@@ -104,6 +104,17 @@ export default function ModalAdd ({value, handleClose}: Props) {
                                 required
                             />
                         </div>
+                        <div className="form-group mt-3">
+                            <label>Costo</label>
+                            <input
+                                type="number"
+                                className="form-control mt-1"
+                                name={"price"}
+                                defaultValue={0}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
                     </div>
                 </form>
             </div>

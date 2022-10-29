@@ -12,7 +12,7 @@ const search_categories = (search: string) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + TOKEN
+            "Authorization": "Bearer " + String(window.localStorage.getItem("tokenERPAN"))
         },
     }).then(response => {
         if (!response.ok) throw new Error("Bad Response: " + String(response.status))
