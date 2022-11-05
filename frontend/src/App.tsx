@@ -15,6 +15,7 @@ import Inventory from './pages/Inventory'
 import NotFound from './pages/NotFound'
 import ForgotPassword from './pages/ForgotPassword'
 import PasswordRecovered from './pages/PasswordRecovery'
+import ChangePassword from './pages/ChangePassword'
 
 function App() {
   const { business, handleBusiness } = useBusiness()
@@ -66,6 +67,16 @@ function App() {
             element={
               !business.logged ? (
                 <PasswordRecovered handleBusiness={handleBusiness} />
+              ) : (
+                <Navigate to={'/'} />
+              )
+            }
+          />
+          <Route
+            path={'/changePassword'}
+            element={
+              !business.logged ? (
+                <ChangePassword handleBusiness={handleBusiness} />
               ) : (
                 <Navigate to={'/'} />
               )
