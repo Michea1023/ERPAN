@@ -14,7 +14,7 @@ import useBusiness from './hooks/useBusiness'
 import Inventory from './pages/Inventory'
 import NotFound from './pages/NotFound'
 import ForgotPassword from './pages/ForgotPassword'
-
+import PasswordRecovered from './pages/PasswordRecovery'
 
 function App() {
   const { business, handleBusiness } = useBusiness()
@@ -61,6 +61,16 @@ function App() {
             }
           />
           <Route path={'/*'} element={<NotFound />} />
+          <Route
+            path={'/passwordRecovery'}
+            element={
+              !business.logged ? (
+                <PasswordRecovered handleBusiness={handleBusiness} />
+              ) : (
+                <Navigate to={'/'} />
+              )
+            }
+          />
         </Routes>
         {
           //Footer
