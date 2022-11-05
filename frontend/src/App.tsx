@@ -16,6 +16,7 @@ import NotFound from './pages/NotFound'
 import ForgotPassword from './pages/ForgotPassword'
 import PasswordRecovered from './pages/PasswordRecovery'
 import ChangePassword from './pages/ChangePassword'
+import Order from './pages/Order'
 
 function App() {
   const { business, handleBusiness } = useBusiness()
@@ -30,6 +31,10 @@ function App() {
             element={
               business.logged ? <Inventory /> : <Navigate to={'/login'} />
             }
+          />
+          <Route
+            path={'/order'}
+            element={business.logged ? <Order /> : <Navigate to={'/login'} />}
           />
           <Route
             path={'/register'}
