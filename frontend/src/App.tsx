@@ -59,22 +59,14 @@ function App() {
           <Route
             path={'/forgotPassword'}
             element={
-              !business.logged ? (
-                <ForgotPassword handleBusiness={handleBusiness} />
-              ) : (
-                <Navigate to={'/'} />
-              )
+              !business.logged ? <ForgotPassword /> : <Navigate to={'/'} />
             }
           />
           <Route path={'/*'} element={<NotFound />} />
           <Route
             path={'/passwordRecovery'}
             element={
-              !business.logged ? (
-                <PasswordRecovered handleBusiness={handleBusiness} />
-              ) : (
-                <Navigate to={'/'} />
-              )
+              !business.logged ? <PasswordRecovered /> : <Navigate to={'/'} />
             }
           />
           <Route
