@@ -4,7 +4,8 @@ import { addBlackList } from "../services/tokenServices";
 import { createUser, deleteUser, existUser, getUser, updateUser } from '../services/userServices';
 import { NewUser, User, UserLogin, UserResponse } from "../types/user_types";
 import { transporter } from "../config/mailer";
-import { randomCaracter } from "../config/passwordRandom";
+import { randomCaracter } from "../config/randomCaracter";
+import * as EmailValidator from 'email-validator';
 const dotenv = require('dotenv');
 
 dotenv.config({
@@ -84,26 +85,33 @@ router.put("/forgot-password",async (req,res) => {
 router.post("/register", async (req, res) => {
     const newUser: NewUser = req.body;
     var user: User | undefined;
-    if(newUser.password === newUser.password_confirm){
-        if(await createUser(newUser)){
-            const userLogin: UserLogin = {
-                email: newUser.email,
-                password: newUser.password
-            };
-            user = await getUser(userLogin);
-            const TOKEN_TEMPORALS = createToken(user);
-            const userResponse: UserResponse = {
-                name_business: newUser.name_business,
-                token: TOKEN_TEMPORALS
-            };
-            res.status(200).send(userResponse);
+    
+    if(EmailValidator.validate(newUser.email)){
+        if(newUser.password === newUser.password_confirm){
+            if(await createUser(newUser)){
+                const userLogin: UserLogin = {
+                    email: newUser.email,
+                    password: newUser.password
+                };
+                user = await getUser(userLogin);
+                const TOKEN_TEMPORALS = createToken(user);
+                const userResponse: UserResponse = {
+                    name_business: newUser.name_business,
+                    token: TOKEN_TEMPORALS
+                };
+                res.status(200).send(userResponse);
+            }else{
+                await deleteUser(user?.id)
+                res.status(404).send({"mensaje":"Error al registrar el nuevo usuario"});
+            }
         }else{
-            await deleteUser(user?.id)
-            res.status(404).send("Error al registrar el nuevo usuario");
+            res.status(404).send({"mensaje":"Contraseñas no coinciden"})
         }
     }else{
-        res.status(404).send("Contraseñas no coinciden")
+        res.status(404).send({"mensaje":"Correo electronico invalido"})
     }
+    
+    
 });
 
 router.delete("/logout",async (req,res) => {

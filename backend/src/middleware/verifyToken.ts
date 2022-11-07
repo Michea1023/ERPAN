@@ -19,10 +19,9 @@ router.use(async function (req, res, next) {
     }else{
         return res.status(403).send({ message: "Tu petición no tiene cabecera de autorización" });
     }
-    let decodeToken = null;
+    //let decodeToken = null;
     try{
-        decodeToken = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-        console.log(decodeToken);
+        await jwt.verify(token, process.env.JWT_PRIVATE_KEY);
         if(await existsTokenBlackList(token)){
             return res.status(401).send({ message: "Token invalido" });
         }
