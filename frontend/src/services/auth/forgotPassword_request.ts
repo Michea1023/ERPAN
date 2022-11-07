@@ -1,6 +1,6 @@
 import { HOST } from '../../settings'
 
-const changePassword_request = (emailRequest: { email: string }) => {
+const forgotPassword_request = (emailRequest: { email: string }) => {
   return fetch(HOST + 'forgot-password', {
     method: 'PUT',
     headers: {
@@ -23,4 +23,4 @@ const changePassword_request = (emailRequest: { email: string }) => {
     })
 }
 
-export default changePassword_request
+export default forgotPassword_request

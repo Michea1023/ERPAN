@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import changePassword_request from '../../services/auth/changePassword_request'
+import forgotPassword_request from '../../services/auth/forgotPassword_request'
 
 const INITIAL_VALUE = {
   email: '',
@@ -14,7 +14,7 @@ const useForgotPassword = () => {
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
-    changePassword_request(emailConfirm).then((res) => {
+    forgotPassword_request(emailConfirm).then((res) => {
       navigate('/passwordRecovery')
     })
   }
