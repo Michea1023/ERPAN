@@ -46,7 +46,7 @@ export default function InventoryTable ({edit, handleEdit}: Props) {
                         {
                             products.map((product) =>{
                                 return <>
-                                    <tr key={product.bar_code}>
+                                    <tr key={product.id}>
                                         <td>{product.bar_code}</td>
                                         <td>{product.name_product}</td>
                                         <td>{product.id_categories}</td>

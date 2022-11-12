@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Product} from "../../../types/request_types";
 import edit_product from "../../../services/products/edit_product";
+import delete_product from "../../../services/products/delete_product";
 
 /*
 handles the edit-product form
@@ -17,7 +18,6 @@ const useModalEditForm = (defaultValue: Product) => {
 
     /*
     adds a product
-    @param {React.FormEvent<>} evt -> event obtained when is submitted the add-product form
      */
     const handleSubmit = () => {
         if (product.id === undefined) {
@@ -45,7 +45,17 @@ const useModalEditForm = (defaultValue: Product) => {
         })
     }
 
-    return {product, handleProduct, handleChange, handleSubmit}
+    /**
+     * deletes this product
+     */
+    const handleDelete = () => {
+        if (product.id === undefined) {
+            return alert("error")
+        }
+        delete_product(String(product.id)).then()
+    }
+
+    return {product, handleProduct, handleChange, handleSubmit, handleDelete}
 }
 
 export default useModalEditForm

@@ -23,7 +23,7 @@ renders the edit-product form
 @returns {JSX.Element}
  */
 export default function ModalEdit ({product: item, value, handleClose}: Props) {
-    const {product, handleProduct, handleChange, handleSubmit} = useModalEditForm(item)
+    const {product, handleProduct, handleChange, handleSubmit, handleDelete} = useModalEditForm(item)
     const {category, categoryOptions, categorySearch, handleCategory} =
         useCategorySelect({product, handleProduct})
     const {provider, providerOptions, providerSearch, handleProvider} =
@@ -121,7 +121,10 @@ export default function ModalEdit ({product: item, value, handleClose}: Props) {
             </div>
         </Modal.Body>
         <ModalFooter>
-            <Button className="btn-danger" variant="secondary" onClick={handleClose}>
+            <Button className="btn-danger" variant="secondary" onClick={() => {
+                handleDelete()
+                handleClose()
+            }}>
                 Eliminar producto
             </Button>
             <Button variant="secondary" onClick={handleClose}>

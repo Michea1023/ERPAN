@@ -8,17 +8,18 @@ const logout_request = () => {
     return fetch(HOST + 'logout',{
         method: "POST",
         headers: {
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            "Authorization": String(localStorage.getItem("tokenERPAN"))
         }
     }).then(response =>{
-        if(!response.ok) throw new Error("Error")
+        if(!response.ok) throw new Error(response.statusText)
         return response.json()
-    }).catch((error)=> {
-        alert(error)
     }).then((response) => {
         window.localStorage.removeItem("tokenERPAN")
         window.localStorage.removeItem("nameERPAN")
         return response
+    }).catch((error)=> {
+        alert(error)
     })
 }
 
