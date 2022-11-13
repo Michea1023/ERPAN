@@ -118,3 +118,65 @@
   .price {
     padding-right: 10px;
   }
+
+  
+/** Page Order **/
+
+
+.ContainerProduct{
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-left: 6%;
+  margin-top: 40px;
+  
+}
+.ContainerHR{
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-left: 1%;
+  margin-top: 50px;
+  
+}
+@media screen and (max-width: 780px){
+  .ContainerProduct{
+    justify-content: center;
+    padding-left: 0;
+
+
+  }.ColumnCount{
+    
+    justify-content: center;
+    
+  }.ContainerHR{
+    justify-content: center;
+    padding-left: 0;
+
+
+  }}
+
+
+
+.Product{
+  min-width: 300px;
+  border: 2px solid black;
+  border-radius: 20px;
+  height: 40px;
+}
+
+.ColumnCount{
+ min-width: 300px;
+ display: flex;
+ align-items: flex-start;
+ gap: 10px;
+ 
+}
+
+  
+
+.Count{
+  transform: translateY(10px);
+}

@@ -1,18 +1,22 @@
-import { Button } from 'react-bootstrap'
-
+import "../static/css/style.css";
+import {useState} from 'react';
 /*
 renders the order page
 @params {Props} ...
 @returns {JSX.Element}
 */
 export default function Order() {
+  
+  const[cantidad,setCantidad] = useState(0)
+  
   return (
-    <>
-      <div>
-        <div className='container mt-2'>
-          <div className='container'>
-            <nav className='navbar navbar-light bg-light'>
-              <form className='d-flex flex-row'>
+  
+  <>
+  
+      <div className="container mt-5">
+        <nav className='navbar navbar-light bg-light'>
+
+        <form className="d-flex flex-row">
                 <input
                   className='form-control mr-sm-2'
                   type='search'
@@ -25,17 +29,43 @@ export default function Order() {
                 >
                   Search
                 </button>
-              </form>
-            </nav>
-            <ul>
-              <li>
-                <div className='name'>uuuwu</div>
-                <div className='price'>aaaaaaaaa</div>
-              </li>
-            </ul>
-          </div>
-        </div>
+        </form>
+
+        </nav>
       </div>
-    </>
+      
+          <div className="ContainerProduct">
+              <div className="Product">
+                arroz
+              </div>
+              
+              <div className="ColumnCount">
+                <button type="button" className="btn btn-danger " onClick={() => {setCantidad(cantidad-1)}}>-</button>
+
+                <p className= "Count">
+                {cantidad}
+                </p>  
+                
+
+                <button type="button" className="btn btn-success" onClick={() => {setCantidad(cantidad+1)}}>+</button>
+                
+              </div>
+
+              
+              
+        
+          </div>
+          <div className="ContainerHR container mt-5">
+          <div className=" w-50 border border-dark text-light bg-dark"></div>
+          </div>
+
+          <div className="ContainerProduct">
+               <div className="Product">
+                total
+              </div>
+          </div>
+    
+  </>
+  
   )
 }
