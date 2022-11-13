@@ -55,6 +55,32 @@ export default function Order() {
               
         
           </div>
+
+          <div className="ContainerProduct">
+              <div className="Product">
+                arroz
+              </div>
+              
+              <div className="ColumnCount">
+                <button type="button" className="btn btn-danger " onClick={() => {setCantidad(cantidad-1)}}>-</button>
+
+                <p className= "Count">
+                {cantidad}
+                </p>  
+                
+
+                <button type="button" className="btn btn-success" onClick={() => {setCantidad(cantidad+1)}}>+</button>
+                
+              </div>
+
+              
+              
+        
+          </div>
+
+          
+
+
           <div className="ContainerHR container mt-5">
           <div className=" w-50 border border-dark text-light bg-dark"></div>
           </div>
@@ -63,6 +89,11 @@ export default function Order() {
                <div className="Product">
                 total
               </div>
+
+              <div className="ColumnCount">
+                <button className="btn btn-success" type="button">Finalizar Compra</button>
+              </div>
+
           </div>
     
   </>
