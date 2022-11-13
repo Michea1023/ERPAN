@@ -34,7 +34,7 @@ function App() {
           />
           <Route
             path={'/order'}
-            element={!business.logged ? <Order /> : <Navigate to={'/login'} />}
+            element={business.logged ? <Order /> : <Navigate to={'/login'} />}
           />
           <Route
             path={'/register'}
