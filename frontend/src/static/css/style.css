@@ -93,31 +93,6 @@
     text-align: center;
     font-size: 24px;
   }
-  ul {
-    position: relative;
-    list-style-type: none;
-    padding-left: 0px;
-    background-color: #aaa;
-  }
-  li {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    border: 5px black solid;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 5px;
-    width: 50%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: aqua;
-  }
-  .name {
-    padding-left: 10px;
-  }
-  .price {
-    padding-right: 10px;
-  }
 
   
 /** Page Order **/
@@ -161,6 +136,7 @@
 
 
 .Product{
+  position: relative;
   min-width: 300px;
   border: 2px solid black;
   border-radius: 20px;
@@ -175,7 +151,15 @@
  
 }
 
-  
+.name{
+  position: absolute;
+  left: 10%
+}
+
+.price{
+  position: absolute;
+  right: 10%;
+}
 
 .Count{
   transform: translateY(10px);
