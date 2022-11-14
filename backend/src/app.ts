@@ -1,5 +1,6 @@
 import express from 'express';
 import routers from "./routers/index";
+
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -12,7 +13,7 @@ const app = express();
 
 //middlewares
 app.use(express.json()); //middleware que trasforma la req.body a un json
-app.use(express.urlencoded({ extended:false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cors())
 
 
@@ -24,7 +25,6 @@ app.get('/ping', (_req, res) => {
 
 /* rutas */
 app.use('/api', routers);
-
 
 
 const PORT = process.env.PORT;

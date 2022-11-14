@@ -40,7 +40,7 @@ const useModalEditForm = (defaultValue: Product) => {
      */
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setProduct({
-            ... product,
+            ...product,
             [evt.currentTarget.name]: evt.currentTarget.value
         })
     }

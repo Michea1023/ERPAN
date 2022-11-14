@@ -1,6 +1,7 @@
 import expres from "express";
-import { decodeToken } from "../middleware/token";
-import { updateUser, verifyPasword } from "../services/userServices";
+import {decodeToken} from "../middleware/token";
+import {updateUser, verifyPasword} from "../services/userServices";
+
 const dotenv = require('dotenv');
 
 dotenv.config({
@@ -10,20 +11,20 @@ dotenv.config({
 const router = expres.Router();
 
 
-router.put("/change-password",async (req,res) => {
+router.put("/change-password", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const {password,passwordNew,passwordConfirm} = req.body;
+    const {password, passwordNew, passwordConfirm} = req.body;
 
-    if(passwordNew === passwordConfirm && await verifyPasword(dataToken.email,password)){
-        
-        if(await updateUser(dataToken.email,passwordNew)){
+    if (passwordNew === passwordConfirm && await verifyPasword(dataToken.email, password)) {
+
+        if (await updateUser(dataToken.email, passwordNew)) {
             console.log("hola")
-            res.status(200).send({"mensaje":"Contraseña actualizada"})
+            res.status(200).send({"mensaje": "Contraseña actualizada"})
         }
-    }else{
-        res.status(404).send({"mensaje":"Error al actualizar la contraseña"})
+    } else {
+        res.status(404).send({"mensaje": "Error al actualizar la contraseña"})
     }
-    
+
 });
 
 

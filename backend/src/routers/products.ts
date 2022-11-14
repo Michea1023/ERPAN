@@ -1,8 +1,9 @@
 import express from "express";
 import verifyToken from "../middleware/verifyToken";
-import { addProduct, getAll, getProduct, updateProduct, deleteProduct, searchProduct } from "../services/productServices";
-import { decodeToken } from "../middleware/token";
-import { NewProduct, UpdateProduct } from "../types/product_types";
+import {addProduct, getAll, getProduct, updateProduct, deleteProduct, searchProduct} from "../services/productServices";
+import {decodeToken} from "../middleware/token";
+import {NewProduct, UpdateProduct} from "../types/product_types";
+
 const dotenv = require('dotenv');
 
 
@@ -24,7 +25,7 @@ router.get("/", async (req, res) => {
 /* A route that will be used to add a new product. */
 router.post("/", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const {id_categories,id_providers,bar_code,stock,name_product,price,cost} = req.body;
+    const {id_categories, id_providers, bar_code, stock, name_product, price, cost} = req.body;
     const newProduct: NewProduct = {
         id_business: dataToken.id,
         id_categories: id_categories,
@@ -35,9 +36,9 @@ router.post("/", async (req, res) => {
         price: price,
         cost: cost
     };
-    if(await addProduct(newProduct)){
+    if (await addProduct(newProduct)) {
         res.status(200).send(newProduct);
-    }else{
+    } else {
         res.status(404).send("Error al agregar producto");
     }
 
@@ -49,7 +50,7 @@ router.put("/:id", async (req, res) => {
     const productUpdate: UpdateProduct = req.body;
     if (await updateProduct(parseInt(req.params.id), productUpdate, dataToken.id)) {
         res.status(200).send(productUpdate)
-    }else{
+    } else {
         res.status(404).send("Producto no actualizado");
     }
 });
@@ -57,29 +58,29 @@ router.put("/:id", async (req, res) => {
 /* This is a route that will be used to get a product by id. */
 router.get("/:id", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const product = await getProduct(parseInt(req.params.id),dataToken.id);
+    const product = await getProduct(parseInt(req.params.id), dataToken.id);
     if (product != undefined) {
         res.status(200).send(product);
-    }else{
+    } else {
         res.status(404).send("producto no encontrado");
     }
 });
 
 /* A route that will be used to delete a product by id. */
-router.delete("/:id", async(req, res) => {
+router.delete("/:id", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    if (await deleteProduct(parseInt(req.params.id),dataToken.id)){
+    if (await deleteProduct(parseInt(req.params.id), dataToken.id)) {
         res.status(200).send(true);
-    }else{
+    } else {
         res.status(404).send(false);
     }
 });
 
 /* This is a route that will be used to search a product by name. */
 router.get("/search/:search", async (req, res) => {
-    const palabra = req.params.search.replace("+"," ");
+    const palabra = req.params.search.replace("+", " ");
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const products = await searchProduct(palabra,dataToken.id);
+    const products = await searchProduct(palabra, dataToken.id);
     res.status(200).send(products);
 });
 

@@ -9,11 +9,11 @@ import userRouter from './user'
 
 const router = express.Router();
 
-router.use("/",authRouter);
-router.use("/ticket",ticketRouter);
+router.use("/", authRouter);
+router.use("/ticket", ticketRouter);
 router.use('/products', productRouter);
-router.use('/providers',providerRouter);
-router.use('/categories',categoryRouter);
-router.use('/user',userRouter);
+router.use('/providers', providerRouter);
+router.use('/categories', categoryRouter);
+router.use('/user', userRouter);
 
 export default router;

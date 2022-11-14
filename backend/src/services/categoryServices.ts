@@ -1,5 +1,5 @@
-import { client } from "../dataBase";
-import { Category } from "../types/category_types";
+import {client} from "../dataBase";
+import {Category} from "../types/category_types";
 
 
 export const getAll = async (): Promise<Category[]> => {
@@ -9,21 +9,21 @@ export const getAll = async (): Promise<Category[]> => {
     return allCategories;
 };
 
-export const addCategory = async (newCategory : Category) => {
+export const addCategory = async (newCategory: Category) => {
     const query = `insert into categories(name_categories) values(upper('${newCategory.name_categories}'))`;
     try {
         await client.query(query);
         return true;
-    }catch (err){
+    } catch (err) {
         console.error(err);
         return false;
     }
 };
 
-export const updateCategory = async (id:String, categoryUpdate: Category) => {
+export const updateCategory = async (id: String, categoryUpdate: Category) => {
     const query = `update categories set name_categories = upper('${categoryUpdate.name_categories}') where name_categories = upper('${id}')`;
     const result = await client.query(query);
-    if(result.rowCount > 0){
+    if (result.rowCount > 0) {
         return true;
     }
     return false;
@@ -32,7 +32,7 @@ export const updateCategory = async (id:String, categoryUpdate: Category) => {
 export const getCategory = async (id: String): Promise<Category | undefined> => {
     const query = `select * from categories where name_categories = upper('${id}')`;
     const result = await client.query(query);
-    if(result.rowCount >= 1){
+    if (result.rowCount >= 1) {
         const category: Category = result.rows[0];
         return category;
     }
@@ -42,7 +42,7 @@ export const getCategory = async (id: String): Promise<Category | undefined> => 
 export const deleteCategory = async (id: String) => {
     const query = `delete from categories where name_categories = upper('${id}')`;
     const result = await client.query(query);
-    if(result.rowCount > 0){
+    if (result.rowCount > 0) {
         return true;
     }
     return false;

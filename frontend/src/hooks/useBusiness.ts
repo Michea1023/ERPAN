@@ -17,14 +17,14 @@ const logged_value = {
 }
 
 /**
-* handle business entity
-* @returns {Business, (Business) => void}
+ * handle business entity
+ * @returns {Business, (Business) => void}
  */
 const useBusiness = () => {
     const [business, setBusiness] = useState<{
         name: string,
         logged: boolean
-    }>((window.localStorage.getItem('nameERPAN') != null) ? logged_value: null_value)
+    }>((window.localStorage.getItem('nameERPAN') != null) ? logged_value : null_value)
 
     /*
     set a new business state

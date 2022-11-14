@@ -14,14 +14,14 @@ renders the inventory table
 @param {Props} edit, handleEdit - params coming from above
 @returns {JSX.Element}
 */
-export default function InventoryTable ({edit, handleEdit}: Props) {
+export default function InventoryTable({edit, handleEdit}: Props) {
     const products = useProducts()
 
     /*
     return the render from a button
     @return: JSX.Element
      */
-    const editButton = () =>{
+    const editButton = () => {
         return <button type="button" className="btn btn-outline-success"
                        onClick={() => handleEdit(true)}>Editar</button>
     }
@@ -41,10 +41,10 @@ export default function InventoryTable ({edit, handleEdit}: Props) {
                         <th>Editar</th>
                     </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                     <>
                         {
-                            products.map((product) =>{
+                            products.map((product) => {
                                 return <>
                                     <tr key={product.id}>
                                         <td>{product.bar_code}</td>
@@ -55,7 +55,7 @@ export default function InventoryTable ({edit, handleEdit}: Props) {
                                         <td>{product.price}</td>
                                         <td>{editButton()}</td>
                                     </tr>
-                                    <ModalEdit product={product} value={edit} handleClose={() => handleEdit(false)} />
+                                    <ModalEdit product={product} value={edit} handleClose={() => handleEdit(false)}/>
                                 </>
                             })
                         }

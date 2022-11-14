@@ -18,7 +18,7 @@ const INITIAL_VALUE = {
 properties of handler of register form
  */
 interface Props {
-    handleBusiness: (new_business: {name: string, logged: boolean}) => void
+    handleBusiness: (new_business: { name: string, logged: boolean }) => void
 }
 
 /*
@@ -60,7 +60,7 @@ const useRegister = ({handleBusiness}: Props) => {
      */
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setBusiness({
-            ... business,
+            ...business,
             [evt.currentTarget.name]: evt.currentTarget.value
         })
     }

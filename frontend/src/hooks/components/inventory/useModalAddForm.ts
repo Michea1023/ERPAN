@@ -9,7 +9,7 @@ const INITIAL_VALUE = {
     name_product: "",
     id_providers: "",
     id_categories: "",
-    bar_code: 0,
+    bar_code: "",
     stock: 0,
     price: 0,
     cost: 0
@@ -49,7 +49,7 @@ const useModalAddForm = () => {
      */
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setProduct({
-            ... product,
+            ...product,
             [evt.currentTarget.name]: evt.currentTarget.value
         })
     }

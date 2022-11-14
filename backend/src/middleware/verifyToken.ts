@@ -1,5 +1,5 @@
 import express from "express";
-import { existsTokenBlackList } from "../services/tokenServices";
+import {existsTokenBlackList} from "../services/tokenServices";
 
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
@@ -16,22 +16,22 @@ router.use(async function (req, res, next) {
     let token = ''
     if (autorization && autorization.toLowerCase().startsWith('bearer')) {
         token = autorization.substring(7);
-    }else{
-        return res.status(403).send({ message: "Tu petición no tiene cabecera de autorización" });
+    } else {
+        return res.status(403).send({message: "Tu petición no tiene cabecera de autorización"});
     }
     //let decodeToken = null;
-    try{
+    try {
         await jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-        if(await existsTokenBlackList(token)){
-            return res.status(401).send({ message: "Token invalido" });
+        if (await existsTokenBlackList(token)) {
+            return res.status(401).send({message: "Token invalido"});
         }
-    }catch (e){
+    } catch (e) {
         console.error(e);
-        return res.status(401).send({ message: "Token invalido" });
+        return res.status(401).send({message: "Token invalido"});
     }
-    
+
     return next();
-    
+
 });
 
 export default router;

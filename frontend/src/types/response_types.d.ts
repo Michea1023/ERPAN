@@ -13,7 +13,7 @@ export interface ProductResponse {
     id: number
     id_categories: string
     id_providers: string
-    bar_code: number
+    bar_code: string
     stock: number
     name_product: string
     price: number

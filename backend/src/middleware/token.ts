@@ -1,4 +1,4 @@
-import { User } from "../types/user_types";
+import {User} from "../types/user_types";
 
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
@@ -13,13 +13,13 @@ dotenv.config({
  * @returns A token
  */
 export const createTokenStatic = (user: User | undefined) => {
-    if(user != undefined){
-        const token = jwt.sign(user,process.env.JWT_PRIVATE_KEY);
+    if (user != undefined) {
+        const token = jwt.sign(user, process.env.JWT_PRIVATE_KEY);
         return token;
     }
     return undefined;
 }
-    
+
 
 /**
  * It takes a user object and returns a token
@@ -27,8 +27,8 @@ export const createTokenStatic = (user: User | undefined) => {
  * @returns A token
  */
 export const createToken = (user: User | undefined) => {
-    if(user != undefined) {
-        const token = jwt.sign({id:user.id,email:user.email},process.env.JWT_PRIVATE_KEY,{expiresIn:'24h'});
+    if (user != undefined) {
+        const token = jwt.sign({id: user.id, email: user.email}, process.env.JWT_PRIVATE_KEY, {expiresIn: '24h'});
         return token
     }
     return undefined
@@ -40,6 +40,6 @@ export const createToken = (user: User | undefined) => {
  * @returns The decoded token.
  */
 export const decodeToken = (token: string | undefined) => {
-    const data = jwt.decode(token,process.env.JWT_PRIVATE_KEY);
+    const data = jwt.decode(token, process.env.JWT_PRIVATE_KEY);
     return data;
 };

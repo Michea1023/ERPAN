@@ -1,11 +1,12 @@
 import express from "express";
-import { createToken } from "../middleware/token";
-import { addBlackList } from "../services/tokenServices";
-import { createUser, deleteUser, existUser, getUser, updateUser } from '../services/userServices';
-import { NewUser, User, UserLogin, UserResponse } from "../types/user_types";
-import { transporter } from "../config/mailer";
-import { randomCaracter } from "../config/randomCaracter";
+import {createToken} from "../middleware/token";
+import {addBlackList} from "../services/tokenServices";
+import {createUser, deleteUser, existUser, getUser, updateUser} from '../services/userServices';
+import {NewUser, User, UserLogin, UserResponse} from "../types/user_types";
+import {transporter} from "../config/mailer";
+import {randomCaracter} from "../config/randomCaracter";
 import * as EmailValidator from 'email-validator';
+
 const dotenv = require('dotenv');
 
 dotenv.config({
@@ -16,7 +17,6 @@ dotenv.config({
 const router = express.Router();
 
 
-
 router.post("/login", async (req, res) => {
     const userLogin: UserLogin = req.body;
     const userData = await getUser(userLogin);
@@ -24,36 +24,36 @@ router.post("/login", async (req, res) => {
         const TOKEN = createToken(userData);
         const UserResponse: UserResponse = {
             name_business: userData.name_business,
-            token:TOKEN
+            token: TOKEN
         }
         res.status(200).send(UserResponse)
-        
-    }else{
-        res.status(404).send({"mensaje":"Error al iniciar sesion"})
+
+    } else {
+        res.status(404).send({"mensaje": "Error al iniciar sesion"})
     }
-    
+
 });
 
-router.put("/forgot-password",async (req,res) => {
+router.put("/forgot-password", async (req, res) => {
 
     const {email} = req.body;
 
-    if(await existUser(email)){
+    if (await existUser(email)) {
         const password = randomCaracter(8);
-        if(await updateUser(email,password)){
+        if (await updateUser(email, password)) {
             const userLogin: UserLogin = {
-                email:email,
-                password:password
+                email: email,
+                password: password
             };
-            const user: User|undefined = await getUser(userLogin);
-            if(user != undefined){
-                try{
+            const user: User | undefined = await getUser(userLogin);
+            if (user != undefined) {
+                try {
                     await transporter.sendMail({
                         from: '"Soporte" <soporte.erpan@gmail.com>', // sender address
                         to: email, // list of receivers
                         subject: "Recuperacion de contraseña", // Subject line
                         text: "Hello world?", // plain text body
-                        html:`
+                        html: `
                         <h1>Restablecer contraseña</h1>
                         <div>
                             <h3>Hola ${user.name_business}</h3>
@@ -69,26 +69,26 @@ router.put("/forgot-password",async (req,res) => {
                         <div>
                         `,
                     });
-                }catch(err){
-                    res.status(404).send({"mensaje":"Error al solicitar una clave provisoria"})
+                } catch (err) {
+                    res.status(404).send({"mensaje": "Error al solicitar una clave provisoria"})
                 }
-                res.send({"mensaje":"Su clave provisoria fue enviada a su correo"})
+                res.send({"mensaje": "Su clave provisoria fue enviada a su correo"})
             }
         }
-    }else{
-        res.status(404).send({"mensaje":"Este correo no existe"})
+    } else {
+        res.status(404).send({"mensaje": "Este correo no existe"})
     }
 
-    
+
 });
 
 router.post("/register", async (req, res) => {
     const newUser: NewUser = req.body;
     var user: User | undefined;
-    
-    if(EmailValidator.validate(newUser.email)){
-        if(newUser.password === newUser.password_confirm){
-            if(await createUser(newUser)){
+
+    if (EmailValidator.validate(newUser.email)) {
+        if (newUser.password === newUser.password_confirm) {
+            if (await createUser(newUser)) {
                 const userLogin: UserLogin = {
                     email: newUser.email,
                     password: newUser.password
@@ -100,23 +100,23 @@ router.post("/register", async (req, res) => {
                     token: TOKEN_TEMPORALS
                 };
                 res.status(200).send(userResponse);
-            }else{
+            } else {
                 await deleteUser(user?.id)
-                res.status(404).send({"mensaje":"Error al registrar el nuevo usuario"});
+                res.status(404).send({"mensaje": "Error al registrar el nuevo usuario"});
             }
-        }else{
-            res.status(404).send({"mensaje":"Contraseñas no coinciden"})
+        } else {
+            res.status(404).send({"mensaje": "Contraseñas no coinciden"})
         }
-    }else{
-        res.status(404).send({"mensaje":"Correo electronico invalido"})
+    } else {
+        res.status(404).send({"mensaje": "Correo electronico invalido"})
     }
-    
-    
+
+
 });
 
-router.delete("/logout",async (req,res) => {
+router.delete("/logout", async (req, res) => {
     const token = req.get('Authorization')?.substring(7);
-    if(await addBlackList(token)){
+    if (await addBlackList(token)) {
         res.status(200).send("Session ha expirado");
     } else {
         res.status(400).send("No se ha cerrado la session");

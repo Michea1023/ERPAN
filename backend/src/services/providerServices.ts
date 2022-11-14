@@ -1,7 +1,7 @@
-import { client } from "../dataBase";
-import { NewProvider, Provider } from "../types/provider_type";
+import {client} from "../dataBase";
+import {NewProvider, Provider} from "../types/provider_type";
 
-export const getAll = async (id_business:Number): Promise<Provider[]> => {
+export const getAll = async (id_business: Number): Promise<Provider[]> => {
     const query = `select * from providers p where p.id_business = ${id_business}`;
     const result = await client.query(query);
     const allProvider = result.rows;
@@ -13,16 +13,16 @@ export const addProvider = async (newProvider: Provider) => {
     try {
         await client.query(query);
         return true;
-    }catch (err){
+    } catch (err) {
         console.error(err);
         return false;
     }
 };
 
-export const updateProvider = async (id: String, updateProvider:NewProvider, id_business:Number) => {
+export const updateProvider = async (id: String, updateProvider: NewProvider, id_business: Number) => {
     const query = `update providers set name_providers = upper('${updateProvider.name_providers}') where name_providers = upper('${id}') and id_business = ${id_business}`;
     const result = await client.query(query);
-    if(result.rowCount > 0){
+    if (result.rowCount > 0) {
         return true;
     }
     return false;
@@ -31,7 +31,7 @@ export const updateProvider = async (id: String, updateProvider:NewProvider, id_
 export const getProvider = async (id: String, id_business: Number): Promise<Provider | undefined> => {
     const query = `select * from providers p where p.id_business = ${id_business} and p.name_providers = upper('${id}')`
     const result = await client.query(query);
-    if(result.rowCount >= 1){
+    if (result.rowCount >= 1) {
         const provider: Provider = result.rows[0];
         return provider;
     }
@@ -41,7 +41,7 @@ export const getProvider = async (id: String, id_business: Number): Promise<Prov
 export const deleteProvider = async (id: String, id_business: Number) => {
     const query = `DELETE FROM providers WHERE name_providers = upper('${id}') and id_business=${id_business}`;
     const result = await client.query(query);
-    if(result.rowCount > 0){
+    if (result.rowCount > 0) {
         return true;
     }
     return false;

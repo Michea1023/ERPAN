@@ -1,26 +1,28 @@
-import {HOST, TOKEN} from "../../settings";
-import {ProductList} from "../../types/response_types";
+import {Product} from "../../types/request_types";
+import {HOST} from "../../settings";
 
 /*
-send a request [GET] to HOST/products to get all products
-@returns {Promise<Array<ProductList>>}
+send a request [POST] to HOST/products to create a product ':order'
+@param {Product} product -> product' data
+@returns {Promise<>}
 */
-const all_products = (): Promise<ProductList> => {
-    return fetch(HOST + 'products', {
-        method: "GET",
+const create_order = () => {
+    return fetch(HOST + 'orders', {
+        method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
             "Authorization": "Bearer " + window.localStorage.getItem("tokenERPAN")
         },
+        //body
     }).then(response => {
         if (!response.ok) throw new Error("Bad Response: " + String(response.status))
         return response.json()
-    }).catch((err) => {
-        alert(err)
     }).then((response) => {
         return response
+    }).catch((err) => {
+        alert(err)
     })
 }
 
-export default all_products
+export default create_order

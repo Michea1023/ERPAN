@@ -15,7 +15,7 @@ const INITIAL_VALUE = {
 properties of handler of login form
  */
 interface Props {
-    handleBusiness: (new_business: {name: string, logged: boolean}) => void
+    handleBusiness: (new_business: { name: string, logged: boolean }) => void
 }
 
 /**
@@ -23,7 +23,7 @@ interface Props {
  * @param handleBusiness
  */
 const useLogin = ({handleBusiness}: Props) => {
-    const [business,setBusiness] = useState<Business_Login>(INITIAL_VALUE)
+    const [business, setBusiness] = useState<Business_Login>(INITIAL_VALUE)
     const navigate = useNavigate()
 
     /*
@@ -32,7 +32,7 @@ const useLogin = ({handleBusiness}: Props) => {
      */
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
-        login_request(business).then((res)=>{
+        login_request(business).then((res) => {
             handleBusiness({
                 name: res.name_business,
                 logged: true
@@ -47,11 +47,11 @@ const useLogin = ({handleBusiness}: Props) => {
      */
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setBusiness({
-            ... business,
+            ...business,
             [evt.currentTarget.name]: evt.currentTarget.value
         })
     }
 
-    return {navigate,handleSubmit,handleChange}
+    return {navigate, handleSubmit, handleChange}
 }
 export default useLogin

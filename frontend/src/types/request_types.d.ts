@@ -21,7 +21,7 @@ export interface Product {
     id?: number
     id_providers: string
     id_categories: string
-    bar_code: number
+    bar_code: string
     stock: number
     price: number
     cost: number

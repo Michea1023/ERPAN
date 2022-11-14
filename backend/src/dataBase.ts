@@ -1,10 +1,9 @@
-const { Pool } = require('pg');
+const {Pool} = require('pg');
 const dotenv = require('dotenv');
 
 dotenv.config({
     path: './.env'
 });
-
 
 
 /* conexion a base datos de railway de michea */
@@ -17,5 +16,5 @@ const connectionData = {
 };
 
 
-export const client = new Pool  (connectionData);
+export const client = new Pool(connectionData);
  

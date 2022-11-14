@@ -22,7 +22,7 @@ const register_request = (business: Business_Register): Promise<Business_Respons
     }).then(response => {
         if (!response.ok) throw new Error("Error")
         return response.json()
-    }).catch(()=> {
+    }).catch(() => {
         alert("No se pudo registrar")
     }).then((response: Business_Response) => {
         window.localStorage.setItem("tokenERPAN", response.token)

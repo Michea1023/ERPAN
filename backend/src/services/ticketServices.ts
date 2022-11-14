@@ -1,5 +1,5 @@
-import { client } from "../dataBase";
-import { Ticket, NewTicket, TicketUpdate } from "../types/ticket_types";
+import {client} from "../dataBase";
+import {Ticket, NewTicket, TicketUpdate} from "../types/ticket_types";
 
 
 /**
@@ -20,10 +20,10 @@ export const getAll = async (id_business: number): Promise<Ticket[]> => {
  * @param {number} id_business - number
  * @returns A promise that resolves to a ticket or undefined.
  */
-export const getTicket = async (id: number, id_business: number): Promise<Ticket | undefined> =>{
+export const getTicket = async (id: number, id_business: number): Promise<Ticket | undefined> => {
     const query = `SELECT * FROM tickets WHERE id =${id} AND id_business = ${id_business}`;
     const result = await client.query(query);
-    if(result.rowCount > 0) {
+    if (result.rowCount > 0) {
         const ticket: Ticket = result.rows[0];
         return ticket;
     }
@@ -40,10 +40,11 @@ export const addTicket = async (newTicket: NewTicket) => {
     try {
         await client.query(query);
         return true;
-    }catch (err) {
+    } catch (err) {
         console.log(err);
         return false;
-    };
+    }
+
 
 };
 
@@ -53,15 +54,16 @@ export const addTicket = async (newTicket: NewTicket) => {
  * @param {TicketUpdate} ticketUpdate
  * @returns A boolean value.
  */
-export const updateTicket = async (id: number,id_business: number, ticketUpdate: TicketUpdate) => {
+export const updateTicket = async (id: number, id_business: number, ticketUpdate: TicketUpdate) => {
     const query = `update tickets set general_price = ${ticketUpdate.general_price}, selled_date = '${ticketUpdate.selled_date}' WHERE id=${id} and id_business=${id_business};`;
     try {
         await client.query(query);
         return true;
-    }catch (err) {
+    } catch (err) {
         console.log(err);
         return false;
-    };
+    }
+
 };
 
 /**
@@ -74,8 +76,9 @@ export const deleteTicket = async (id: number, id_business: number) => {
     try {
         await client.query(query);
         return true;
-    }catch (err) {
+    } catch (err) {
         console.log(err);
         return false;
-    };
+    }
+
 };
