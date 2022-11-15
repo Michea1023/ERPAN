@@ -17,6 +17,7 @@ dotenv.config({
 const router = express.Router();
 
 
+/* This is a login route. */
 router.post("/login", async (req, res) => {
     const userLogin: UserLogin = req.body;
     const userData = await getUser(userLogin);
@@ -34,6 +35,7 @@ router.post("/login", async (req, res) => {
 
 });
 
+/* This is a route that allows you to recover your password. */
 router.put("/forgot-password", async (req, res) => {
 
     const {email} = req.body;
@@ -82,6 +84,7 @@ router.put("/forgot-password", async (req, res) => {
 
 });
 
+/* This is a route that allows you to register a new user. */
 router.post("/register", async (req, res) => {
     const newUser: NewUser = req.body;
     var user: User | undefined;
@@ -114,6 +117,7 @@ router.post("/register", async (req, res) => {
 
 });
 
+/* This is a route that allows you to close the session. */
 router.post("/logout", async (req, res) => {
     const token = req.get('Authorization')?.substring(7);
     if (await addBlackList(token)) {

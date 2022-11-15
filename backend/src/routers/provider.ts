@@ -23,12 +23,14 @@ const router = express.Router();
 router.use(verifyToken);
 
 
+/* This is a route that is used to get all the providers of a business. */
 router.get("/", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const providers = await getAll(dataToken.id);
     res.status(200).send(providers);
 });
 
+/* This is a route that is used to add a provider to a business. */
 router.post("/", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const {name_providers} = req.body;
@@ -43,6 +45,7 @@ router.post("/", async (req, res) => {
     }
 });
 
+/* This is a route that is used to update a provider of a business. */
 router.put("/:id", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const providerUpdate: NewProvider = req.body;
@@ -53,6 +56,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
+/* This is a route that is used to get a provider of a business. */
 router.get("/:id", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const provider = await getProvider(req.params.id, dataToken.id);
@@ -63,6 +67,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+/* This is a route that is used to delete a provider of a business. */
 router.delete("/:id", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     if (await deleteProvider(req.params.id, dataToken.id)) {
@@ -72,6 +77,7 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+/* This is a route that is used to search a provider of a business. */
 router.get("/search/:search", async (req, res) => {
     const palabra = req.params.search;
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
