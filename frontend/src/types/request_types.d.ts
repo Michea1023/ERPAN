@@ -1,6 +1,8 @@
 /*
 this file contains the request types
  */
+import {ProductResponse} from "./response_types";
+
 export interface Business {
     email: string
     password: string
@@ -25,4 +27,14 @@ export interface Product {
     stock: number
     price: number
     cost: number
+}
+
+export interface Order {
+    general_price: number
+    products: Array<{
+        id_product: number
+        product: ProductResponse
+        total_price: number
+        amount: number
+    }>
 }

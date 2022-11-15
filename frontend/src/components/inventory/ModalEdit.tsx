@@ -122,7 +122,7 @@ export default function ModalEdit({product: item, value, handleClose}: Props) {
                             <input
                                 type="number"
                                 className="form-control mt-1"
-                                name={"price"}
+                                name={"cost"}
                                 defaultValue={item.cost}
                                 onChange={handleChange}
                                 required

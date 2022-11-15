@@ -114,7 +114,7 @@ router.post("/register", async (req, res) => {
 
 });
 
-router.delete("/logout", async (req, res) => {
+router.post("/logout", async (req, res) => {
     const token = req.get('Authorization')?.substring(7);
     if (await addBlackList(token)) {
         res.status(200).send("Session ha expirado");

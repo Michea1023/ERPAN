@@ -123,7 +123,7 @@ export default function ModalAdd({value, handleClose}: Props) {
                                 <input
                                     type='number'
                                     className='form-control mt-1'
-                                    name={'price'}
+                                    name={'cost'}
                                     defaultValue={0}
                                     onChange={handleChange}
                                     required
