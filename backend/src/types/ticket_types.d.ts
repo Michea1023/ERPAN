@@ -1,10 +1,9 @@
 export interface Ticket {
-    id: number,
-    id_business: number,
+    id: Number,
+    id_business: Number,
     general_price: number,
-    selled_date: Date
+    selled_date: String,
+    selled_time: String
 }
 
-export type NewTicket = Omit<Ticket, "id">;
-
-export type TicketUpdate = Omit<Ticket, "id" | "id_business">;
+export type NewTicket = Omit<Ticket,"id">;
