@@ -1,19 +1,19 @@
 import express from 'express';
 import authRouter from './auth';
-import ticketRouter from './ticket';
 import productRouter from './products';
 import providerRouter from './provider';
 import categoryRouter from './category';
-import userRouter from './user'
+import userRouter from './user';
+import ticketRouter from './ticket';
 
 
 const router = express.Router();
 
-router.use("/", authRouter);
-router.use("/ticket", ticketRouter);
+router.use("/",authRouter);
 router.use('/products', productRouter);
-router.use('/providers', providerRouter);
-router.use('/categories', categoryRouter);
-router.use('/user', userRouter);
+router.use('/providers',providerRouter);
+router.use('/categories',categoryRouter);
+router.use('/user',userRouter);
+router.use("/ticket",ticketRouter);
 
 export default router;
