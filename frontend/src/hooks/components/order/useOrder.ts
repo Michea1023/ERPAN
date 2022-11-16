@@ -12,7 +12,7 @@ const useOrder = (result: Array<ProductResponse>) => {
         ...INITIAL_STATE,
         products: result.map(item => {
             return {
-                id_product: item.id,
+                product_id: item.id,
                 product: item,
                 total_price: item.price,
                 amount: 1
@@ -20,9 +20,31 @@ const useOrder = (result: Array<ProductResponse>) => {
         })
     })
 
-    const handleProduct = () => {
+    const handleAmount = (id: number, newAmount: number) => {
+        setOrder({
+            ...order,
+            products: order.products.map(item => {
+                if (item.product_id === id) {
+                    return item
+                }
 
+                const newPrice = newAmount*item.product.price
+
+                setOrder({
+                    ...order,
+                    general_price: order.general_price - item.total_price + newPrice
+                })
+
+                return {
+                    ...item,
+                    amount: newAmount,
+                    total_price: newPrice
+                }
+            })
+        })
     }
+
+    return {order, handleAmount}
 }
 
 export default useOrder

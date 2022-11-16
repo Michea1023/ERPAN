@@ -1,18 +1,17 @@
-import {useState} from 'react'
-import {ProductResponse} from "../../types/response_types";
+import {OrderDetail} from "../../types/request_types";
 
 interface Props {
-    item: ProductResponse
+    item: OrderDetail
+    handleAmount: (id: number, newAmount: number) => void
 }
 
-export default function OrderItem({item}: Props) {
-    const [cantidad, setCantidad] = useState(1)
-    return ( cantidad > 0 ?
+export default function OrderItem({item, handleAmount}: Props) {
+    return ( item.amount > 0 ?
         <div>
             <div className='ContainerProduct'>
                 <div className='Product '>
-                    <div className='name'>arroz</div>
-                    <div className='price'>1000</div>
+                    <div className='name'>{item.product.name_product}</div>
+                    <div className='price'>{item.product.price}</div>
                 </div>
 
                 <div className='ColumnCount'>
@@ -20,19 +19,19 @@ export default function OrderItem({item}: Props) {
                         type='button'
                         className='btn btn-danger '
                         onClick={() => {
-                            setCantidad(cantidad - 1)
+                            handleAmount(item.product_id, item.amount - 1)
                         }}
                     >
                         -
                     </button>
 
-                    <p className='Count'>{cantidad}</p>
+                    <p className='Count'>{item.amount}</p>
 
                     <button
                         type='button'
                         className='btn btn-success'
                         onClick={() => {
-                            setCantidad(cantidad + 1)
+                            handleAmount(item.product_id, item.amount + 1)
                         }}
                     >
                         +

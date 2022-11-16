@@ -29,12 +29,14 @@ export interface Product {
     cost: number
 }
 
+export interface OrderDetail {
+    product_id: number
+    product: ProductResponse
+    total_price: number
+    amount: number
+}
+
 export interface Order {
     general_price: number
-    products: Array<{
-        id_product: number
-        product: ProductResponse
-        total_price: number
-        amount: number
-    }>
+    products: Array<OrderDetail>
 }

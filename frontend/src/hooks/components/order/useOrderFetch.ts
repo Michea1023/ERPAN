@@ -5,13 +5,11 @@ import create_order from "../../../services/orders/create_order";
 interface State {
     search: string
     result: Array<ProductResponse>
-    sum: number
 }
 
 const INITIAL_STATE = {
     search: "",
-    result: [],
-    sum: 0
+    result: []
 }
 
 const useOrderFetch = () => {
@@ -33,7 +31,6 @@ const useOrderFetch = () => {
 
     /**
      * gets a product searched by his bar code, push the product on "fetch.results"
-     * and sums the price on the "fetch.sum"
      * @param evt
      */
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
