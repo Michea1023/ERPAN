@@ -78,9 +78,9 @@ router.delete("/:id", async (req, res) => {
 
 /* This is a route that will be used to search a product by name. */
 router.get("/search/:search", async (req, res) => {
-    const palabra = req.params.search.replace("+", " ");
+    const word = req.params.search.replace("+", " ");
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
-    const products = await searchProduct(palabra, dataToken.id);
+    const products = await searchProduct(word, dataToken.id);
     res.status(200).send(products);
 });
 

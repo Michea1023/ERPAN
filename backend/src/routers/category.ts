@@ -19,11 +19,15 @@ dotenv.config({
 const router = express.Router();
 router.use(verifyToken);
 
+/* This is a route handler. It is a function that is called when a request is made to the specified
+route. In this case, the route is "/" and the request method is GET. */
 router.get("/", async (_req, res) => {
     const categories = await getAll();
     res.status(200).send(categories);
 });
 
+/* This is a route handler. It is a function that is called when a request is made to the specified
+route. In this case, the route is "/" and the request method is POST. */
 router.post("/", async (req, res) => {
     const newCategory: Category = req.body;
     if (await addCategory(newCategory)) {
@@ -33,6 +37,8 @@ router.post("/", async (req, res) => {
     }
 });
 
+/* This is a route handler. It is a function that is called when a request is made to the specified
+route. In this case, the route is "/:id" and the request method is PUT. */
 router.put("/:id", async (req, res) => {
     const categoryUpdate = req.body;
     if (await updateCategory(req.params.id, categoryUpdate)) {
@@ -43,6 +49,8 @@ router.put("/:id", async (req, res) => {
 
 });
 
+/* This is a route handler. It is a function that is called when a request is made to the specified
+route. In this case, the route is "/:id" and the request method is GET. */
 router.get("/:id", async (req, res) => {
     const category = await getCategory(req.params.id.toLowerCase());
     if (category != undefined) {
@@ -52,6 +60,8 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+/* This is a route handler. It is a function that is called when a request is made to the specified
+route. In this case, the route is "/:id" and the request method is DELETE. */
 router.delete("/:id", async (req, res) => {
     if (await deleteCategory(req.params.id)) {
         res.status(200).send(true);
@@ -60,6 +70,8 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+/* This is a route handler. It is a function that is called when a request is made to the specified
+route. In this case, the route is "/search/:search" and the request method is GET. */
 router.get("/search/:search", async (req, res) => {
     const palabra = req.params.search;
     const categories = await searchCategory(palabra);

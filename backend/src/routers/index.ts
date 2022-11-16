@@ -9,6 +9,7 @@ import ticketRouter from './ticket';
 
 const router = express.Router();
 
+/* A way to organize your routes. */
 router.use("/",authRouter);
 router.use('/products', productRouter);
 router.use('/providers',providerRouter);

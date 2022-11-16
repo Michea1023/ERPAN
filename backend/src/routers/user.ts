@@ -11,6 +11,7 @@ dotenv.config({
 const router = expres.Router();
 
 
+/* A router.put method. */
 router.put("/change-password", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const {password, passwordNew, passwordConfirm} = req.body;

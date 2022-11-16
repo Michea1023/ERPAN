@@ -2,7 +2,7 @@ import express from "express";
 import { decodeToken } from "../middleware/token";
 import verifyToken from "../middleware/verifyToken";
 import { addTicketDetail } from "../services/ticketDetailServices";
-import { addTicket } from "../services/ticketServices";
+import { addTicket, getAll } from "../services/ticketServices";
 import { NewTicketDetail } from "../types/ticketDetail_types";
 import { NewTicket } from "../types/ticket_types";
 const dotenv = require('dotenv');
@@ -16,6 +16,15 @@ const router = express.Router();
 router.use(verifyToken);
 
 
+
+/* This is a route that is used to get all the tickets of a business. */
+router.get("/",async (req,res) => {
+    const dataToken = decodeToken(req.get("Authorization")?.substring(7));
+    const ticket = await getAll(dataToken.id);
+    res.status(200).send(ticket);
+})
+
+/* This is a route that is used to add a new ticket. */
 router.post("/",async (req,res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const list_detail: Array<NewTicketDetail> = req.body;
