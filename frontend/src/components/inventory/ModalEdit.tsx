@@ -59,7 +59,9 @@ export default function ModalEdit({product: item, value, handleClose}: Props) {
                                     className='form-control mt-1 custom-search-input'
                                     name={'bar_code'}
                                     onChange={handleChange}
-                                    defaultValue={product.bar_code}
+                                    defaultValue={
+                                        (product.bar_code === "") ? item.bar_code : product.bar_code
+                                    }
                                     required
                                 />
                                 <button

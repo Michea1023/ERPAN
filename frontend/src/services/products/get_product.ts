@@ -16,10 +16,10 @@ const get_product = (id: string) => {
     }).then(response => {
         if (!response.ok) throw new Error("Bad Response: " + String(response.status))
         return response.json()
-    }).catch((err) => {
-        alert(err)
     }).then((response) => {
         return response
+    }).catch((err) => {
+        alert(err)
     })
 }
 

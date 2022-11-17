@@ -1,4 +1,4 @@
-import {HOST, TOKEN} from "../../settings";
+import {HOST} from "../../settings";
 import {ProductList} from "../../types/response_types";
 
 /*
@@ -16,10 +16,10 @@ const all_products = (): Promise<ProductList> => {
     }).then(response => {
         if (!response.ok) throw new Error("Bad Response: " + String(response.status))
         return response.json()
-    }).catch((err) => {
-        alert(err)
     }).then((response) => {
         return response
+    }).catch((err) => {
+        alert(err)
     })
 }
 

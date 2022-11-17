@@ -5,8 +5,8 @@ send a request [GET] to HOST/products/search/:search to get products' search by 
 @param {string} search -> products search pattern
 @returns {Promise<Array<>>}
 */
-const search_products = (search: string) => {
-    return fetch(HOST + 'products/' + search.replaceAll(" ", "+"), {
+const barcode_products = (search: string) => {
+    return fetch(HOST + 'products/barcode/' + search.replaceAll(" ", "+"), {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -23,4 +23,4 @@ const search_products = (search: string) => {
     })
 }
 
-export default search_products
+export default barcode_products

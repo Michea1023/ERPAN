@@ -15,6 +15,6 @@ router.use('/products', productRouter);
 router.use('/providers',providerRouter);
 router.use('/categories',categoryRouter);
 router.use('/user',userRouter);
-router.use("/ticket",ticketRouter);
+router.use("/tickets",ticketRouter);
 
 export default router;

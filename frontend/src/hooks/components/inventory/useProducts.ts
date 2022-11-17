@@ -4,6 +4,20 @@ import {TOKEN} from "../../../settings"
 import {ProductList} from "../../../types/response_types"
 
 /*
+initial state for product form entity
+ */
+const INITIAL_VALUE = {
+    id: 0,
+    name_product: "",
+    id_providers: "",
+    id_categories: "",
+    bar_code: "",
+    stock: 0,
+    price: 0,
+    cost: 0
+}
+
+/*
 return all products from a business
 @returns ProductList
  */
@@ -21,7 +35,21 @@ const useProducts = () => {
         })
     }, [])
 
-    return products
+    const selectProduct = (id: number) => {
+        const out = products.map((item) => {
+            if (item.id === id) {
+                return item
+            }
+        })[0]
+
+        if (out === undefined) {
+            return INITIAL_VALUE
+        }
+
+        return out
+    }
+
+    return {products, selectProduct}
 }
 
 export default useProducts

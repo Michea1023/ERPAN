@@ -12,7 +12,7 @@ renders the orders page
 */
 export default function Order() {
     const {fetch, handleChange, handleBarCode, handleSubmit} = useOrderFetch()
-    const {order, handleAmount} = useOrder(fetch.result)
+    const {order, handleAmount, handleOrder} = useOrder(fetch.result)
     const {modal, handleScanner} = useModal.useModalScanner()
 
     return (
@@ -65,7 +65,7 @@ export default function Order() {
                 </div>
 
                 <div className='ColumnCount'>
-                    <button className='btn btn-success' type='button'>
+                    <button className='btn btn-success' type='button' onClick={handleOrder}>
                         Finalizar Compra
                     </button>
                 </div>

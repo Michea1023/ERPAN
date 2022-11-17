@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {ProductResponse} from "../../../types/response_types";
-import create_order from "../../../services/orders/create_order";
+import barcode_products from "../../../services/products/barcode_products";
 
 interface State {
     search: string
@@ -35,7 +35,9 @@ const useOrderFetch = () => {
      */
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
-        create_order().then()
+        barcode_products(fetch.search).then((res) => {
+            fetch.result.push(res)
+        })
     }
 
     return {fetch, handleChange, handleBarCode, handleSubmit}

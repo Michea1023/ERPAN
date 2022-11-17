@@ -9,7 +9,7 @@ const logout_request = () => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": String(localStorage.getItem("tokenERPAN"))
+            "Authorization": "bearer " + String(localStorage.getItem("tokenERPAN"))
         }
     }).then(response => {
         if (!response.ok) throw new Error(response.statusText)

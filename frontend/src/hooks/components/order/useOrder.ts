@@ -1,6 +1,7 @@
-import {useState} from "react";
+import {MouseEventHandler, useState} from "react";
 import {Order} from "../../../types/request_types";
 import {ProductResponse} from "../../../types/response_types";
+import create_order from "../../../services/orders/create_order";
 
 const INITIAL_STATE = {
     general_price: 0,
@@ -44,7 +45,11 @@ const useOrder = (result: Array<ProductResponse>) => {
         })
     }
 
-    return {order, handleAmount}
+    const handleOrder = () => {
+        create_order(order).then()
+    }
+
+    return {order, handleAmount, handleOrder}
 }
 
 export default useOrder
