@@ -1,6 +1,6 @@
 import express from "express";
 import verifyToken from "../middleware/verifyToken";
-import {addProduct, getAll, getProduct, updateProduct, deleteProduct, searchProduct} from "../services/productServices";
+import {addProduct, getAll, getProduct, updateProduct, deleteProduct, searchProduct, getProductBarcode} from "../services/productServices";
 import {decodeToken} from "../middleware/token";
 import {NewProduct, UpdateProduct} from "../types/product_types";
 
@@ -82,6 +82,18 @@ router.get("/search/:search", async (req, res) => {
     const dataToken = decodeToken(req.get("Authorization")?.substring(7));
     const products = await searchProduct(word, dataToken.id);
     res.status(200).send(products);
+});
+
+
+router.get("/barcode/:barcode", async (req,res) => {
+    const dataToken = decodeToken(req.get("Authorization")?.substring(7));
+    const product = await getProductBarcode(parseInt(req.params.barcode), dataToken.id);
+    if (product != undefined) {
+        res.status(200).send(product);
+    } else {
+        res.status(404).send({"mensaje":"producto no encontrado"});
+    }
+
 });
 
 export default router

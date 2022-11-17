@@ -19,7 +19,6 @@ router.put("/change-password", async (req, res) => {
     if (passwordNew === passwordConfirm && await verifyPasword(dataToken.email, password)) {
 
         if (await updateUser(dataToken.email, passwordNew)) {
-            console.log("hola")
             res.status(200).send({"mensaje": "Contraseña actualizada"})
         }
     } else {

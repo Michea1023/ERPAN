@@ -64,6 +64,16 @@ export const getProduct = async (id: Number, id_business: Number): Promise<Produ
     return undefined;
 };
 
+export const getProductBarcode = async (barcode: Number,id_business: Number) => {
+    const query = `select * from products pr where bar_code = ${barcode} and id_business = ${id_business}`
+    const result = await client.query(query);
+    if (result.rowCount >= 1) {
+        const product: Product = result.rows[0];
+        return product;
+    }
+    return undefined;
+}
+
 export const updateProduct = async (id: Number, updateProduct: UpdateProduct, id_business: Number) => {
     const query = `UPDATE public.products SET name_product='${updateProduct.name_product.toLowerCase()}',id_categories = upper('${updateProduct.id_categories}'),id_providers = upper('${updateProduct.id_providers}'),bar_code=${updateProduct.bar_code},price=${updateProduct.price},stock=${updateProduct.stock} WHERE id=${id} and id_business=${id_business};`
     const result = await client.query(query);
