@@ -121,9 +121,10 @@ router.post("/register", async (req, res) => {
 router.post("/logout", async (req, res) => {
     const token = req.get('Authorization')?.substring(7);
     if (await addBlackList(token)) {
-        res.status(200).send("Session ha expirado");
+        console.log("por aca paso")
+        res.status(200).send({"mensaje":"Session ha expirado"});
     } else {
-        res.status(400).send("No se ha cerrado la session");
+        res.status(400).send({"mensaje":"No se ha cerrado la session"});
     }
 });
 
