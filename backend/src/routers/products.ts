@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
     if (await addProduct(newProduct)) {
         res.status(200).send(newProduct);
     } else {
-        res.status(404).send("Error al agregar producto");
+        res.status(404).send({"mensaje":"Error al agregar producto"});
     }
 
 });
@@ -51,7 +51,7 @@ router.put("/:id", async (req, res) => {
     if (await updateProduct(parseInt(req.params.id), productUpdate, dataToken.id)) {
         res.status(200).send(productUpdate)
     } else {
-        res.status(404).send("Producto no actualizado");
+        res.status(404).send({"mensaje":"Producto no actualizado"});
     }
 });
 
@@ -62,7 +62,7 @@ router.get("/:id", async (req, res) => {
     if (product != undefined) {
         res.status(200).send(product);
     } else {
-        res.status(404).send("producto no encontrado");
+        res.status(404).send({"mensaje":"producto no encontrado"});
     }
 });
 

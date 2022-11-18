@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
     if (await addProvider(newProvider)) {
         res.status(200).send(newProvider);
     } else {
-        res.status(404).send("Error al agregar el proveedor");
+        res.status(404).send({"mensaje":"Error al agregar el proveedor"});
     }
 });
 
@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
     if (await updateProvider(req.params.id, providerUpdate, dataToken.id)) {
         res.status(200).send(providerUpdate)
     } else {
-        res.status(404).send("Proveedor no actualizado");
+        res.status(404).send({"mensaje":"Proveedor no actualizado"});
     }
 });
 
@@ -63,7 +63,7 @@ router.get("/:id", async (req, res) => {
     if (provider != undefined) {
         res.status(200).send(provider);
     } else {
-        res.status(404).send("Proveedor no encontrado");
+        res.status(404).send({"mensaje":"Proveedor no encontrado"});
     }
 });
 

@@ -8,7 +8,6 @@ export const getAll = async (id_business:Number): Promise<Ticket[]> => {
     return allTicket;
 }
 
-
 export const addTicket = async (newTicket: NewTicket) => {
     const query = `insert into tickets(id_business,general_price,selled_date,selled_time) values(${newTicket.id_business},${newTicket.general_price},'${newTicket.selled_date}','${newTicket.selled_time}') returning id`;
     try {
@@ -18,4 +17,13 @@ export const addTicket = async (newTicket: NewTicket) => {
         console.error(err);
         return -1;
     }
+}
+
+export const deleteTicket = async (id: Number, id_business: Number) => {
+    const query = `DELETE FROM tickets WHERE id=${id} and id_business=${id_business}`;
+    const result = await client.query(query);
+    if (result.rowCount > 0) {
+        return true;
+    }
+    return false;
 }

@@ -5,6 +5,7 @@ import providerRouter from './provider';
 import categoryRouter from './category';
 import userRouter from './user';
 import ticketRouter from './ticket';
+import ticketDetailRouter from './ticketDetail';
 
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.use('/providers',providerRouter);
 router.use('/categories',categoryRouter);
 router.use('/user',userRouter);
 router.use("/tickets",ticketRouter);
+router.use("/ticket-detail",ticketDetailRouter);
 
 export default router;

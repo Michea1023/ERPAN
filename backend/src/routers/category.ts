@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
     if (await addCategory(newCategory)) {
         res.status(200).send(newCategory);
     } else {
-        res.status(404).send("Error al agregar el Categoria");
+        res.status(404).send({"mensaje":"Error al agregar el Categoria"});
     }
 });
 
@@ -44,7 +44,7 @@ router.put("/:id", async (req, res) => {
     if (await updateCategory(req.params.id, categoryUpdate)) {
         res.status(200).send(categoryUpdate);
     } else {
-        res.status(404).send("Categoria no actualizado");
+        res.status(404).send({"mensaje":"Categoria no actualizado"});
     }
 
 });
@@ -56,7 +56,7 @@ router.get("/:id", async (req, res) => {
     if (category != undefined) {
         res.status(200).send(category);
     } else {
-        res.status(404).send("Categoria no encontrado");
+        res.status(404).send({"mensaje":"Categoria no encontrado"});
     }
 });
 

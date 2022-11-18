@@ -1,6 +1,9 @@
+import { Product } from "./product_types";
+
 export interface TicketDetail {
     id: Number,
-    id_product: Number,
+    product_id: Number,
+    product: Product,
     id_ticket: Number,
     total_price: number,
     amount: number

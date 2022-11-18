@@ -7,18 +7,6 @@ dotenv.config({
     path: './.env'
 });
 
-/**
- * This function takes a user object and returns a token.
- * @param {User} user - User = {
- * @returns A token
- */
-export const createTokenStatic = (user: User | undefined) => {
-    if (user != undefined) {
-        const token = jwt.sign(user, process.env.JWT_PRIVATE_KEY);
-        return token;
-    }
-    return undefined;
-}
 
 
 /**
