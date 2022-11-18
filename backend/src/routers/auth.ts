@@ -1,7 +1,7 @@
 import express from "express";
 import {createToken} from "../middleware/token";
 import {addBlackList} from "../services/tokenServices";
-import {createUser, deleteUser, existUser, getUser, updateUser} from '../services/userServices';
+import {createUser, deleteUser, existUser, getUser, updatePassword} from '../services/userServices';
 import {NewUser, User, UserLogin, UserResponse} from "../types/user_types";
 import {transporter} from "../config/mailer";
 import {randomCaracter} from "../config/randomCaracter";
@@ -42,7 +42,7 @@ router.put("/forgot-password", async (req, res) => {
 
     if (await existUser(email)) {
         const password = randomCaracter(8);
-        if (await updateUser(email, password)) {
+        if (await updatePassword(email, password)) {
             const userLogin: UserLogin = {
                 email: email,
                 password: password

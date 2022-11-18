@@ -57,7 +57,7 @@ export const existUser = async (email: String) => {
  * @param {string} password - string
  * @returns A boolean value.
  */
-export const updateUser = async (email: string, password: string) => {
+export const updatePassword = async (email: string, password: string) => {
     const passwordEncript = await bcrypt.hash(password, 10)
     const query = `update business set passw = '${passwordEncript}' where email = lower('${email}')`;
     const result = await client.query(query);
