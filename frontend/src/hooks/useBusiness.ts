@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import verify_token from "../services/auth/verify_token";
 
 /*
 null state for the business entity
@@ -25,6 +26,16 @@ const useBusiness = () => {
         name: string,
         logged: boolean
     }>((window.localStorage.getItem('nameERPAN') != null) ? logged_value : null_value)
+
+    useEffect(() => {
+        let token = window.localStorage.getItem('tokenERPAN');
+
+        if (token === undefined) {
+            verify_token().then((res) => {
+                if (res === undefined) setBusiness(null_value)
+            })
+        }
+    }, [])
 
     /*
     set a new business state

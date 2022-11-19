@@ -29,27 +29,13 @@ const useProducts = () => {
      */
     useEffect(() => {
         all_products().then((res) => {
+            if (res === undefined) return
+
             setProducts(res)
-        }).catch((err) => {
-            console.log(err)
         })
     }, [])
 
-    const selectProduct = (id: number) => {
-        const out = products.map((item) => {
-            if (item.id === id) {
-                return item
-            }
-        })[0]
-
-        if (out === undefined) {
-            return INITIAL_VALUE
-        }
-
-        return out
-    }
-
-    return {products, selectProduct}
+    return {products}
 }
 
 export default useProducts

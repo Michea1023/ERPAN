@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Product} from "../../../types/request_types";
 import edit_product from "../../../services/products/edit_product";
 import delete_product from "../../../services/products/delete_product";
@@ -15,6 +15,10 @@ handles the edit-product form
  */
 const useModalEditForm = (defaultValue: Product) => {
     const [product, setProduct] = useState<Product>(defaultValue)
+
+    useEffect(() => {
+        setProduct(defaultValue)
+    }, [defaultValue])
 
     /*
     adds a product

@@ -24,16 +24,16 @@ function App() {
     return (
         <div className='App'>
             <Router>
-                <NavbarComp business={business}/>
+                <NavbarComp business={business} handleBusiness={handleBusiness}/>
                 <Routes>
                     <Route
-                        path={'/'}
+                        path={'/inventory'}
                         element={
                             business.logged ? <Inventory/> : <Navigate to={'/login'}/>
                         }
                     />
                     <Route
-                        path={'/orders'}
+                        path={'/'}
                         element={business.logged ? <Order/> : <Navigate to={'/login'}/>}
                     />
                     <Route
@@ -72,7 +72,7 @@ function App() {
                     <Route
                         path={'/changePassword'}
                         element={
-                            !business.logged ? (
+                            business.logged ? (
                                 <ChangePassword handleBusiness={handleBusiness}/>
                             ) : (
                                 <Navigate to={'/'}/>

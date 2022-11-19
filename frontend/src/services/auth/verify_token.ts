@@ -1,24 +1,21 @@
+import {Business_Login} from "../../types/request_types";
+import {Business_Response} from "../../types/response_types";
 import {HOST} from "../../settings";
 
-/*
-send a request [POST] to HOST/logout for logout from the system
-@returns {Promise}
-*/
-const logout_request = () => {
-    return fetch(HOST + 'logout', {
+const login_request = () => {
+    return fetch(HOST + 'login', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": "bearer " + String(localStorage.getItem("tokenERPAN"))
-        }
+        },
     }).then(response => {
-        if (!response.ok) throw new Error(response.statusText)
+        if (!response.ok) throw new Error("Error")
+        return response
+    }).catch(() => {
         window.localStorage.removeItem("tokenERPAN")
         window.localStorage.removeItem("nameERPAN")
-        return response
-    }).catch((error) => {
-        alert(error)
     })
 }
 
-export default logout_request
+export default login_request

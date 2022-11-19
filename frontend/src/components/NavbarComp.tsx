@@ -10,6 +10,7 @@ properties of the navigation bar
  */
 interface Props {
     business: { name: string; logged: boolean }
+    handleBusiness: (business: {name: string, logged: boolean} ) => void
 }
 
 /*
@@ -17,7 +18,8 @@ renders the navigation bar
 @param {Props} business - params coming from above
 @returns {JSX.Element>
  */
-export default function NavbarComp({business}: Props) {
+export default function NavbarComp({business, handleBusiness}: Props) {
+
     return (
         <div>
             <Navbar bg='dark' variant={'dark'} expand='xl'>
@@ -30,19 +32,30 @@ export default function NavbarComp({business}: Props) {
                             <Navbar.Toggle aria-controls='basic-navbar-nav'/>
                             <Navbar.Collapse id='basic-navbar-nav'>
                                 <Nav className='me-auto'>
-                                    <Nav.Link as={Link} to={'/orders'}>
+                                    <Nav.Link as={Link} to={'/'}>
                                         Ventas
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={'/'}>
+                                    <Nav.Link as={Link} to={'/inventory'}>
                                         Inventario
+                                    </Nav.Link>
+                                    <Nav.Link as={Link} to={'/history'}>
+                                        Historial
+                                    </Nav.Link>
+                                    <Nav.Link as={Link} to={'/changePassword'}>
+                                        Cambiar Contraseña
                                     </Nav.Link>
                                     <Nav.Link
                                         as={Link}
                                         to={'/login'}
                                         onClick={() => {
-                                            business.name = ''
-                                            business.logged = false
-                                            logout_request().then()
+                                            logout_request().then((res) => {
+                                                if (res === undefined) return
+
+                                                handleBusiness({
+                                                    name: "",
+                                                    logged: false
+                                                })
+                                            })
                                         }}
                                     >
                                         Cerrar Sesion

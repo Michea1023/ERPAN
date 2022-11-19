@@ -5,20 +5,34 @@ import create_order from "../../../services/orders/create_order";
 
 const INITIAL_STATE = {
     general_price: 0,
-    products: []
+    products: [{
+        product_id: 1,
+        product: {
+            id: 1,
+            id_categories: "asdfa",
+            id_providers: "130948",
+            bar_code: "32432",
+            stock: 20,
+            name_product: "askdfjj",
+            price: 1000,
+            cost: 1200
+        },
+        total_price: 100,
+        amount: 2
+    }]
 }
 
 const useOrder = (result: Array<ProductResponse>) => {
     const [order, setOrder] = useState<Order>({
         ...INITIAL_STATE,
-        products: result.map(item => {
-            return {
-                product_id: item.id,
-                product: item,
-                total_price: item.price,
-                amount: 1
-            }
-        })
+        // products: result.map(item => {
+        //     return {
+        //         product_id: item.id,
+        //         product: item,
+        //         total_price: item.price,
+        //         amount: 1
+        //     }
+        // })
     })
 
     const handleAmount = (id: number, newAmount: number) => {

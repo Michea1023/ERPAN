@@ -44,53 +44,53 @@ export default function Inventory() {
                         >
                             Nuevo producto +
                         </button>
-                        <div className='dropdown'>
-                            <button
-                                className='m-3 btn btn-dark dropdown-toggle'
-                                type='button'
-                                id='dropdownMenu2'
-                                data-bs-toggle='dropdown'
-                                aria-haspopup='true'
-                                aria-expanded='false'
-                            >
-                                Categoria
-                            </button>
-                            <div className='dropdown-menu' aria-labelledby='dropdownMenu2'>
-                                <button className='dropdown-item' type='button'>
-                                    Bebida
-                                </button>
-                                <button className='dropdown-item' type='button'>
-                                    Galletas
-                                </button>
-                                <button className='dropdown-item' type='button'>
-                                    Salsas
-                                </button>
-                            </div>
-                        </div>
+                        {/*<div className='dropdown'>*/}
+                        {/*    <button*/}
+                        {/*        className='m-3 btn btn-dark dropdown-toggle'*/}
+                        {/*        type='button'*/}
+                        {/*        id='dropdownMenu2'*/}
+                        {/*        data-bs-toggle='dropdown'*/}
+                        {/*        aria-haspopup='true'*/}
+                        {/*        aria-expanded='false'*/}
+                        {/*    >*/}
+                        {/*        Categoria*/}
+                        {/*    </button>*/}
+                        {/*    <div className='dropdown-menu' aria-labelledby='dropdownMenu2'>*/}
+                        {/*        <button className='dropdown-item' type='button'>*/}
+                        {/*            Bebida*/}
+                        {/*        </button>*/}
+                        {/*        <button className='dropdown-item' type='button'>*/}
+                        {/*            Galletas*/}
+                        {/*        </button>*/}
+                        {/*        <button className='dropdown-item' type='button'>*/}
+                        {/*            Salsas*/}
+                        {/*        </button>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
 
-                        <div className='dropdown'>
-                            <button
-                                className='btn btn-dark dropdown-toggle'
-                                type='button'
-                                id='dropdownMenu2'
-                                data-bs-toggle='dropdown'
-                                aria-haspopup='true'
-                                aria-expanded='false'
-                            >
-                                Proveedor
-                            </button>
-                            <div className='dropdown-menu' aria-labelledby='dropdownMenu2'>
-                                <button className='dropdown-item' type='button'>
-                                    CCU
-                                </button>
-                                <button className='dropdown-item' type='button'>
-                                    CCU
-                                </button>
-                                <button className='dropdown-item' type='button'>
-                                    CCU
-                                </button>
-                            </div>
-                        </div>
+                        {/*    <div className='dropdown'>*/}
+                        {/*    <button*/}
+                        {/*    className='btn btn-dark dropdown-toggle'*/}
+                        {/*    type='button'*/}
+                        {/*    id='dropdownMenu2'*/}
+                        {/*    data-bs-toggle='dropdown'*/}
+                        {/*    aria-haspopup='true'*/}
+                        {/*    aria-expanded='false'*/}
+                        {/*    >*/}
+                        {/*    Proveedor*/}
+                        {/*    </button>*/}
+                        {/*    <div className='dropdown-menu' aria-labelledby='dropdownMenu2'>*/}
+                        {/*    <button className='dropdown-item' type='button'>*/}
+                        {/*    CCU*/}
+                        {/*    </button>*/}
+                        {/*    <button className='dropdown-item' type='button'>*/}
+                        {/*    CCU*/}
+                        {/*    </button>*/}
+                        {/*    <button className='dropdown-item' type='button'>*/}
+                        {/*    CCU*/}
+                        {/*    </button>*/}
+                        {/*    </div>*/}
+                        {/*    </div>}*/}
                     </div>
                 </div>
 
