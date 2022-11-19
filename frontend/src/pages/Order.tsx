@@ -11,8 +11,8 @@ renders the orders page
 @returns {JSX.Element}
 */
 export default function Order() {
-    const {fetch, handleChange, handleBarCode, handleSubmit} = useOrderFetch()
-    const {order, handleAmount, handleOrder} = useOrder(fetch.result)
+    const {order, handleAmount, handleOrder, pushItem} = useOrder()
+    const {fetch, handleChange, handleBarCode, handleSubmit} = useOrderFetch(pushItem)
     const {modal, handleScanner} = useModal.useModalScanner()
 
     return (
@@ -61,13 +61,11 @@ export default function Order() {
                     </form>
                 </nav>
             </div>
-            {fetch.result != null ? (
+            {
                 order.products.map((item) => {
                     return <OrderItem key={item.product_id} item={item} handleAmount={handleAmount}/>
                 })
-            ) : (
-                <></>
-            )}
+            }
             <div className='ContainerHR container mt-5'>
                 <div className=' w-50 border border-dark text-light bg-dark'></div>
             </div>

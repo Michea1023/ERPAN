@@ -10,12 +10,8 @@ const login_request = () => {
             "Authorization": "bearer " + String(localStorage.getItem("tokenERPAN"))
         },
     }).then(response => {
-        console.log(response)
         if (!response.ok) throw new Error("Error")
         return response
-    }).catch((err) => {
-        window.localStorage.removeItem("tokenERPAN")
-        window.localStorage.removeItem("nameERPAN")
     })
 }
 

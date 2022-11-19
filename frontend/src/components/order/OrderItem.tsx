@@ -7,7 +7,6 @@ interface Props {
 
 export default function OrderItem({item, handleAmount}: Props) {
 
-
     return ( item.amount > 0 ?
         <div>
             <div className='ContainerProduct'>

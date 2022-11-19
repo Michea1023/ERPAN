@@ -4,24 +4,13 @@ import barcode_products from "../../../services/products/barcode_products";
 
 interface State {
     search: string
-    result: Array<ProductResponse>
 }
 
 const INITIAL_STATE = {
-    search: "",
-    result: [{
-        id: 1,
-        id_categories: "asdfa",
-        id_providers: "130948",
-        bar_code: "32432",
-        stock: 20,
-        name_product: "askdfjj",
-        price: 1000,
-        cost: 1200
-    }]
+    search: ""
 }
 
-const useOrderFetch = () => {
+const useOrderFetch = (pushItem: (newProduct: ProductResponse) => void) => {
     const [fetch, setFetch] = useState<State>(INITIAL_STATE)
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +34,7 @@ const useOrderFetch = () => {
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
         barcode_products(fetch.search).then((res) => {
-            fetch.result.push(res)
+            pushItem(res)
         })
     }
 

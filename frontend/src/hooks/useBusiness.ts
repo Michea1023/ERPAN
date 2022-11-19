@@ -31,8 +31,10 @@ const useBusiness = () => {
         let token = window.localStorage.getItem('tokenERPAN');
 
         if (token !== undefined) {
-            verify_token().then((res) => {
-                if (res === undefined) setBusiness(null_value)
+            verify_token().catch((err) => {
+                window.localStorage.removeItem("tokenERPAN")
+                window.localStorage.removeItem("nameERPAN")
+                setBusiness(null_value)
             })
         }
     }, [])
