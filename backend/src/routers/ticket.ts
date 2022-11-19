@@ -42,7 +42,7 @@ router.post("/",async (req,res) => {
     if(idTicket > -1) {
         const {insert_ticket_detail} = await addTicketDetail(list_detail,idTicket);
         if(!insert_ticket_detail){
-            console.log(await deleteTicket(parseInt(idTicket),dataToken.id));
+            await deleteTicket(parseInt(idTicket),dataToken.id);
             res.status(400).send({"mensaje":"Articulo sin stock"})
         }else{
             res.status(200).send(newTicket)
