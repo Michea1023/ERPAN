@@ -63,7 +63,7 @@ export default function Order() {
             </div>
             {fetch.result != null ? (
                 order.products.map((item) => {
-                    return <OrderItem item={item} handleAmount={handleAmount}/>
+                    return <OrderItem key={item.product_id} item={item} handleAmount={handleAmount}/>
                 })
             ) : (
                 <></>

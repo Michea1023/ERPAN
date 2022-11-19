@@ -9,7 +9,16 @@ interface State {
 
 const INITIAL_STATE = {
     search: "",
-    result: []
+    result: [{
+        id: 1,
+        id_categories: "asdfa",
+        id_providers: "130948",
+        bar_code: "32432",
+        stock: 20,
+        name_product: "askdfjj",
+        price: 1000,
+        cost: 1200
+    }]
 }
 
 const useOrderFetch = () => {

@@ -30,7 +30,7 @@ const useBusiness = () => {
     useEffect(() => {
         let token = window.localStorage.getItem('tokenERPAN');
 
-        if (token === undefined) {
+        if (token !== undefined) {
             verify_token().then((res) => {
                 if (res === undefined) setBusiness(null_value)
             })
