@@ -9,10 +9,11 @@ export default function ModalResume({ value, handleClose }: Props) {
   return (
     <Modal show={value} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Boleta</Modal.Title>
+        <Modal.Title>Boleta generada exitosamente</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>Aqui va la boleta</div>
+        <div>Fecha:</div>
+        <div>Total:</div>
       </Modal.Body>
       <ModalFooter>
         <Button

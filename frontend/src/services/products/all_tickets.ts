@@ -6,7 +6,7 @@ send a request [GET] to HOST/products to get all products
 @returns {Promise<Array<ProductList>>}
 */
 const all_tickets = (): Promise<TicketList> => {
-  return fetch(HOST + 'ticket', {
+  return fetch(HOST + 'tickets', {
     method: 'GET',
     headers: {
       Accept: 'application/json',

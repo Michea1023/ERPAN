@@ -9,8 +9,8 @@ interface Props {
 }
 
 export default function SalesTable({ detail, handleDetail }: Props) {
-  //const { tickets } = useSalesHistory()
-
+  const { tickets } = useSalesHistory()
+  console.log(tickets)
   const detailsButton = () => {
     return (
       <button
@@ -51,13 +51,17 @@ export default function SalesTable({ detail, handleDetail }: Props) {
             </thead>
             <tbody>
               <>
-                <tr>
-                  <td>hola</td>
-                  <td>2</td>
-                  <td>h</td>
-                  <td>2</td>
-                  <td>{detailsButton()}</td>
-                </tr>
+                {tickets.map((ticket) => {
+                  return (
+                    <tr>
+                      <td>{ticket.id.toString()}</td>
+                      <td>{ticket.selled_date}</td>
+                      <td>{ticket.selled_time}</td>
+                      <td>{ticket.general_price}</td>
+                      <td>{detailsButton()}</td>
+                    </tr>
+                  )
+                })}
               </>
             </tbody>
           </table>
