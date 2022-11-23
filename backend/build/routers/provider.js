@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const verifyToken_1 = __importDefault(require("../middleware/verifyToken"));
-const productServices_1 = require("../services/productServices");
+const providerServices_1 = require("../services/providerServices");
 const token_1 = require("../middleware/token");
 const dotenv = require('dotenv');
 dotenv.config({
@@ -22,87 +22,70 @@ dotenv.config({
 });
 const router = express_1.default.Router();
 router.use(verifyToken_1.default);
-/* This is a route that will be used to get all the products. */
+/* This is a route that is used to get all the providers of a business. */
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const dataToken = (0, token_1.decodeToken)((_a = req.get("Authorization")) === null || _a === void 0 ? void 0 : _a.substring(7));
-    const products = yield (0, productServices_1.getAll)(dataToken.id);
-    res.status(200).send(products);
+    const providers = yield (0, providerServices_1.getAll)(dataToken.id);
+    res.status(200).send(providers);
 }));
-/* A route that will be used to add a new product. */
+/* This is a route that is used to add a provider to a business. */
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _b;
     const dataToken = (0, token_1.decodeToken)((_b = req.get("Authorization")) === null || _b === void 0 ? void 0 : _b.substring(7));
-    const { id_categories, id_providers, bar_code, stock, name_product, price, cost } = req.body;
-    const newProduct = {
-        id_business: dataToken.id,
-        id_categories: id_categories,
-        id_providers: id_providers,
-        bar_code: bar_code,
-        stock: stock,
-        name_product: name_product,
-        price: price,
-        cost: cost
+    const { name_providers } = req.body;
+    const newProvider = {
+        name_providers: name_providers,
+        id_business: dataToken.id
     };
-    if (yield (0, productServices_1.addProduct)(newProduct)) {
-        res.status(200).send(newProduct);
+    if (yield (0, providerServices_1.addProvider)(newProvider)) {
+        res.status(200).send(newProvider);
     }
     else {
-        res.status(404).send({ "mensaje": "Error al agregar producto" });
+        res.status(404).send({ "mensaje": "Error al agregar el proveedor" });
     }
 }));
-/* This is a route that will be used to update a product by id. */
+/* This is a route that is used to update a provider of a business. */
 router.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _c;
     const dataToken = (0, token_1.decodeToken)((_c = req.get("Authorization")) === null || _c === void 0 ? void 0 : _c.substring(7));
-    const productUpdate = req.body;
-    if (yield (0, productServices_1.updateProduct)(parseInt(req.params.id), productUpdate, dataToken.id)) {
-        res.status(200).send(productUpdate);
+    const providerUpdate = req.body;
+    if (yield (0, providerServices_1.updateProvider)(req.params.id, providerUpdate, dataToken.id)) {
+        res.status(200).send(providerUpdate);
     }
     else {
-        res.status(404).send({ "mensaje": "Producto no actualizado" });
+        res.status(404).send({ "mensaje": "Proveedor no actualizado" });
     }
 }));
-/* This is a route that will be used to get a product by id. */
+/* This is a route that is used to get a provider of a business. */
 router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _d;
     const dataToken = (0, token_1.decodeToken)((_d = req.get("Authorization")) === null || _d === void 0 ? void 0 : _d.substring(7));
-    const product = yield (0, productServices_1.getProduct)(parseInt(req.params.id), dataToken.id);
-    if (product != undefined) {
-        res.status(200).send(product);
+    const provider = yield (0, providerServices_1.getProvider)(req.params.id, dataToken.id);
+    if (provider != undefined) {
+        res.status(200).send(provider);
     }
     else {
-        res.status(404).send({ "mensaje": "producto no encontrado" });
+        res.status(404).send({ "mensaje": "Proveedor no encontrado" });
     }
 }));
-/* A route that will be used to delete a product by id. */
+/* This is a route that is used to delete a provider of a business. */
 router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _e;
     const dataToken = (0, token_1.decodeToken)((_e = req.get("Authorization")) === null || _e === void 0 ? void 0 : _e.substring(7));
-    if (yield (0, productServices_1.deleteProduct)(parseInt(req.params.id), dataToken.id)) {
+    if (yield (0, providerServices_1.deleteProvider)(req.params.id, dataToken.id)) {
         res.status(200).send(true);
     }
     else {
         res.status(404).send(false);
     }
 }));
-/* This is a route that will be used to search a product by name. */
+/* This is a route that is used to search a provider of a business. */
 router.get("/search/:search", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _f;
-    const word = req.params.search.replace("+", " ");
+    const palabra = req.params.search;
     const dataToken = (0, token_1.decodeToken)((_f = req.get("Authorization")) === null || _f === void 0 ? void 0 : _f.substring(7));
-    const products = yield (0, productServices_1.searchProduct)(word, dataToken.id);
-    res.status(200).send(products);
-}));
-router.get("/barcode/:barcode", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _g;
-    const dataToken = (0, token_1.decodeToken)((_g = req.get("Authorization")) === null || _g === void 0 ? void 0 : _g.substring(7));
-    const product = yield (0, productServices_1.getProductBarcode)(parseInt(req.params.barcode), dataToken.id);
-    if (product != undefined) {
-        res.status(200).send(product);
-    }
-    else {
-        res.status(404).send({ "mensaje": "producto no encontrado" });
-    }
+    const providers = yield (0, providerServices_1.searchProvider)(palabra, dataToken.id);
+    res.status(200).send(providers);
 }));
 exports.default = router;

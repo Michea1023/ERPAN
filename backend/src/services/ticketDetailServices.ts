@@ -12,7 +12,7 @@ export const addTicketDetail = async (list_detail: Array<NewTicketDetail>,id_tic
     let confi;
     for (let i = 0; i < list_detail.length; i++) {
         const dato = list_detail[i]
-        const query = `select insert_ticket_detail(${dato.id_product},${id_ticket},cast(${dato.total_price} as money),${dato.amount});`
+        const query = `select insert_ticket_detail(${dato.id_product},${id_ticket},${dato.total_price},${dato.amount});`
         try{
             const result = await client.query(query);
             confi = result.rows[0]
