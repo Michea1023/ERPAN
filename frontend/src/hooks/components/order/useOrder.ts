@@ -27,7 +27,6 @@ const useOrder = () => {
 
     const pushItem = (newProduct: ProductResponse) => {
         setOrder({
-            ...order,
             products: [
                 ...order.products,
                 {
@@ -36,13 +35,10 @@ const useOrder = () => {
                     total_price: newProduct.price,
                     amount: 1
                 }
-            ]
+            ],
+            general_price: order.general_price + newProduct.price
         })
     }
-
-    useEffect(() => {
-        console.log(order)
-    }, [order])
 
     const handleAmount = (id: number, newAmount: number) => {
         let general_price = order.general_price

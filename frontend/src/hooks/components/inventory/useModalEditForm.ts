@@ -25,7 +25,8 @@ const useModalEditForm = (defaultValue: Product) => {
      */
     const handleSubmit = () => {
         if (product.id === undefined) {
-            return alert("error")
+            alert("error")
+            return
         }
         edit_product(String(product.id), product).then()
     }
@@ -54,7 +55,8 @@ const useModalEditForm = (defaultValue: Product) => {
      */
     const handleDelete = () => {
         if (product.id === undefined) {
-            return alert("error")
+            alert("error")
+            return
         }
         delete_product(String(product.id)).then()
     }

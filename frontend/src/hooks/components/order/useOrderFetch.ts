@@ -2,29 +2,16 @@ import React, {useState} from "react";
 import {ProductResponse} from "../../../types/response_types";
 import barcode_products from "../../../services/products/barcode_products";
 
-interface State {
-    search: string
-}
-
-const INITIAL_STATE = {
-    search: ""
-}
-
 const useOrderFetch = (pushItem: (newProduct: ProductResponse) => void) => {
-    const [fetch, setFetch] = useState<State>(INITIAL_STATE)
+    const [fetch, setFetch] = useState<string>("")
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        setFetch({
-            ...fetch,
-            ["search"]: evt.currentTarget.name
-        })
+        console.log(evt.target.value)
+        setFetch(evt.target.value)
     }
 
     const handleBarCode = (bar_code: string) => {
-        setFetch({
-            ...fetch,
-            ["search"]: bar_code
-        })
+        setFetch(bar_code)
     }
 
     /**
@@ -33,7 +20,8 @@ const useOrderFetch = (pushItem: (newProduct: ProductResponse) => void) => {
      */
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
-        barcode_products(fetch.search).then((res) => {
+        console.log(fetch)
+        barcode_products(fetch).then((res) => {
             pushItem(res)
         })
     }

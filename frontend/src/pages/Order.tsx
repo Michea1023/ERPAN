@@ -12,8 +12,8 @@ renders the orders page
 @returns {JSX.Element}
 */
 export default function Order() {
-  const { order, handleAmount, handleOrder, pushItem } = useOrder()
-  const { fetch, handleChange, handleBarCode, handleSubmit } =
+  const { order, handleAmount, pushItem } = useOrder()
+  const { handleChange, handleBarCode, handleSubmit } =
     useOrderFetch(pushItem)
   const { modal, handleScanner } = useModal.useModalScanner()
   const { modalResume, handleResume } = useModal.useModalResume()
@@ -29,7 +29,6 @@ export default function Order() {
                 type='search'
                 placeholder='Search'
                 aria-label='Search'
-                defaultValue={fetch.search}
                 onChange={handleChange}
               ></input>
               <button
@@ -95,9 +94,7 @@ export default function Order() {
         </div>
       </div>
       <ModalScanner
-        handleBarCode={(bar_code: string) => {
-          handleBarCode(bar_code)
-        }}
+        handleBarCode={handleBarCode}
         value={modal.scanner}
         handleClose={() => handleScanner(false)}
       />

@@ -32,7 +32,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\.datos\\ERPAN\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\.datos\\ERPAN\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -91,7 +91,9 @@
       <workItem from="1668651070248" duration="1194000" />
       <workItem from="1668652285662" duration="3663000" />
       <workItem from="1668730820255" duration="16000" />
-      <workItem from="1668878125601" duration="11407000" />
+      <workItem from="1668878125601" duration="11636000" />
+      <workItem from="1669171465879" duration="1713000" />
+      <workItem from="1669226435772" duration="515000" />
     </task>
     <servers />
   </component>
