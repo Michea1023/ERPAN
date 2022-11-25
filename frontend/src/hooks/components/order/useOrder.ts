@@ -4,28 +4,16 @@ import {ProductResponse} from "../../../types/response_types";
 import create_order from "../../../services/orders/create_order";
 
 const INITIAL_STATE = {
-    general_price: 1000,
-    products: [{
-        product_id: 1,
-        product: {
-            id: 1,
-            id_categories: "asdfa",
-            id_providers: "130948",
-            bar_code: "32432",
-            stock: 20,
-            name_product: "askdfjj",
-            price: 1000,
-            cost: 1200
-        },
-        total_price: 1000,
-        amount: 1
-    }]
+    general_price: 0,
+    products: []
 }
 
 const useOrder = () => {
     const [order, setOrder] = useState<Order>(INITIAL_STATE)
 
     const pushItem = (newProduct: ProductResponse) => {
+        if (order.products.filter(item => {return item.product_id === newProduct.id})[0]) return
+
         setOrder({
             products: [
                 ...order.products,
@@ -43,14 +31,15 @@ const useOrder = () => {
     const handleAmount = (id: number, newAmount: number) => {
         let general_price = order.general_price
 
-        const products = order.products.map(item => {
-            if (item.product_id !== id) return item
+        const products = order.products.filter(item => {
+            if (item.product_id !== id) return true;
             if (item.product.stock < newAmount) return item
 
+            general_price += newAmount*item.product.price - item.total_price
+
+            return newAmount != 0;
+        }).map(item => {
             const newPrice = newAmount*item.product.price
-
-            general_price += newPrice - item.total_price
-
             return {
                 ...item,
                 amount: newAmount,

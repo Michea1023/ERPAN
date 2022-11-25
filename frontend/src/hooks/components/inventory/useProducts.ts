@@ -35,6 +35,10 @@ const useProducts = () => {
         })
     }, [])
 
+    const filterProducts = () => {
+
+    }
+
     return {products}
 }
 

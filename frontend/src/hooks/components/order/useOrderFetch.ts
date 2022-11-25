@@ -20,7 +20,6 @@ const useOrderFetch = (pushItem: (newProduct: ProductResponse) => void) => {
      */
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault()
-        console.log(fetch)
         barcode_products(fetch).then((res) => {
             pushItem(res)
         })

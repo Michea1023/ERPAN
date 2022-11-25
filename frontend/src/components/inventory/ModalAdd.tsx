@@ -27,9 +27,9 @@ interface Props {
 export default function ModalAdd({ value, handleClose }: Props) {
   const { product, handleProduct, handleChange, handleSubmit } =
     useModalAddForm()
-  const { category, categoryOptions, categorySearch, handleCategory } =
+  const { category, categorySearch, handleCategory } =
     useCategorySelect({ product, handleProduct })
-  const { provider, providerOptions, providerSearch, handleProvider } =
+  const { provider, providerSearch, handleProvider } =
     useProviderSelect({ product, handleProduct })
   const { modal, handleScanner } = useModal.useModalScanner()
 
@@ -92,7 +92,6 @@ export default function ModalAdd({ value, handleClose }: Props) {
                   inputValue={category.search}
                   onChange={handleCategory}
                   onInputChange={categorySearch}
-                  onKeyDown={categoryOptions}
                   isSearchable={true}
                 />
               </div>
@@ -104,7 +103,6 @@ export default function ModalAdd({ value, handleClose }: Props) {
                   inputValue={provider.search}
                   onChange={handleProvider}
                   onInputChange={providerSearch}
-                  onKeyDown={providerOptions}
                   isSearchable={true}
                 />
               </div>

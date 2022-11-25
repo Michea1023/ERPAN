@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import search_providers from "../../services/providers/search_providers";
 import {SingleValue} from "react-select"
 import {Product} from "../../types/request_types";
+import all_categories from "../../services/categories/all_categories";
+import all_providers from "../../services/providers/all_providers";
 
 interface Options {
     value: string
@@ -37,27 +39,19 @@ handle provider select
 const useProviderSelect = ({product, handleProduct}: Props) => {
     const [state, setState] = useState(INITIAL_VALUE)
 
-    /*
-    set a new provider id to the product's state
-    @param {SingleValue<Option>} evt -> event obtained when is selected a provider
-     */
-    const handleOptions = (evt: React.KeyboardEvent<HTMLDivElement>) => {
-        if (evt.key == " ") {
-            search_providers(state.search).then((response) => {
-                const options = response.map((item) => {
+    useEffect(() => {
+        all_providers().then((res) => {
+            setState({
+                ...state,
+                options: res.map(item => {
                     return {
                         value: item.name_providers,
                         label: item.name_providers
                     }
                 })
-
-                setState({
-                    ...state,
-                    options: options
-                })
             })
-        }
-    }
+        })
+    }, [])
 
     /*
     set new options to the provider select state
@@ -85,7 +79,6 @@ const useProviderSelect = ({product, handleProduct}: Props) => {
 
     return {
         provider: state,
-        providerOptions: handleOptions,
         handleProvider,
         providerSearch: handleSearch
     }

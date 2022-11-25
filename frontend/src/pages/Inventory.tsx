@@ -26,7 +26,7 @@ export default function Inventory() {
                                 ></input>
                                 <button
                                     className='btn btn-outline-success my-2 my-sm-0'
-                                    type='submit'
+                                    type='button'
                                 >
                                     Search
                                 </button>

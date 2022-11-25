@@ -31,9 +31,9 @@ export default function ModalEdit({
 }: Props) {
   const { product, handleProduct, handleChange, handleSubmit, handleDelete } =
     useModalEditForm(item)
-  const { category, categoryOptions, categorySearch, handleCategory } =
+  const { category, categorySearch, handleCategory } =
     useCategorySelect({ product, handleProduct })
-  const { provider, providerOptions, providerSearch, handleProvider } =
+  const { provider, providerSearch, handleProvider } =
     useProviderSelect({ product, handleProduct })
 
   return (
@@ -78,7 +78,6 @@ export default function ModalEdit({
                   defaultValue={{value: item.id_categories, label: item.id_categories}}
                   onChange={handleCategory}
                   onInputChange={categorySearch}
-                  onKeyDown={categoryOptions}
                   isSearchable={true}
                 />
               </div>
@@ -91,7 +90,6 @@ export default function ModalEdit({
                   defaultValue={{value: item.id_providers, label: item.id_providers}}
                   onChange={handleProvider}
                   onInputChange={providerSearch}
-                  onKeyDown={providerOptions}
                   isSearchable={true}
                 />
               </div>
