@@ -24,6 +24,7 @@ export default function Inventory() {
                                     placeholder='Search'
                                     aria-label='Search'
                                 ></input>
+                                <div className='m-2'></div>
                                 <button
                                     className='btn btn-outline-success my-2 my-sm-0'
                                     type='button'

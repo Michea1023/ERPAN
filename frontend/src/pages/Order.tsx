@@ -23,7 +23,7 @@ export default function Order() {
             <div className='container mt-5'>
                 <nav className='navbar navbar-light bg-light'>
                     <form className='d-flex flex-row' onSubmit={handleSubmit}>
-                        <div className='custom-search'>
+                        
                             <input
                                 className='form-control mr-sm-2'
                                 type='search'
@@ -31,12 +31,22 @@ export default function Order() {
                                 aria-label='Search'
                                 onChange={handleChange}
                             ></input>
-                            <button
+                           
+                        
+                        <div className='m-1'></div>
+                        <button
+                            className='btn btn-outline-success mr-sm-2'
+                            type='submit'
+                        >
+                            Search
+                        </button>
+                        <div className='m-2'></div>
+                        <button
                                 type='button'
-                                className='align-self-center ms-auto btn btn-outline-success custom-search-botton'
+                                className='align-self-center mr-sm-2 btn btn-outline-success '
                                 onClick={() => handleScanner(true)}
                             >
-                                <div>
+                                <div >
                                     <svg
                                         xmlns='http://www.w3.org/2000/svg'
                                         width='16'
@@ -52,14 +62,7 @@ export default function Order() {
                                     </svg>
                                 </div>
                             </button>
-                        </div>
-
-                        <button
-                            className='btn btn-outline-success my-2 my-sm-0'
-                            type='submit'
-                        >
-                            Search
-                        </button>
+                        
                     </form>
                 </nav>
             </div>

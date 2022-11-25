@@ -51,7 +51,7 @@ export default function SalesTable({ detail, handleDetail }: Props) {
             </thead>
             <tbody>
               <>
-                {tickets.map((ticket) => {
+              {tickets.map((ticket) => {
                   return (
                     <tr>
                       <td>{ticket.id.toString()}</td>

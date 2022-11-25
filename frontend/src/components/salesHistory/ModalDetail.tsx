@@ -11,8 +11,31 @@ export default function ModalDetail({ value, handleClose }: Props) {
         <Modal.Title>Detalles de venta</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>dadsa</div>
-        <div>uwu</div>
+        <div className='d-flex justify-content-between p-1'>
+          
+          <td>Producto: Pansito</td>
+          <td>Cantidad: 2</td>
+          <td>Precio: $2000</td>
+
+        </div>  
+
+          
+        <div className='d-flex justify-content-between p-1'>
+          <td>Producto: Pansito</td>
+          <td>Cantidad: 2</td>
+          <td>Precio: $2000</td>
+
+        </div>  
+        <hr></hr>
+        <div className='d-flex flex-row-reverse p-1 '>
+          <div>Total: 4000</div>
+          
+          
+        </div>
+        
+
+       
+        
       </Modal.Body>
       <ModalFooter>
         <Button
