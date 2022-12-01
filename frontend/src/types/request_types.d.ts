@@ -28,7 +28,7 @@ export interface Product {
 }
 
 export interface OrderDetail {
-  product_id: number
+  id_product: number
   product: ProductResponse
   total_price: number
   amount: number

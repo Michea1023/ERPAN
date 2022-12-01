@@ -12,26 +12,24 @@ renders the orders page
 @returns {JSX.Element}
 */
 export default function Order() {
-    const {order, handleAmount, pushItem} = useOrder()
-    const {handleChange, handleBarCode, handleSubmit} =
-        useOrderFetch(pushItem)
     const {modal, handleScanner} = useModal.useModalScanner()
     const {modalResume, handleResume} = useModal.useModalResume()
+    const {order, handleAmount, pushItem, handleOrder, clearAll} = useOrder(handleResume)
+    const {handleChange, handleBarCode, handleSubmit} =
+        useOrderFetch(pushItem)
 
     return (
         <>
             <div className='container mt-5'>
                 <nav className='navbar navbar-light bg-light'>
                     <form className='d-flex flex-row' onSubmit={handleSubmit}>
-                        
-                            <input
-                                className='form-control mr-sm-2'
-                                type='search'
-                                placeholder='Search'
-                                aria-label='Search'
-                                onChange={handleChange}
-                            ></input>
-                           
+                        <input
+                            className='form-control mr-sm-2'
+                            type='search'
+                            placeholder='Search'
+                            aria-label='Search'
+                            onChange={handleChange}
+                        ></input>
                         
                         <div className='m-1'></div>
                         <button
@@ -70,7 +68,7 @@ export default function Order() {
 
                 return (
                     <OrderItem
-                        key={item.product_id}
+                        key={item.id_product}
                         item={item}
                         handleAmount={handleAmount}
                     />
@@ -89,10 +87,8 @@ export default function Order() {
                 <div className='ColumnCount'>
                     <button
                         className='btn btn-success'
-                        type='button'
                         onClick={() => {
-                            //handleOrder
-                            handleResume(true)
+                            handleOrder()
                         }}
                     >
                         Finalizar Compra
@@ -106,7 +102,11 @@ export default function Order() {
             />
             <ModalResume
                 value={modalResume.resume}
-                handleClose={() => handleResume(false)}
+                handleClose={() => {
+                    handleResume(false)
+                    clearAll()
+                }}
+                order={order}
             />
         </>
     )

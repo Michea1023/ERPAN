@@ -23,26 +23,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/.datos/ERPAN&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\.datos\\ERPAN\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/.datos/ERPAN",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "D:\\.datos\\ERPAN\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\.datos\ERPAN\frontend\src\services\orders" />
       <recent name="D:\.datos\ERPAN\frontend\src\utils" />
       <recent name="D:\.datos\ERPAN\frontend\src\components\inventory" />
       <recent name="D:\.datos\ERPAN\backend" />
       <recent name="D:\.datos\ERPAN\frontend\src\services\auth" />
-      <recent name="D:\.datos\ERPAN\frontend\src\static\images" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -95,6 +95,12 @@
       <workItem from="1669171465879" duration="1713000" />
       <workItem from="1669226435772" duration="515000" />
       <workItem from="1669331693963" duration="3370000" />
+      <workItem from="1669431643489" duration="301000" />
+      <workItem from="1669593101265" duration="345000" />
+      <workItem from="1669667300094" duration="5000" />
+      <workItem from="1669673785523" duration="207000" />
+      <workItem from="1669681629131" duration="3484000" />
+      <workItem from="1669926668009" duration="3367000" />
     </task>
     <servers />
   </component>

@@ -6,7 +6,6 @@ const useOrderFetch = (pushItem: (newProduct: ProductResponse) => void) => {
     const [fetch, setFetch] = useState<string>("")
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(evt.target.value)
         setFetch(evt.target.value)
     }
 

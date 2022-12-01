@@ -1,21 +1,8 @@
 import {useEffect, useState} from "react"
 import all_products from "../../../services/products/all_products"
-import {TOKEN} from "../../../settings"
 import {ProductList} from "../../../types/response_types"
-
-/*
-initial state for product form entity
- */
-const INITIAL_VALUE = {
-    id: 0,
-    name_product: "",
-    id_providers: "",
-    id_categories: "",
-    bar_code: "",
-    stock: 0,
-    price: 0,
-    cost: 0
-}
+import {useNavigate, useParams} from "react-router-dom";
+import search_products from "../../../services/products/search_products";
 
 /*
 return all products from a business
@@ -23,21 +10,26 @@ return all products from a business
  */
 const useProducts = () => {
     const [products, setProducts] = useState<ProductList>([])
+    const {search} = useParams()
 
     /*
     gets all products when the app is refreshed
      */
     useEffect(() => {
-        all_products().then((res) => {
-            if (res === undefined) return
+        if (search === undefined || search === "") {
+            all_products().then((res) => {
+                if (res === undefined) return
 
-            setProducts(res)
-        })
+                setProducts(res)
+            })
+        } else {
+            search_products(search).then((res) => {
+                if (res === undefined) return
+
+                setProducts(res)
+            })
+        }
     }, [])
-
-    const filterProducts = () => {
-
-    }
 
     return {products}
 }

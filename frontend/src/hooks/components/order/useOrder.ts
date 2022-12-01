@@ -8,17 +8,17 @@ const INITIAL_STATE = {
     products: []
 }
 
-const useOrder = () => {
+const useOrder = (handleResume: (resume: boolean) => void) => {
     const [order, setOrder] = useState<Order>(INITIAL_STATE)
 
     const pushItem = (newProduct: ProductResponse) => {
-        if (order.products.filter(item => {return item.product_id === newProduct.id})[0]) return
+        if (order.products.filter(item => {return item.id_product === newProduct.id})[0]) return
 
         setOrder({
             products: [
                 ...order.products,
                 {
-                    product_id: newProduct.id,
+                    id_product: newProduct.id,
                     product: newProduct,
                     total_price: newProduct.price,
                     amount: 1
@@ -29,10 +29,11 @@ const useOrder = () => {
     }
 
     const handleAmount = (id: number, newAmount: number) => {
+
         let general_price = order.general_price
 
         const products = order.products.filter(item => {
-            if (item.product_id !== id) return true;
+            if (item.id_product !== id) return true;
             if (item.product.stock < newAmount) return item
 
             general_price += newAmount*item.product.price - item.total_price
@@ -47,6 +48,8 @@ const useOrder = () => {
             }
         })
 
+        if (products.length === 0) general_price = 0
+
         setOrder({
             ["general_price"]: general_price,
             ["products"]: products
@@ -54,10 +57,18 @@ const useOrder = () => {
     }
 
     const handleOrder = () => {
-        create_order(order).then()
+        create_order(order).then((res) => {
+            if (res === undefined) return
+
+            handleResume(true)
+        })
     }
 
-    return {order, handleAmount, handleOrder, pushItem}
+    const clearAll = () => {
+        setOrder(INITIAL_STATE)
+    }
+
+    return {order, handleAmount, handleOrder, pushItem, clearAll}
 }
 
 export default useOrder

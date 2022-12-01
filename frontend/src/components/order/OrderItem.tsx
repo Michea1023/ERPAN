@@ -20,7 +20,7 @@ export default function OrderItem({item, handleAmount}: Props) {
                         type='button'
                         className='btn btn-danger '
                         onClick={() => {
-                            handleAmount(item.product_id, item.amount - 1)
+                            handleAmount(item.id_product, item.amount - 1)
                         }}
                     >
                         -
@@ -28,15 +28,18 @@ export default function OrderItem({item, handleAmount}: Props) {
 
                     <p className='Count'>{item.amount}</p>
 
-                    <button
-                        type='button'
-                        className='btn btn-success'
-                        onClick={() => {
-                            handleAmount(item.product_id, item.amount + 1)
-                        }}
-                    >
-                        +
-                    </button>
+                    {
+                        item.product.stock >= (item.amount + 1)?
+                        <button
+                            type='button'
+                            className='btn btn-success'
+                            onClick={() => {
+                                handleAmount(item.id_product, item.amount + 1)
+                            }}
+                        >
+                            +
+                        </button>: <div/>}
+
                 </div>
             </div>
         </div> : <div></div>

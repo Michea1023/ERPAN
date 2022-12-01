@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import all_tickets from '../../../services/products/all_tickets'
+import all_tickets from '../../../services/orders/all_tickets'
 import { TicketList } from '../../../types/response_types'
 
 const INITIAL_VALUE = {

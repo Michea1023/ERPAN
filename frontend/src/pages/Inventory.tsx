@@ -3,6 +3,7 @@ import '../static/css/style.css'
 import ModalAdd from '../components/inventory/ModalAdd'
 import useModal from '../hooks/pages/useModal'
 import InventoryTable from '../components/inventory/InventoryTable'
+import useInventory from "../hooks/pages/useInventory";
 
 /*
 renders the inventory page
@@ -10,6 +11,7 @@ renders the inventory page
 */
 export default function Inventory() {
     const {modal, handleAdd, handleEdit} = useModal.useModal()
+    const {handleChange, handleClick} = useInventory()
 
     return (
         <>
@@ -23,11 +25,13 @@ export default function Inventory() {
                                     type='search'
                                     placeholder='Search'
                                     aria-label='Search'
+                                    onChange={handleChange}
                                 ></input>
                                 <div className='m-2'></div>
                                 <button
                                     className='btn btn-outline-success my-2 my-sm-0'
-                                    type='button'
+                                    type='submit'
+                                    onClick={handleClick}
                                 >
                                     Search
                                 </button>
@@ -45,53 +49,6 @@ export default function Inventory() {
                         >
                             Nuevo producto +
                         </button>
-                        {/*<div className='dropdown'>*/}
-                        {/*    <button*/}
-                        {/*        className='m-3 btn btn-dark dropdown-toggle'*/}
-                        {/*        type='button'*/}
-                        {/*        id='dropdownMenu2'*/}
-                        {/*        data-bs-toggle='dropdown'*/}
-                        {/*        aria-haspopup='true'*/}
-                        {/*        aria-expanded='false'*/}
-                        {/*    >*/}
-                        {/*        Categoria*/}
-                        {/*    </button>*/}
-                        {/*    <div className='dropdown-menu' aria-labelledby='dropdownMenu2'>*/}
-                        {/*        <button className='dropdown-item' type='button'>*/}
-                        {/*            Bebida*/}
-                        {/*        </button>*/}
-                        {/*        <button className='dropdown-item' type='button'>*/}
-                        {/*            Galletas*/}
-                        {/*        </button>*/}
-                        {/*        <button className='dropdown-item' type='button'>*/}
-                        {/*            Salsas*/}
-                        {/*        </button>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-
-                        {/*    <div className='dropdown'>*/}
-                        {/*    <button*/}
-                        {/*    className='btn btn-dark dropdown-toggle'*/}
-                        {/*    type='button'*/}
-                        {/*    id='dropdownMenu2'*/}
-                        {/*    data-bs-toggle='dropdown'*/}
-                        {/*    aria-haspopup='true'*/}
-                        {/*    aria-expanded='false'*/}
-                        {/*    >*/}
-                        {/*    Proveedor*/}
-                        {/*    </button>*/}
-                        {/*    <div className='dropdown-menu' aria-labelledby='dropdownMenu2'>*/}
-                        {/*    <button className='dropdown-item' type='button'>*/}
-                        {/*    CCU*/}
-                        {/*    </button>*/}
-                        {/*    <button className='dropdown-item' type='button'>*/}
-                        {/*    CCU*/}
-                        {/*    </button>*/}
-                        {/*    <button className='dropdown-item' type='button'>*/}
-                        {/*    CCU*/}
-                        {/*    </button>*/}
-                        {/*    </div>*/}
-                        {/*    </div>}*/}
                     </div>
                 </div>
 

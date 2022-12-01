@@ -22,6 +22,7 @@ const create_order = (order: Order) => {
         return response
     }).catch((err) => {
         alert(err)
+        return []
     })
 }
 

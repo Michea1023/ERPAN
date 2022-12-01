@@ -17,17 +17,19 @@ const register_request = (business: Business_Register): Promise<Business_Respons
             "name_business": business.name,
             "email": business.email,
             "short_name": business.short_name,
-            "password": business.password
+            "password": business.password,
+            "password_confirm": business.password_confirm
         })
     }).then(response => {
         if (!response.ok) throw new Error("Error")
         return response.json()
-    }).catch(() => {
-        alert("No se pudo registrar")
     }).then((response: Business_Response) => {
         window.localStorage.setItem("tokenERPAN", response.token)
         window.localStorage.setItem("nameERPAN", response.name_business)
         return response
+    }).catch(() => {
+        alert("No se pudo registrar")
+        return {token: "", name_business: ""}
     })
 }
 
