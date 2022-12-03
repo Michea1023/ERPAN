@@ -20,7 +20,7 @@ export default function ModalDetail({ticket, value, handleClose}: Props) {
                 {
                     products.map((item) => {
                         return <div className='d-flex justify-content-between p-1'>
-                            <td>Producto: {item.product_name}</td>
+                            <td>Producto: {item.name_product}</td>
                             <td>Cantidad: {item.amount}</td>
                             <td>Precio: {item.total_price}</td>
                         </div>

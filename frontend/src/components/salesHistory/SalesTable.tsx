@@ -66,7 +66,7 @@ export default function SalesTable({detail, handleDetail}: Props) {
                                 return (
                                     <tr>
                                         <td>{ticket.id.toString()}</td>
-                                        <td>{ticket.selled_date}</td>
+                                        <td>{(new Date(ticket.selled_date)).toLocaleDateString("en-GB")}</td>
                                         <td>{ticket.selled_time}</td>
                                         <td>{ticket.general_price}</td>
                                         <td>{detailsButton(ticket)}</td>

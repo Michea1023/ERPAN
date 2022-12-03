@@ -32,11 +32,11 @@ export interface CategoryResponse {
 export type TicketList = Array<Ticket>
 
 export interface Ticket {
-    id: Number
-    id_business: Number
+    id: number
+    id_business: number
     general_price: number
-    selled_date: String
-    selled_time: String
+    selled_date: string
+    selled_time: string
 }
 
 export interface TicketDetail {
