@@ -2,7 +2,9 @@ import { client } from "../dataBase";
 import { NewTicketDetail, TicketDetail } from "../types/ticketDetail_types";
 
 export const getTicketDetail = async (id_ticket:Number): Promise<TicketDetail[]> => {
-    const query = `select * from ticket_detail where id_ticket = ${id_ticket};`
+    const query = `select td.id, td.id_product, td.id_ticket, p.name_product, td.total_price, td.amount from ticket_detail td 
+    inner join products p on p.id = td.id_product 
+    where td.id_ticket = ${id_ticket};`
     const result = await client.query(query);
     const allTicketDetail = result.rows;
     return allTicketDetail;
