@@ -14,6 +14,16 @@ export default function ModalResume({value, handleClose, order}: Props) {
                 <Modal.Title>Boleta generada exitosamente</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                {order.products.map((item) => {
+                    return <div className='d-flex justify-content-between p-1'>
+
+                        <td>Producto: {item.product.name_product}</td>
+                        <td>Cantidad: {item.amount}</td>
+                        <td>Precio: {item.total_price}</td>
+
+                    </div>
+                })}
+                <hr></hr>
                 <div>Fecha: {(new Date()).toLocaleDateString("en-GB")}</div>
                 <div>Total: $ {order.general_price}</div>
             </Modal.Body>

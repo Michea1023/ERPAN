@@ -40,10 +40,10 @@ export interface Ticket {
 }
 
 export interface TicketDetail {
-  id: Number
-  product_id: Number
-  product: Product
-  id_ticket: Number
-  total_price: number
+  id: number
+  id_product: number
+  id_ticket: number
+    product_name: string
+  total_price: string
   amount: number
 }

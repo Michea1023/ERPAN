@@ -1,51 +1,48 @@
-import { Button, Modal, ModalFooter } from 'react-bootstrap'
+import {Button, Modal, ModalFooter} from 'react-bootstrap'
+import {Ticket} from "../../types/response_types";
+import useModalDetail from "../../hooks/components/salesHistory/useModalDetail";
 
 interface Props {
-  value: boolean
-  handleClose: () => void
+    value: boolean
+    handleClose: () => void
+    ticket: Ticket
 }
-export default function ModalDetail({ value, handleClose }: Props) {
-  return (
-    <Modal show={value} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Detalles de venta</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <div className='d-flex justify-content-between p-1'>
-          
-          <td>Producto: Pansito</td>
-          <td>Cantidad: 2</td>
-          <td>Precio: $2000</td>
 
-        </div>  
+export default function ModalDetail({ticket, value, handleClose}: Props) {
+    const {products, clearAll} = useModalDetail(ticket)
 
-          
-        <div className='d-flex justify-content-between p-1'>
-          <td>Producto: Pansito</td>
-          <td>Cantidad: 2</td>
-          <td>Precio: $2000</td>
-
-        </div>  
-        <hr></hr>
-        <div className='d-flex flex-row-reverse p-1 '>
-          <div>Total: 4000</div>
-          
-          
-        </div>
-        
-
-       
-        
-      </Modal.Body>
-      <ModalFooter>
-        <Button
-          className='btn-danger'
-          variant='secondary'
-          onClick={handleClose}
-        >
-          Cerrar
-        </Button>
-      </ModalFooter>
-    </Modal>
-  )
+    return (
+        <Modal show={value} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Detalles de venta</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {
+                    products.map((item) => {
+                        return <div className='d-flex justify-content-between p-1'>
+                            <td>Producto: {item.product_name}</td>
+                            <td>Cantidad: {item.amount}</td>
+                            <td>Precio: {item.total_price}</td>
+                        </div>
+                    })
+                }
+                <hr></hr>
+                <div className='d-flex flex-row-reverse p-1 '>
+                    <div>Total: {ticket.general_price}</div>
+                </div>
+            </Modal.Body>
+            <ModalFooter>
+                <Button
+                    className='btn-danger'
+                    variant='secondary'
+                    onClick={() => {
+                        handleClose()
+                        clearAll()
+                    }}
+                >
+                    Cerrar
+                </Button>
+            </ModalFooter>
+        </Modal>
+    )
 }
