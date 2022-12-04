@@ -134,10 +134,10 @@ canvas {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    /** padding-left: 30%; /** antiguo 6% **/
-    justify-content: center;
+    /** padding-left: 30%; /** antiguo 6% aaaa **/
+    
     margin-top: 40px;
-
+    justify-content: center;
 
 }
 
