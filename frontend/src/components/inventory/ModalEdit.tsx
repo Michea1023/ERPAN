@@ -123,11 +123,11 @@ export default function ModalEdit({
                 />
               </div>
               <div className='form-group mt-3'>
-                <label>Cost</label>
+                <label>Costo</label>
                 <input
                   type='number'
                   className='form-control mt-1'
-                  name={'costo'}
+                  name={'cost'}
                   defaultValue={item.cost}
                   onChange={handleChange}
                   required
