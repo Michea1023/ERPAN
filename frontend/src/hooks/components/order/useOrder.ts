@@ -12,6 +12,11 @@ const useOrder = (handleResume: (resume: boolean) => void) => {
     const [order, setOrder] = useState<Order>(INITIAL_STATE)
 
     const pushItem = (newProduct: ProductResponse) => {
+        if (newProduct.stock <= 0) {
+            alert("Producto sin stock")
+            return
+        }
+
         if (order.products.filter(item => {return item.id_product === newProduct.id})[0]) return
 
         setOrder({
@@ -40,6 +45,8 @@ const useOrder = (handleResume: (resume: boolean) => void) => {
 
             return newAmount != 0;
         }).map(item => {
+            if (item.id_product !== id) return item;
+
             const newPrice = newAmount*item.product.price
             return {
                 ...item,
