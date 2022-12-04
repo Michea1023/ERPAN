@@ -1,2 +1,2 @@
-export const HOST = "http://localhost:3001/api/"
+export const HOST = "https://backend-erpan-production.up.railway.app/api/"
 export const TOKEN = String(window.localStorage.getItem("tokenERPAN"))
